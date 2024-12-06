@@ -8,16 +8,9 @@ const config: Config = {
   title: "Sinpom Docs",
   tagline: "Documentação do portal sinpom",
   favicon: "img/favicon.ico",
-
-  // Set the production url of your site here
-  url: "https://your-docusaurus-site.example.com",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  url: "https://docs-sinpom.github.io",
   baseUrl: "/",
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: "pmba", // Usually your GitHub org/user name.
+  organizationName: "giluansouza", // Usually your GitHub org/user name.
   projectName: "docs-sinpom", // Usually your repo name.
 
   onBrokenLinks: "throw",
