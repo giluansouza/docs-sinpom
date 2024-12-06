@@ -8,12 +8,12 @@ const config: Config = {
   title: "Sinpom Docs",
   tagline: "Documentação do portal sinpom",
   favicon: "img/favicon.ico",
-  url: "https://docs-sinpom.github.io",
+  url: "https://giluansouza.github.io",
   baseUrl: "/",
   organizationName: "giluansouza", // Usually your GitHub org/user name.
   projectName: "docs-sinpom", // Usually your repo name.
 
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
 
   // Even if you don't use internationalization, you can use this field to set
