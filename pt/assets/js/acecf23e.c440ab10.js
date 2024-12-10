@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs_sinpom=self.webpackChunkdocs_sinpom||[]).push([[1903],{1912:s=>{s.exports=JSON.parse('{"blogBasePath":"/docs-sinpom/pt/blog","blogTitle":"Blog","authorsListPath":"/docs-sinpom/pt/blog/authors"}')}}]);
