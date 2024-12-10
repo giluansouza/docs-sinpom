@@ -4,18 +4,18 @@ sidebar_position: 1
 
 # Overview
 
-## Purpose
+## Sobre o sinpom
 
-This system is designed to streamline the processing of documents, the registration of incidents, and the management of intelligence activities for Bahia's military police. It aims to provide an efficient and secure platform for tracking operations, responding to incidents, and analyzing intelligence data.
+Este sistema foi criado para agilizar o processamento de documentos, o registro de incidentes e o gerenciamento de atividades de inteligência para a polícia militar da Bahia. Ele visa fornecer uma plataforma eficiente e segura para rastrear operações, responder a incidentes e analisar dados de inteligência.
 
-## Goals and Objectives
+## Metas e Objetivos
 
-- Enhance operational efficiency by digitizing workflows and automating processes.
-- Improve accessibility to critical data for decision-making and resource allocation.
-- Ensure secure and reliable management of sensitive documents and intelligence information.
+- Aumentar a eficiência operacional digitalizando fluxos de trabalho e automatizando processos.
+- Melhorar a acessibilidade a dados críticos para tomada de decisões e gerenciamento de recursos.
+- Garantir a gestão segura e confiável de documentos sensíveis e informações de inteligência.
 
-## Target Audience
+## Público Alvo
 
-- **Military Police Officers**: Use the system to register incidents, report activities, and access operational intelligence.
-- **Intelligence Analysts**: Analyze and process intelligence data for investigative purposes.
-- **System Administrators**: Maintain and monitor the system, ensuring uptime and data security.
+- **Policiais Militares**: Uso do sistema para registrar incidentes, relatar atividades e analisar dados de inteligência.
+- **Analistas de Inteligência**: Uso do sistema para analisar e interpretar dados de inteligência para auxiliar na tomada de decisões.
+- **Administradores do Sistema**: Mantém e monitora o sistema para garantir sua integridade e segurança.
