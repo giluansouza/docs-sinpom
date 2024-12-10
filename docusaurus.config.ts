@@ -12,6 +12,7 @@ const config: Config = {
   baseUrl: "/docs-sinpom/",
   organizationName: "giluansouza", // Usually your GitHub org/user name.
   projectName: "docs-sinpom", // Usually your repo name.
+  trailingSlash: false,
 
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
@@ -73,7 +74,7 @@ const config: Config = {
       items: [
         {
           to: "/docs/introduction/overview",
-          label: "Documentation",
+          label: "Documentação",
           position: "left",
         },
         {
@@ -99,7 +100,7 @@ const config: Config = {
       style: "dark",
       links: [
         {
-          title: "Documentation",
+          title: "Documentação",
           items: [
             { label: "Introduction", to: "/docs/introduction/overview" },
             { label: "Architecture", to: "/docs/architecture/architecture" },
