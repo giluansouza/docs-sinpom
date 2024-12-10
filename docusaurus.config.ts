@@ -73,15 +73,16 @@ const config: Config = {
       },
       items: [
         {
-          to: "/docs/introduction/overview",
-          label: "Documentação",
+          type: "doc",
+          docId: "introduction/overview",
           position: "left",
+          label: "Documentação",
         },
         {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
+          type: "doc",
+          docId: "configuration",
           position: "left",
-          label: "Tutorial",
+          label: "Configuração",
         },
         {
           to: "/docs/contributing/contributing",
