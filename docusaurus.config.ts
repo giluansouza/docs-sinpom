@@ -85,13 +85,13 @@ const config: Config = {
           label: "Configuração",
         },
         {
-          to: "/docs/contributing/contributing",
-          label: "Contributing",
+          to: "/docs/contributing/overview",
+          label: "Contribuição",
           position: "left",
         },
-        { to: "/blog", label: "Blog", position: "left" },
+        // { to: "/blog", label: "Blog", position: "left" },
         {
-          href: "https://github.com/facebook/docusaurus",
+          href: "https://github.com/giluansouza/docs-sinpom",
           label: "GitHub",
           position: "right",
         },
