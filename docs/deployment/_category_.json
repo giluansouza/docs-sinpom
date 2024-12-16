@@ -1,0 +1,9 @@
+{
+  "label": "Implantação",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "slug": "deployment",
+    "description": "Configurando o portal SINPOM em um ambiente de produção."
+  }
+}

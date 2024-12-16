@@ -1,0 +1,9 @@
+{
+  "label": "Desenvolvimento",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "slug": "development",
+    "description": "Configurando o portal SINPOM para desenvolvimento local."
+  }
+}

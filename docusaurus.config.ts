@@ -76,7 +76,7 @@ const config: Config = {
           type: "doc",
           docId: "introduction/overview",
           position: "left",
-          label: "Documentação",
+          label: "Introdução",
         },
         {
           type: "doc",
@@ -85,7 +85,22 @@ const config: Config = {
           label: "Configuração",
         },
         {
-          to: "/docs/contributing/overview",
+          to: "/docs/development",
+          label: "Desenvolvimento",
+          position: "left",
+        },
+        {
+          to: "/docs/deployment",
+          label: "Implantação",
+          position: "left",
+        },
+        {
+          to: "/docs/references/changelog",
+          label: "Alterações",
+          position: "left",
+        },
+        {
+          to: "/docs/contributing",
           label: "Contribuição",
           position: "left",
         },
