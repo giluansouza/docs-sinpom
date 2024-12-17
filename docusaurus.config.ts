@@ -9,25 +9,27 @@ const config: Config = {
   tagline: "Documentação do portal sinpom",
   favicon: "img/favicon.ico",
   url: "https://giluansouza.github.io",
-  baseUrl: "/docs-sinpom/",
+  baseUrl: "/",
   organizationName: "giluansouza", // Usually your GitHub org/user name.
   projectName: "docs-sinpom", // Usually your repo name.
   trailingSlash: false,
 
-  onBrokenLinks: "warn",
+  onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: "en", // Idioma padrão (Inglês)
-    locales: ["en", "pt"], // Lista de idiomas suportados
-    localeConfigs: {
-      en: { label: "English" }, // Configuração para o inglês
-      pt: { label: "Português" }, // Configuração para o português
-    },
+    defaultLocale: "en",
+    locales: ["en"],
   },
+
+  markdown: {
+    mermaid: true,
+  },
+
+  themes: ["@docusaurus/theme-mermaid"],
 
   presets: [
     [
@@ -37,8 +39,8 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          // editUrl:
+          // "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         blog: {
           showReadingTime: true,
@@ -74,9 +76,15 @@ const config: Config = {
       items: [
         {
           type: "doc",
-          docId: "introduction/overview",
+          docId: "intro",
           position: "left",
           label: "Introdução",
+        },
+        {
+          type: "doc",
+          docId: "structure",
+          position: "left",
+          label: "Estrutura",
         },
         {
           type: "doc",
@@ -85,22 +93,26 @@ const config: Config = {
           label: "Configuração",
         },
         {
-          to: "/docs/development",
-          label: "Desenvolvimento",
+          type: "doc",
+          docId: "development",
           position: "left",
+          label: "Desenvolvimento",
         },
         {
-          to: "/docs/deployment",
+          type: "doc",
+          docId: "deployment",
           label: "Implantação",
           position: "left",
         },
         {
-          to: "/docs/references/changelog",
+          type: "doc",
+          docId: "references/changelog",
           label: "Alterações",
           position: "left",
         },
         {
-          to: "/docs/contributing",
+          type: "doc",
+          docId: "contributing",
           label: "Contribuição",
           position: "left",
         },
@@ -118,15 +130,19 @@ const config: Config = {
         {
           title: "Documentação",
           items: [
-            { label: "Introduction", to: "/docs/introduction/overview" },
-            { label: "Architecture", to: "/docs/architecture/architecture" },
-            { label: "Usage", to: "/docs/usage/user-docs" },
+            { label: "Introduction", to: "/docs/intro" },
+            { label: "Structure", to: "/docs/structure" },
+            { label: "Configuration", to: "/docs/configuration" },
+            { label: "Development", to: "/docs/development" },
+            { label: "Deployment", to: "/docs/deployment" },
+            { label: "References", to: "/docs/references/changelog" },
+            { label: "Contributing", to: "/docs/contributing" },
           ],
         },
         {
           title: "Community",
           items: [
-            { label: "GitHub", href: "https://github.com/your-org" },
+            { label: "GitHub", href: "https://github.com/giluansouza" },
             { label: "Twitter", href: "https://twitter.com/your-profile" },
           ],
         },

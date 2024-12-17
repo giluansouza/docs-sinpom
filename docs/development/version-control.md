@@ -9,9 +9,9 @@ sidebar_position: 1
 - A branch `master` é a versão estável do sistema
 - Desenvolva novas funcionalidades em uma branch diferente da `master` ex: 'feature/funcionalidade-nova'
 
-## Fluxo de Trabalho
+## Fluxo de Trabalho em Desenvolvimento
 
-1. Crie um branch para a nova funcionalidade
+1. Crie uma branch para a nova funcionalidade
 
 ```bash
 git checkout -b 'feature/funcionalidade-nova'
@@ -25,8 +25,4 @@ git commit -m 'Adicionando nova funcionalidade'
 git push origin 'feature/funcionalidade-nova'
 ```
 
-:::danger
-
-Estabelecer rotina de desenvolvimento/versionamento
-
-:::
+- Use boas práticas de commit messages, conforme [convention commits](https://www.conventionalcommits.org/en/v1.0.0/)

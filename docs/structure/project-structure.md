@@ -1,0 +1,69 @@
+---
+sidebar_position: 1
+---
+
+# Estrutura do Projeto
+
+## Estrutura do Projeto com Docker
+
+O projeto do sinpom utiliza o Docker para gerenciamento de containeres e imagens Docker. Ele utiliza o Docker Compose para gerenciamento de containeres e imagens Docker.
+
+```plaintext
+docker-compose-dev-ubuntu.yml
+docker-compose-local.yml
+docker-compose.yml
+Dockerfile
+.env
+```
+
+## Estrutura do Laravel
+
+O projeto do sinpom utiliza o framework Laravel para desenvolvimento da aplicação. Ele utiliza o Composer para gerenciamento de dependências do projeto.
+
+```plaintext
+/app
+├── Console
+├── Exceptions
+├── Http
+│   ├── Controllers
+│   ├── Middleware
+│   ├── Library
+│   ├── Mail
+│   ├── Providers
+│   └── Scopes
+/bootstrap
+/config
+/database
+/public
+/resources
+├── views
+├── assets
+/routes
+/storage
+/tests
+/vendor
+composer.json
+package.json
+```
+
+## Diagrama Arquitetural
+
+```mermaid
+graph TD
+    A[HTTP Request] --> B[Traefik: Reverse Proxy]
+    B --> C[Web Server: Apache]
+    C --> D[Laravel Entry Point: public/index.php]
+    D --> E[Routes]
+    E --> F[Middleware]
+    F --> G[Controller]
+    G --> H[Model]
+    H --> I[Database: MySQL]
+    I --> H
+    G --> F
+    F --> J[View: Blade Template]
+    J --> K[Response to Client]
+```
+
+```
+
+```
