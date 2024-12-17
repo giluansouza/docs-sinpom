@@ -56,6 +56,48 @@ O banco de dados do SINPOM é a espinha dorsal do sistema, permitindo armazename
 
 ![Diagrama relacionamento Documents](./../assets/documents_relationship.png)
 
+## Exemplo de Consulta SQL
+
+Lista todos os agentes de uma OPM ou de um CPR
+
+```sql
+   $user = Auth::user();
+      $opm = Opm::find($request->opm_id);
+      $isCpr = $opm ? $opm->grande_comando : null;
+      $agentsQuery = User::join('staff', 'users.staff_id','=','staff.id')
+         ->leftJoin('agent_request_for_inclusions', 'agent_request_for_inclusions.staff_id', '=', 'staff.id')
+         ->join('opms','opms.id', '=', 'staff.opm_id')
+         ->join('model_has_roles','users.id','=','model_has_roles.model_id')
+         ->join('ranks','staff.rank_id','=','ranks.id')
+         ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
+         ->whereNotIn('roles.name', ['Comandante - OPM', 'Subcomandante - OPM', 'Comandante - CPR', 'Subcomandante - CPR'])
+         ->when(($request->opm_id == $user->staff->opm_id) and ($isCpr), function($q) use ($request){
+            $q->where('opms.cpr_id', $request->opm_id);
+         })
+         ->when($request->opm_id, function($q) use ($request){
+            $q->where('staff.opm_id',$request->opm_id);
+         })
+         ->when(!$request->opm_id and $user->hasAnyPermission(['Consultar agentes OPM']), function($q) use ($user){
+            $q->where('staff.opm_id',$user->staff->opm_id);
+         })
+         ->when(($request->staff_id) and $user->hasAnyPermission(['Consultar agentes OPM']), function($q) use ($request, $user){
+            $q->where('staff.opm_id',$user->staff->opm_id)
+            ->where('users.id', Crypt::decrypt($request->staff_id));
+         })
+         ->when(!$request->opm_id and $user->hasAnyPermission(['Consultar agentes CPR']), function($q) use ($user){
+            $q->where('opms.cpr_id', $user->staff->opm->cpr_id);
+         })
+         ->when(($request->staff_id) and $user->hasAnyPermission(['Consultar agentes CPR']), function($q) use ($request, $user){
+            $q->where('opms.cpr_id', $user->staff->opm->cpr_id)
+            ->where('users.id', Crypt::decrypt($request->staff_id));
+         })
+         ->when(($request->staff_id) and $user->hasAnyPermission(['Ver todos agentes']), function($q) use ($request, $user){
+            $q->where('users.id', Crypt::decrypt($request->staff_id));
+         })->groupBy('staff.id');
+      $agentsCountByRank = $agentsQuery->select('users.*')->orderBy('ranks.nivel')->get()->countBy('staff.rank.rank');
+      $agents = $agentsQuery->select('users.*')->orderBy('ranks.nivel')->orderBy('staff.id')->paginate(50);
+```
+
 ## Diagrama ER
 
 ![Diagrama ER](./../assets/er-diagram.png)
