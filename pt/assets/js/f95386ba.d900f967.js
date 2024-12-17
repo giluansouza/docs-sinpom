@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs_sinpom=self.webpackChunkdocs_sinpom||[]).push([[5685],{8628:o=>{o.exports=JSON.parse('{"metadata":{"permalink":"/docs-sinpom/pt/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
