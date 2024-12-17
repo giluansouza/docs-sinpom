@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Estrutura do Banco de Dados
 
-## Overview
+## Visão Geral
 
 O banco de dados do SINPOM é a espinha dorsal do sistema, permitindo armazenamento e a recuperação de dados criticos da plataforma, incluindo contas de usuários, funções, logs de acesso e entidades específicas. Ele usa o MySQL como sgbd, e foi projetado para funcionar perfeitamente com o ORM do Laravel (Eloquent) e é estruturado para se alinhar à arquitetura MVC.
 
@@ -24,20 +24,38 @@ O banco de dados do SINPOM é a espinha dorsal do sistema, permitindo armazename
    | created_at        | TIMESTAMP    | Record creation timestamp.    |
    | updated_at        | TIMESTAMP    | Record last update timestamp. |
 
-2. **`roles`**: Tabela de funções do SINPOM.
+2. **`documents`**: Tabela de documentos.
+
+   | Field Name            | Data Type       | Description                        |
+   | --------------------- | --------------- | ---------------------------------- |
+   | id                    | BIGINT unsigned | Primary key, auto-increment        |
+   | document_kind_id      | BIGINT unsigned | tipo do documento                  |
+   | staff_id              | BIGINT unsigned | matricula do criador               |
+   | rank_id               | BIGINT unsigned | posto/graduacao do criador         |
+   | opm_structure_id      | BIGINT unsigned | seção do criador do documento      |
+   | assinado_por          | BIGINT unsigned | assinatura do documento finalizado |
+   | assinado_por_rank     | BIGINT unsigned | assinatura do documento finalizado |
+   | reference_document_id | BIGINT unsigned | documento que deu origem a este    |
+   | reply_document_id     | BIGINT unsigned |                                    |
+   | util_ate              | DATE            | prazo aceitável do documento       |
+   | conteudo              | TEXT            |                                    |
+   | difundido             | TINYINT(1)      |                                    |
+   | bloqueio_sap          | TINYINT(1)      |                                    |
+   | assunto               | VARCHAR(191)    |                                    |
+   | referencias           | VARCHAR(191)    |                                    |
+   | created_at            | TIMESTAMP       | Record creation timestamp.         |
+   | updated_at            | TIMESTAMP       | Record last update timestamp.      |
 
 ## Principais Relacionamentos
 
-:::danger
+### Relationamentos de `users`
 
-Em breve
+![Diagrama relacionamento Users](./../assets/users_relationship.png)
 
-:::
+### Relationamentos de `documents`
 
-## ER Diagram
+![Diagrama relacionamento Documents](./../assets/documents_relationship.png)
 
-:::danger
+## Diagrama ER
 
-Em breve
-
-:::
+![Diagrama ER](./../assets/er-diagram.png)
