@@ -16,4 +16,5 @@ Documentos que devem ser mantidos fora da documentação técnica online.
 - Manual do usuário
 - Plano de Gerenciamento de Riscos
 - Matriz de Responsabilidades (RACI)
-- Política de Backup e Recuperação (Avaliar se será incluida ou não na seção monitoramento e manutenção)
+- Política de Backup e Recuperação (Avaliar se será incluída ou não na seção monitoramento e manutenção)
+- Especificação de Requisitos de Software (ERS) - Sugestão de ferramentas Jira ou Confluence

@@ -1,9 +1,0 @@
-{
-  "label": "Estrutura",
-  "position": 1,
-  "link": {
-    "type": "generated-index",
-    "slug": "structure",
-    "description": "Configurando o portal SINPOM em um ambiente de produção."
-  }
-}

@@ -1,0 +1,9 @@
+{
+  "label": "Começando",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "slug": "getting-starter",
+    "description": "Conhecendo o portal SINPOM e conhecendo a arquitetura do projeto."
+  }
+}

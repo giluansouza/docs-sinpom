@@ -76,9 +76,9 @@ const config: Config = {
       items: [
         {
           type: "doc",
-          docId: "structure",
+          docId: "getting-starter/intro",
           position: "left",
-          label: "Estrutura",
+          label: "Começando",
         },
         {
           type: "doc",
@@ -124,7 +124,7 @@ const config: Config = {
         {
           title: "Documentação",
           items: [
-            { label: "Introduction", to: "/docs/intro" },
+            { label: "Introduction", to: "/docs/getting-starter/intro" },
             { label: "Structure", to: "/docs/structure" },
             { label: "Configuration", to: "/docs/configuration" },
             { label: "Development", to: "/docs/development" },
