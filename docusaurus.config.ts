@@ -125,7 +125,6 @@ const config: Config = {
           title: "Documentação",
           items: [
             { label: "Introduction", to: "/docs/getting-starter/intro" },
-            { label: "Structure", to: "/docs/structure" },
             { label: "Configuration", to: "/docs/configuration" },
             { label: "Development", to: "/docs/development" },
             { label: "Deployment", to: "/docs/deployment" },
