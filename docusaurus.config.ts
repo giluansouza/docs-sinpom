@@ -9,7 +9,7 @@ const config: Config = {
   tagline: "Documentação do portal sinpom",
   favicon: "img/favicon.ico",
   url: "https://giluansouza.github.io",
-  baseUrl: "/docs-sinpom",
+  baseUrl: "/docs-sinpom/",
   organizationName: "giluansouza", // Usually your GitHub org/user name.
   projectName: "docs-sinpom", // Usually your repo name.
   trailingSlash: false,
