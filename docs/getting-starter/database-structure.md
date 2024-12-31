@@ -76,6 +76,49 @@ O banco de dados do SINPOM é a espinha dorsal do sistema, permitindo armazename
 | FOREIGN KEY (created_by_staff_id)   | STAFF(ID)       | References `staff` table.        |
 | FOREIGN KEY (opm_id)                | OPMS(ID)        | References `opms` table.         |
 
+### 4. **`occurrences`**: Tabela de registro de ocorrências
+
+| Field Name                   | Data Type       | Description                                               |
+| ---------------------------- | --------------- | --------------------------------------------------------- |
+| id                           | BIGINT unsigned | Primary key, auto-increment.                              |
+| city_id                      | BIGINT unsigned | Reference to the city.                                    |
+| opm_id                       | BIGINT unsigned | Reference to the OPM.                                     |
+| staff_id                     | BIGINT unsigned | Staff who registered the occurrence.                      |
+| rank_id                      | BIGINT unsigned | Rank of the staff who registered the occurrence.          |
+| endereco                     | VARCHAR(191)    | Address of the occurrence.                                |
+| bairro                       | VARCHAR(191)    | Neighborhood where the occurrence happened.               |
+| ponto_de_referencia          | VARCHAR(191)    | Reference point for the occurrence location.              |
+| num_ocorrencia               | VARCHAR(191)    | Occurrence number.                                        |
+| data                         | DATE            | Date of the occurrence.                                   |
+| hora                         | TIME            | Time of the occurrence.                                   |
+| objetos                      | TEXT            | Objects involved in the occurrence.                       |
+| descricao                    | TEXT            | Description of the occurrence.                            |
+| created_at                   | TIMESTAMP       | Record creation timestamp.                                |
+| updated_at                   | TIMESTAMP       | Last update timestamp.                                    |
+| opm_area                     | BIGINT          | Reference to the OPM area.                                |
+| occurrence_id_motivadora     | BIGINT          | Reference to motivating occurrence.                       |
+| pode_gerar_desdobramentos    | TEXT            | Indicates if the occurrence can generate follow-ups.      |
+| motivacao_id                 | BIGINT          | Reference to the occurrence motivation.                   |
+| faccao_id                    | BIGINT          | Reference to the faction involved.                        |
+| zona_id                      | BIGINT unsigned | Reference to the zone.                                    |
+| vehicle_kind_id              | BIGINT unsigned | Reference to the kind of vehicle involved.                |
+| staff_id_registro            | BIGINT unsigned | Reference to the staff who recorded the occurrence.       |
+| pm_ameacado                  | TINYINT         | Indicates if a police officer was threatened.             |
+| meios_ameaca_id              | BIGINT          | Reference to the means of threat.                         |
+| meio_ameaca_descricao        | VARCHAR(191)    | Description of the threat means.                          |
+| providencia_adotada          | VARCHAR(191)    | Adopted measures regarding the occurrence.                |
+| situacao_id                  | BIGINT unsigned | Reference to the occurrence situation.                    |
+| modalidade_id                | BIGINT unsigned | Reference to the occurrence modality.                     |
+| estabelecimento_comercial_id | BIGINT unsigned | Reference to a commercial establishment.                  |
+| instituicao_financeira_id    | BIGINT unsigned | Reference to a financial institution.                     |
+| nome_estabelecimento         | VARCHAR(191)    | Name of the commercial establishment.                     |
+| meio_empregado_inst_finan_id | BIGINT unsigned | Reference to the means used at the financial institution. |
+| finalizada                   | TINYINT         | Indicates if the occurrence is finalized.                 |
+| PRIMARY KEY                  | ID              | Primary key of the table.                                 |
+| FOREIGN KEY (opm_id)         | OPMS(ID)        | References the `opms` table.                              |
+| FOREIGN KEY (staff_id)       | STAFF(ID)       | References the `staff` table.                             |
+| FOREIGN KEY (rank_id)        | RANKS(ID)       | References the `ranks` table.                             |
+
 ## Principais Relacionamentos
 
 ### Relationamentos de `users`
