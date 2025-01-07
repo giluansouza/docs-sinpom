@@ -283,15 +283,588 @@ sidebar_position: 2
 
 ### Consulta de veículos
 
+**Descrição:** Visualização de veículos no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O usuário tem permissão para visualizar os veículos.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Veículos**.
+3. O sistema exibe uma tela com os veículos cadastrados.
+4. O usuário pode filtrar os veículos.
+5. O usuário clica em um das opções listadas na tabela e é redirecionado para a tela de detalhes do veículo.
+6. O sistema exibe a tela de detalhes do veículo.
+
+**Pós-condições:**
+
+- O sistema exibe a lista de veículos cadastrados em formato de tabela.
+- Os usuários só conseguem visualizar os veículos da sua agência ou de agências subordinadas.
+- O sistema deve direcionar o usuário a página de detalhes do veículo ao clicar em uma das opções da tabela e os dados exibidos devem refletir os dados do veículo escolhido.
+
+**Regras de Negócio:**
+
+- O usuário só consegue visualizar os veículos da sua agência ou de agências subordinadas.
+
+**Exemplo de Interface:**
+
+- Na parte superior da tela está o botão de **"Cadastrar"**.
+- Logo após os campos para filtrar os veículos, o botão de **"Filtrar"** está disponível.
+- Uma lista com os veículos é exibida abaixo dos campos de filtro.
+- Na tela de detalhes no topo aparecem as imagens do veículo e logo abaixo os dados cadastrados.
+
+---
+
+### Edição de veículo
+
+**Descrição:** Edição de veículos no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O usuário tem permissão para editar o veículo selecionado.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Veículos**.
+3. O sistema exibe uma tela com os veículos cadastrados.
+4. O usuário clica em um das opções listadas na tabela e é redirecionado para a tela de detalhes do veículo.
+5. O usuário clica em **"Editar"**.
+6. O sistema exibe a tela de edição do veículo.
+7. O usuário preenche os campos e clica em **"Gravar"**.
+8. O sistema redireciona o usuário para a tela de listagem de veículos e mostra uma mensagem de sucesso.
+
+**Fluxo Alternativo:**
+
+- **F1:** O usuário quer remover a imagem de um veículo.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-6).
+2. O usuário deve clicar em **"Remover"** na imagem do veículo.
+3. Os passos seguintes seguem o fluxo principal (passos 7-8).
+
+- **F2:** O usuário desiste de editar o veículo.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-6).
+2. O usuário deve clicar em **"Cancelar"** e o sistema redireciona para a tela anterior de detalhes do veículo.
+
+**Pós-condições:**
+
+1. Caso o fluxo principal e fluxo alternativo F1 seja concluído com sucesso:
+
+- As alterações realizadas no veículo estão salvas no sistema.
+- O veículo atualizado é exibido na listagem de veículos com as novas informações.
+- Uma mensagem de sucesso é exibida ao usuário, confirmando que a edição foi concluída.
+
+2. Caso o fluxo alternativo F2 seja concluído:
+
+- Nenhuma alteração nos dados foi salva no sistema.
+- O sistema retorna a tela de detalhes do veículo com os dados anteriores.
+
+**Regras de Negócio:**
+
+- O usuário pode editar os veículos da sua agência ou de agências subordinadas.
+
+**Exemplo de Interface:**
+
+- Na tela é exibido um formulário com os campos para editar o veículo.
+- Após os campos do formulário é exibido o botão de **"Adicionar foto"** e um carrossel com as imagens do veículo.
+- No final do formulário é exibido o botão de **"Gravar"** e o botão de **"Cancelar"**.
+
+---
+
+### Remover veículo
+
+**Descrição:** Apagar um veículo do sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O veículo ser da agência do usuário.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Veículos**.
+3. O sistema exibe uma tela com os veículos cadastrados.
+4. O usuário clica em um das opções listadas na tabela e é redirecionado para a tela de detalhes do veículo.
+5. O usuário clica em **"Remover"** e confirma a ação.
+6. O sistema remove o veículo e redireciona o usuário para a tela de listagem de veículos, exibindo uma mensagem de sucesso.
+
+**Fluxo Alternativo:**
+
+- **F1:** O usuário desiste de remover o veículo.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-4).
+2. O usuário deve clicar em **"Remover"** e **"Não"**.
+3. O sistema fecha o modal permanecendo na página do veículo.
+
+**Pós-condições:**
+
+1. Caso o fluxo principal seja concluído com sucesso:
+
+- O sistema remove o registro do veículo do banco de dados.
+- O sistema redireciona o usuário para a tela de listagem de veículos, exibindo uma mensagem de sucesso, confirmando a remoção.
+
+2. Caso o fluxo alternativo F1 seja concluído:
+
+- Nada acontece.
+
+**Regras de Negócio:**
+
+- O só pode remover veículos da sua agência.
+- O botão **"Remover"** deve ser exibido apenas para veículos da sua agência.
+
+**Exemplo de Interface:**
+
+- Na tela é exibido as imagens do veículo ou imagem alternativa e logo abaixo os dados do veículo.
+- No final é exibido os botões de **"Editar"**, **"Remover"** e **"Voltar"**.
+
+---
+
 ### Cadastro de veículos
+
+**Descrição:** Cadastro de novo veículo no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Veículos**.
+3. O sistema exibe uma tela com os veículos cadastrados.
+4. O usuário clica em **"Cadastrar"**.
+5. O sistema exibe a tela de cadastro de veículos.
+6. O usuário preenche os dados do veículo e clica em **"Gravar"**.
+7. O sistema cadastra o veículo e redireciona o usuário para a tela de listagem de veículos, exibindo uma mensagem de sucesso.
+
+**Fluxo Alternativo:**
+
+- **F1:** O usuário desiste de cadastrar o veículo.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-5).
+2. O usuário deve clicar em **"Cancelar"**.
+3. O sistema redireciona para a tela de listagem de veículos.
+
+**Pós-condições:**
+
+- O sistema cadastra o veículo no banco de dados.
+- O sistema redireciona o usuário para a tela de listagem de veículos, exibindo uma mensagem de sucesso, confirmando o cadastro.
+
+**Regras de Negócio:**
+
+- Os campos **"Tipo"**, **"Modelo"**, **"Cor"**, **"Placa original"** e **"Condições do veículo"** devem ser preenchidos.
+
+**Exemplo de Interface:**
+
+- Na tela é exibido um formulário com os campos para cadastrar o veículo.
+- Após os campos do formulário é exibido o botão de **"Adicionar foto"** e um carrossel com as imagens selecionadas.
+- No final é exibido os botões de **"Gravar"** e **"Cancelar"**.
+
+---
 
 ### Consulta de equipamentos
 
-### Cadastro de equipamentos
+**Descrição:** Visualização de equipamentos no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O usuário tem permissão para visualizar os equipamentos.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Equipamentos**.
+3. O sistema exibe uma tela com os equipamentos cadastrados.
+4. O usuário pode filtrar os equipamentos.
+5. O usuário clica em um das opções listadas na tabela e é redirecionado para a tela de detalhes do equipamento.
+6. O sistema exibe a tela de detalhes do equipamento.
+
+**Pós-condições:**
+
+- O sistema exibe a lista de equipamentos cadastrados em formato de tabela.
+- Os usuários só conseguem visualizar os equipamentos da sua agência ou de agências subordinadas.
+- O sistema deve direcionar o usuário a página de detalhes do equipamento ao clicar em uma das opções da tabela e os dados exibidos devem refletir os dados do equipamento escolhido.
+
+**Regras de Negócio:**
+
+- O usuário só consegue visualizar os equipamentos da sua agência ou de agências subordinadas.
+
+**Exemplo de Interface:**
+
+- Na parte superior da tela está o botão de **"Cadastrar"**.
+- Logo após os campos para filtrar os equipamentos, o botão de **"Filtrar"** está disponível.
+- Uma lista com os equipamentos é exibida abaixo dos campos de filtro.
+- Na tela de detalhes no topo aparecem as imagens do equipamento e logo abaixo os dados cadastrados.
+
+---
+
+### Edição de equipamento
+
+**Descrição:** Edição de um equipamento no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O usuário tem permissão para editar o equipamento selecionado.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Equipamentos**.
+3. O sistema exibe uma tela com os equipamentos cadastrados.
+4. O usuário clica em um das opções listadas na tabela e é redirecionado para a tela de detalhes do equipamento.
+5. O usuário clica em **"Editar"**.
+6. O sistema exibe a tela de edição do equipamento.
+7. O usuário preenche os campos e clica em **"Gravar"**.
+8. O sistema redireciona o usuário para a tela de listagem de equipamentos e mostra uma mensagem de sucesso.
+
+**Fluxo Alternativo:**
+
+- **F1:** O usuário quer remover a imagem de um equipamento.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-6).
+2. O usuário deve clicar em **"Remover"** na imagem do equipamento.
+3. Os passos seguintes seguem o fluxo principal (passos 7-8).
+
+- **F2:** O usuário desiste de editar o equipamento.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-6).
+2. O usuário deve clicar em **"Cancelar"** e o sistema redireciona para a tela anterior de detalhes do equipamento.
+
+**Pós-condições:**
+
+1. Caso o fluxo principal e fluxo alternativo F1 seja concluído com sucesso:
+
+- As alterações realizadas no equipamento estão salvas no sistema.
+- O equipamento atualizado é exibido na listagem de equipamentos com as novas informações.
+- Uma mensagem de sucesso é exibida ao usuário, confirmando que a edição foi concluída.
+
+2. Caso o fluxo alternativo F2 seja concluído:
+
+- Nenhuma alteração nos dados foi salva no sistema.
+- O sistema retorna a tela de detalhes do equipamento com os dados anteriores.
+
+**Regras de Negócio:**
+
+- O usuário pode editar os equipamentos da sua agência ou de agências subordinadas.
+
+**Exemplo de Interface:**
+
+- Na tela é exibido um formulário com os campos para editar o equipamento.
+- Após os campos do formulário é exibido o botão de **"Adicionar foto"** e um carrossel com as imagens do equipamento.
+- No final do formulário é exibido o botão de **"Gravar"** e o botão de **"Cancelar"**.
+
+---
+
+### Remover equipamento
+
+**Descrição:** Apagar um equipamento do sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O equipamento deve ser da agência do usuário.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Equipamentos**.
+3. O sistema exibe uma tela com os equipamentos cadastrados.
+4. O usuário clica em um das opções listadas na tabela e é redirecionado para a tela de detalhes do equipamento.
+5. O usuário clica em **"Remover"** e confirma a ação.
+6. O sistema remove o equipamento e redireciona o usuário para a tela de listagem de equipamentos, exibindo uma mensagem de sucesso.
+
+**Fluxo Alternativo:**
+
+- **F1:** O usuário desiste de remover o equipamento.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-4).
+2. O usuário deve clicar em **"Remover"** e **"Não"**.
+3. O sistema fecha o modal permanecendo na página do equipamento.
+
+**Pós-condições:**
+
+1. Caso o fluxo principal seja concluído com sucesso:
+
+- O sistema remove o registro do equipamento do banco de dados.
+- O sistema redireciona o usuário para a tela de listagem de equipamentos, exibindo uma mensagem de sucesso, confirmando a remoção.
+
+2. Caso o fluxo alternativo F1 seja concluído:
+
+- Nada acontece.
+
+**Regras de Negócio:**
+
+- O usuário só pode remover equipamentos da sua agência.
+- O botão **"Remover"** deve ser exibido apenas para equipamentos da agência do usuário logado.
+
+**Exemplo de Interface:**
+
+- Na tela é exibido as imagens do equipamento ou imagem alternativa e logo abaixo os dados do equipamento.
+- No final é exibido os botões de **"Editar"**, **"Remover"** e **"Voltar"**.
+
+---
+
+### Cadastro de equipamento
+
+**Descrição:** Cadastro de novo equipamento no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Equipamentos**.
+3. O sistema exibe uma tela com os equipamentos cadastrados.
+4. O usuário clica em **"Cadastrar"**.
+5. O sistema exibe a tela de cadastro de equipamentos.
+6. O usuário preenche os dados do equipamento e clica em **"Gravar"**.
+7. O sistema cadastra o equipamento e redireciona o usuário para a tela de listagem de equipamentos, exibindo uma mensagem de sucesso.
+
+**Fluxo Alternativo:**
+
+- **F1:** O usuário desiste de cadastrar o equipamento.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-5).
+2. O usuário deve clicar em **"Cancelar"**.
+3. O sistema redireciona para a tela de listagem de equipamentos.
+
+**Pós-condições:**
+
+- O sistema cadastra o equipamento no banco de dados.
+- O sistema redireciona o usuário para a tela de listagem de equipamentos, exibindo a lista atualizada com novo equipamento.
+
+**Regras de Negócio:**
+
+- Os campos **"Tipo"**, **"Condições do equipamento"** são obrigatórios.
+
+**Exemplo de Interface:**
+
+- Na tela é exibido um formulário com os campos para cadastrar o equipamento.
+- Após os campos do formulário é exibido o botão de **"Adicionar foto"** e um carrossel com as imagens selecionadas.
+- No final é exibido os botões de **"Gravar"** e **"Cancelar"**.
+
+---
 
 ### Consulta de material bélico
 
+**Descrição:** Visualização de material bélico no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O usuário tem permissão para visualizar o material bélico.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Material Bélico**.
+3. O sistema exibe uma tela com os material bélico cadastrados.
+4. O usuário pode filtrar os material bélico.
+5. O usuário clica em um das opções listadas na tabela e é redirecionado para a tela de detalhes do material bélico.
+6. O sistema exibe a tela de detalhes do material bélico.
+
+**Pós-condições:**
+
+- O sistema exibe a lista de material bélico cadastrados em formato de tabela.
+- Os usuários só conseguem visualizar o material bélico da sua agência ou de agências subordinadas.
+- O sistema deve direcionar o usuário a página de detalhes do material bélico ao clicar em uma das opções da tabela e os dados exibidos devem refletir os dados do material bélico escolhido.
+
+**Regras de Negócio:**
+
+- O usuário só deve conseguir visualizar o material bélico da sua agência ou de agências subordinadas.
+
+**Exemplo de Interface:**
+
+- Na parte superior da tela está o botão de **"Cadastrar"**.
+- Logo após os campos para filtrar o material bélico, o botão de **"Filtrar"** está disponível.
+- Uma lista com o material bélico é exibida abaixo dos campos de filtro.
+- Na tela de detalhes no topo aparecem as imagens do material bélico e logo abaixo os dados cadastrados.
+
+---
+
+### Edição de material bélico
+
+**Descrição:** Edição de um material bélico no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O usuário tem permissão para editar o material bélico selecionado.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Material Bélico**.
+3. O sistema exibe uma tela com o material bélico cadastrados.
+4. O usuário clica em um das opções listadas na tabela e é redirecionado para a tela de detalhes do material bélico.
+5. O usuário clica em **"Editar"**.
+6. O sistema exibe a tela de edição do material bélico.
+7. O usuário preenche os campos e clica em **"Gravar"**.
+8. O sistema redireciona o usuário para a tela de listagem de material bélico e mostra uma mensagem de sucesso.
+
+**Fluxo Alternativo:**
+
+- **F1:** O usuário quer remover a imagem de um material bélico.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-6).
+2. O usuário deve clicar em **"Remover"** na imagem do material bélico.
+3. Os passos seguintes seguem o fluxo principal (passos 7-8).
+
+- **F2:** O usuário desiste de editar o material bélico.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-6).
+2. O usuário deve clicar em **"Cancelar"** e o sistema redireciona para a tela anterior de detalhes do material bélico.
+
+**Pós-condições:**
+
+1. Caso o fluxo principal e fluxo alternativo F1 seja concluído com sucesso:
+
+- As alterações realizadas no material bélico estão salvas no sistema.
+- O material bélico atualizado é exibido na listagem de materiais bélicos com as novas informações.
+- Uma mensagem de sucesso é exibida ao usuário, confirmando que a edição foi concluída.
+
+2. Caso o fluxo alternativo F2 seja concluído:
+
+- Nenhuma alteração nos dados foi salva no sistema.
+- O sistema retorna a tela de detalhes do material bélico com os dados anteriores.
+
+**Regras de Negócio:**
+
+- O usuário só pode editar os materiais bélicos da sua agência ou de agências subordinadas.
+
+**Exemplo de Interface:**
+
+- Na tela é exibido um formulário com os campos para editar o material bélico.
+- Após os campos do formulário é exibido o botão de **"Adicionar foto"** e um carrossel com as imagens do material bélico.
+- No final do formulário é exibido o botão de **"Gravar"** e o botão de **"Cancelar"**.
+
+---
+
+### Remover material bélico
+
+**Descrição:** Apagar um material bélico do sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O material bélico deve ser da agência do usuário.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Material Bélico**.
+3. O sistema exibe uma tela com os materiais bélicos cadastrados.
+4. O usuário clica em um das opções listadas na tabela e é redirecionado para a tela de detalhes do material bélico.
+5. O usuário clica em **"Remover"** e confirma a ação.
+6. O sistema remove o material bélico do banco de dados e redireciona o usuário para a tela de listagem de materiais bélicos, exibindo uma mensagem de sucesso.
+
+**Fluxo Alternativo:**
+
+- **F1:** O usuário desiste de remover o material bélico.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-4).
+2. O usuário deve clicar em **"Remover"** e **"Não"**.
+3. O sistema fecha o modal permanecendo na página do material bélico.
+
+**Pós-condições:**
+
+1. Caso o fluxo principal seja concluído com sucesso:
+
+- O sistema remove o registro do material bélico do banco de dados.
+- O sistema redireciona o usuário para a tela de listagem de material bélico, exibindo uma mensagem de sucesso, e exibindo a lista atualizada sem o registro removido.
+
+2. Caso o fluxo alternativo F1 seja concluído:
+
+- Nada acontece.
+
+**Regras de Negócio:**
+
+- O usuário só pode remover material bélico da sua agência.
+- O botão **"Remover"** deve ser exibido apenas para material bélico da agência do usuário logado.
+
+**Exemplo de Interface:**
+
+- Na tela é exibido as imagens do material bélico ou imagem alternativa e logo abaixo os dados do material bélico.
+- No final é exibido os botões de **"Editar"**, **"Remover"** e **"Voltar"**.
+
+---
+
 ### Cadastro de material bélico
+
+**Descrição:** Cadastro de novo material bélico no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Material Bélico**.
+3. O sistema exibe uma tela com os materiais bélicos cadastrados.
+4. O usuário clica em **"Cadastrar"**.
+5. O sistema exibe a tela de cadastro de material bélico.
+6. O usuário preenche os dados do material bélico e clica em **"Gravar"**.
+7. O sistema cadastra o material bélico e redireciona o usuário para a tela de listagem de equipamentos, exibindo uma mensagem de sucesso e a lista atualizada com o novo material específico.
+
+**Fluxo Alternativo:**
+
+- **F1:** O usuário desiste de cadastrar o material bélico.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-5).
+2. O usuário deve clicar em **"Cancelar"**.
+3. O sistema redireciona para a tela de listagem de materiais bélicos.
+
+**Pós-condições:**
+
+- O sistema cadastra o material bélico no banco de dados.
+- O sistema redireciona o usuário para a tela de listagem de equipamentos, exibindo a lista atualizada com o novo material bélico.
+
+**Regras de Negócio:**
+
+- Os campos **"Tipo"**, **"Fabricante"**, **"Condições do equipamento"** são obrigatórios.
+
+**Exemplo de Interface:**
+
+- Na tela é exibido um formulário com os campos para cadastrar o material bélico.
+- Após os campos do formulário é exibido o botão de **"Adicionar foto"** e um carrossel com as imagens selecionadas.
+- No final é exibido os botões de **"Gravar"** e **"Cancelar"**.
+
+---
 
 ### Consulta de efetivo SinPoM
 

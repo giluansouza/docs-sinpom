@@ -9,6 +9,7 @@
 
 # Autor(es) da Documentação
 
+- Cap PMBA **Vailson Marcelo** - [github.com/vailsonmarcelo](https://github.com/vailsonmarcelo)
 - Sd PMBA **Giluan Souza** - [github.com/giluansouza](https://github.com/giluansouza)
 
 ## Documentos Externos
@@ -28,3 +29,6 @@ Problemas encontrados ao utilizar o sistema.
 :::
 
 - [ ] **Cadastro de localidade:** Não preencher o campo de nome da localidade, erro de SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'nome' cannot be null
+- [ ] **Cadastro de veículo:** O botão **"Cancelar"** não dispara nenhum evento ao ser clicado
+- [ ] **Cadastro de equipamento:** O botão **"Cancelar"** não dispara nenhum evento ao ser clicado
+- [ ] **Cadastro de material bélico:** O botão **"Cancelar"** não dispara nenhum evento ao ser clicado
