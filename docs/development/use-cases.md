@@ -79,6 +79,8 @@ sidebar_position: 2
 
 ---
 
+## Análises
+
 ### Consulta de Entidade Pessoa
 
 **Descrição:** O usuário pode consultar as informações de uma entidade pessoa no sistema.
@@ -115,3 +117,192 @@ sidebar_position: 2
 - A lista exibida contém as entidades organizados em itens clicáveis.
 
 ---
+
+### Cadastro de logocrim
+
+**Descrição:** Cadastro de logocrim no sistema.
+
+**Atores:** Usuário.
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Análises** no menu lateral esquerdo.
+2. O usuário clica na opção **LogoCrim**.
+3. O sistema exibe uma tela com os logocrims cadastrados.
+4. O usuário clica em **"Cadastrar"** no canto superior direito da tela.
+5. O sistema exibe uma tela com os campos para cadastrar um novo logocrim, como **"Adicionar foto"** e **"Grupo-crime"**.
+6. O usuário preenche os campos necessários, é possível anexar arquivos.
+7. O usuário deve marcar no mapa a localização do logocrim.
+8. O usuário clica em **"Gravar"**.
+
+**Fluxos Alternativos:**
+
+- **F1**: Caso o usuário desista de cadastrar um novo logocrim, ele deve clicar em cancelar no final da página e então será redirecionado para a tela de logocrim.
+
+**Pós-condições:**
+
+- A lista de LogoCrim exibidas pelo usuário deve refletir os resultados da consulta, com o novo registro exibido no final da lista.
+
+**Regras de Negócio:**
+
+- O campo de **grupo-crime** é obrigatório.
+
+**Exemplo de Interface:**
+
+- A imagem do LogoCrim é exibida na parte superior do formulário.
+- O mapa é exibido abaixo do formulário seguido pelos botões de **"Gravar"** e **"Cancelar"**.
+
+---
+
+### Consulta de logocrim
+
+**Descrição:** Lista de logocrim no sistema.
+
+**Atores:** Usuário.
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Análises** no menu lateral esquerdo.
+2. O usuário clica na opção **LogoCrim**.
+3. O sistema exibe uma tela com os logocrims cadastrados.
+4. O usuário escolhe uma das opções da lista e clica no card correspondente.
+5. O sistema redireciona o usuário para a tela de detalhes do logocrim.
+6. O usuário tem acesso a todos os dados cadastrados, além do mapa com a localização (é possível fazer download de anexos).
+
+**Fluxos Alternativos:**
+
+- **F1:**
+
+1. O usuário acessa a seção Análises no menu lateral esquerdo.
+2. O usuário clica na opção LogoCrim.
+3. O usuário clica em "Filtrar" e preenche os campos para filtrar os logocrims.
+4. O sistema exibe os resultados filtrados.
+5. Os passos seguintes seguem o fluxo principal (passos 4-6).
+
+**Pós-condições:**
+
+- Os detalhes do logocrim devem refletir os dados do link clicado, e a funcionalidade de download e visualização no mapa deve estar acessível sem erros.
+
+**Exemplo de Interface:**
+
+- Na tela principal de logocrims é exibido uma lista em formato de cards com os items cadastrados.
+- Na tela de detalhes da logocrim a lista de dados é exibido do lado esquerdo da tela em formato de lista e o mapa do lado direito. O mapa interativo permite zoom e movimentação para visualização detalhada.
+
+---
+
+### Cadastro de localidade
+
+**Descrição:** Cadastro de localidade no sistema.
+
+**Atores:** Usuário.
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Análises** no menu lateral esquerdo.
+2. O usuário clica na opção **Localidade**.
+3. O sistema exibe uma tela com as localidades cadastradas.
+4. O usuário clica em **"Cadastrar"** no canto superior direito da tela.
+5. O sistema exibe uma tela com os campos para cadastrar um nova localidade, como **"Nome da localidade"** e **"Grupo-crime da localidade"**.
+6. O usuário preenche os campos necessários.
+7. O usuário pode desenhar o polígono no mapa ou anexar um arquivo KML.
+8. O usuário clica em **"Gravar"**.
+
+**Fluxos Alternativos:**
+
+- **F1**: Caso o usuário desista de cadastrar uma nova localidade, ele deve clicar em cancelar no final da página e então será redirecionado para a tela de localidades.
+
+**Pós-condições:**
+
+- A lista de localidades exibidas pelo usuário deve refletir os resultados da consulta, com o novo registro exibido no final da lista na última página existente.
+
+**Regras de Negócio:**
+
+- O campo de **nome da localidade** é obrigatório.
+- O campo de **grupo-crime da localidade** é obrigatório.
+
+**Exemplo de Interface:**
+
+- O campo **arquivo MKL** é opcional e está localizado no final da tela imediatamente antes do mapa.
+- O mapa é exibido abaixo do formulário seguido pelos botões de **"Gravar"** e **"Cancelar"**.
+
+---
+
+### Consulta de localidade
+
+**Descrição:** Lista de localidade no sistema.
+
+**Atores:** Usuário.
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Análises** no menu lateral esquerdo.
+2. O usuário clica na opção **Localidade**.
+3. O sistema exibe uma tela com as localidades cadastradas.
+4. O usuário escolhe uma das opções listadas na tabela e clica.
+5. O sistema redireciona o usuário para a tela de detalhes da localidade.
+6. O usuário tem acesso a todos os dados cadastrados, além do mapa com os pontos de interesse.
+
+**Fluxos Alternativos:**
+
+- **F1:**
+
+1. O usuário acessa a seção **Análises** no menu lateral esquerdo.
+2. O usuário clica na opção **Localidade**.
+3. O usuário clica em "Filtrar" e preenche os campos para filtrar as localidades.
+4. O sistema exibe os resultados filtrados.
+5. Os passos seguintes seguem o fluxo principal (passos 4-6).
+
+**Pós-condições:**
+
+- Os detalhes da localidade devem refletir os dados do link clicado, e visualização no mapa deve estar acessível sem erros.
+
+**Exemplo de Interface:**
+
+- Na tela principal de localidades é exibido uma lista em formato de tabela com os items cadastrados.
+- Na tela de detalhes da localidade a lista de dados é exibido do lado esquerdo da tela em formato de lista e o mapa do lado direito. O mapa interativo permite zoom e movimentação para visualização detalhada.
+
+---
+
+## Recursos
+
+### Consulta de veículos
+
+### Cadastro de veículos
+
+### Consulta de equipamentos
+
+### Cadastro de equipamentos
+
+### Consulta de material bélico
+
+### Cadastro de material bélico
+
+### Consulta de efetivo SinPoM
+
+### Cadastro de efetivo SinPoM
+
+### Prazos de documentos
+
+### Gestão da agência
+
+### Processo de credenciamento
+
+### Processo de descredenciamento
+
+### Dados da OPM

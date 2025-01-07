@@ -3,9 +3,13 @@
 - Siga o padrão de commits convencional
 - Siga os padrões de código do Laravel e as melhores práticas de desenvolvimento do PHP
 
-# Autor
+# Autor do Software
 
-- Cap PM **Vailson Marcelo** - [github.com/vailsonmarcelo](https://github.com/vailsonmarcelo)
+- Cap PMBA **Vailson Marcelo** - [github.com/vailsonmarcelo](https://github.com/vailsonmarcelo)
+
+# Autor(es) da Documentação
+
+- Sd PMBA **Giluan Souza** - [github.com/giluansouza](https://github.com/giluansouza)
 
 ## Documentos Externos
 
@@ -18,3 +22,9 @@ Documentos que devem ser mantidos fora da documentação técnica online.
 - Matriz de Responsabilidades (RACI)
 - Política de Backup e Recuperação (Avaliar se será incluída ou não na seção monitoramento e manutenção)
 - Especificação de Requisitos de Software (ERS) - Sugestão de ferramentas Jira ou Confluence
+
+:::danger
+Problemas encontrados ao utilizar o sistema.
+:::
+
+- [ ] **Cadastro de localidade:** Não preencher o campo de nome da localidade, erro de SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'nome' cannot be null
