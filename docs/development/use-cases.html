@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Casos de Uso | Sinpom Docs</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://giluansouza.github.io/docs-sinpom/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://giluansouza.github.io/docs-sinpom/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://giluansouza.github.io/docs-sinpom/docs/development/use-cases"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Casos de Uso | Sinpom Docs"><meta data-rh="true" name="description" content="Login no sistema"><meta data-rh="true" property="og:description" content="Login no sistema"><link data-rh="true" rel="icon" href="/docs-sinpom/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://giluansouza.github.io/docs-sinpom/docs/development/use-cases"><link data-rh="true" rel="alternate" href="https://giluansouza.github.io/docs-sinpom/docs/development/use-cases" hreflang="en"><link data-rh="true" rel="alternate" href="https://giluansouza.github.io/docs-sinpom/docs/development/use-cases" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/docs-sinpom/blog/rss.xml" title="Sinpom Docs RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/docs-sinpom/blog/atom.xml" title="Sinpom Docs Atom Feed"><link rel="stylesheet" href="/docs-sinpom/assets/css/styles.87b86382.css">
-<script src="/docs-sinpom/assets/js/runtime~main.196058a7.js" defer="defer"></script>
+<script src="/docs-sinpom/assets/js/runtime~main.bc7ecca1.js" defer="defer"></script>
 <script src="/docs-sinpom/assets/js/main.4f10732b.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -834,11 +834,109 @@
 </ul>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="consulta-de-efetivo-sinpom">Consulta de efetivo SinPoM<a href="#consulta-de-efetivo-sinpom" class="hash-link" aria-label="Direct link to Consulta de efetivo SinPoM" title="Direct link to Consulta de efetivo SinPoM">​</a></h3>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="cadastro-de-efetivo-sinpom">Cadastro de efetivo SinPoM<a href="#cadastro-de-efetivo-sinpom" class="hash-link" aria-label="Direct link to Cadastro de efetivo SinPoM" title="Direct link to Cadastro de efetivo SinPoM">​</a></h3>
+<p><strong>Descrição:</strong> Consulta do efetido SinPoM no sistema.</p>
+<p><strong>Atores:</strong> Usuário</p>
+<p><strong>Pré-condições:</strong></p>
+<ul>
+<li>O usuário está autenticado no sistema.</li>
+<li>O usuário tem permissão para visualizar o efetivo.</li>
+</ul>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>O usuário clica na opção <strong>Efetivo SinPoM</strong>.</li>
+<li>O sistema exibe uma tela com uma lista do pessoal cadastrado.</li>
+<li>O usuário pode filtrar o efetivo por unidade e nome/matrícula.</li>
+<li>O usuário clica em um das opções listadas na tabela.</li>
+<li>O sistema exibe um modal com todos os dados da pessoa.</li>
+</ol>
+<p><strong>Pós-condições:</strong></p>
+<ul>
+<li>O sistema exibe a lista do efetivo cadastrado em formato de tabela.</li>
+<li>O sistema mostra um modal com todos os dados da pessoa selecionada pelo usuário.</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>O usuário só consegue visualizar os equipamentos da sua agência ou de agências subordinadas.</li>
+</ul>
+<p><strong>Exemplo de Interface:</strong></p>
+<ul>
+<li>Na parte superior da tela tem os campos de filtro e os botões <strong>&quot;Filtrar&quot;</strong> e <strong>&quot;Limpar&quot;</strong>.</li>
+<li>Logo abaixo aparece os dados quantitativos total e por hierarquia.</li>
+<li>Uma lista com cada membro cadastrado exibindo avatar, posto/graduação, nome, unidade, nível de acesso</li>
+<li>No final da tela aparece a paginação.</li>
+</ul>
+<hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="prazos-de-documentos">Prazos de documentos<a href="#prazos-de-documentos" class="hash-link" aria-label="Direct link to Prazos de documentos" title="Direct link to Prazos de documentos">​</a></h3>
+<p><strong>Descrição:</strong> Acompanhamento de prazos de documentos no sistema.</p>
+<p><strong>Atores:</strong> Usuário</p>
+<p><strong>Pré-condições:</strong></p>
+<ul>
+<li>O usuário está autenticado no sistema.</li>
+</ul>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>O usuário clica na opção <strong>Prazos de documentos</strong>.</li>
+<li>O sistema exibe uma tela com os prazos de documentos recebidos.</li>
+<li>O usuário pode alternar entre os prazos de documentos recebidos ou solicitados.</li>
+</ol>
+<p><strong>Pós-condições:</strong></p>
+<ul>
+<li>O sistema exibe a lista de prazos de documentos recebidos.</li>
+<li>Os documentos com prazo vencidos são destacados com fundo vermelho.</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<p><strong>Exemplo de Interface:</strong></p>
+<ul>
+<li>Na parte superior da tela está os botões da tab <strong>&quot;Solicitados&quot;</strong> e <strong>&quot;Recebidos&quot;</strong>.</li>
+<li>Abaixo é exibido uma lista com o tipo, o número, a seção e o assunto do documento.</li>
+<li>Na lista o prazo está em destaque.</li>
+<li>Se o documento estiver com prazo vencido a linha em questão terá um fundo vermelho.</li>
+</ul>
+<hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="gestão-da-agência">Gestão da agência<a href="#gestão-da-agência" class="hash-link" aria-label="Direct link to Gestão da agência" title="Direct link to Gestão da agência">​</a></h3>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="processo-de-credenciamento">Processo de credenciamento<a href="#processo-de-credenciamento" class="hash-link" aria-label="Direct link to Processo de credenciamento" title="Direct link to Processo de credenciamento">​</a></h3>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="processo-de-descredenciamento">Processo de descredenciamento<a href="#processo-de-descredenciamento" class="hash-link" aria-label="Direct link to Processo de descredenciamento" title="Direct link to Processo de descredenciamento">​</a></h3>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="dados-da-opm">Dados da OPM<a href="#dados-da-opm" class="hash-link" aria-label="Direct link to Dados da OPM" title="Direct link to Dados da OPM">​</a></h3></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs-sinpom/docs/development/version-control"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Controle de Versão</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs-sinpom/docs/development/feature-details"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Detalhamento de Funcionalidades</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#login-no-sistema" class="table-of-contents__link toc-highlight">Login no sistema</a></li><li><a href="#novo-documento-no-sistema" class="table-of-contents__link toc-highlight">Novo Documento no Sistema</a></li><li><a href="#análises" class="table-of-contents__link toc-highlight">Análises</a><ul><li><a href="#consulta-de-entidade-pessoa" class="table-of-contents__link toc-highlight">Consulta de Entidade Pessoa</a></li><li><a href="#cadastro-de-logocrim" class="table-of-contents__link toc-highlight">Cadastro de logocrim</a></li><li><a href="#consulta-de-logocrim" class="table-of-contents__link toc-highlight">Consulta de logocrim</a></li><li><a href="#cadastro-de-localidade" class="table-of-contents__link toc-highlight">Cadastro de localidade</a></li><li><a href="#consulta-de-localidade" class="table-of-contents__link toc-highlight">Consulta de localidade</a></li></ul></li><li><a href="#recursos" class="table-of-contents__link toc-highlight">Recursos</a><ul><li><a href="#consulta-de-veículos" class="table-of-contents__link toc-highlight">Consulta de veículos</a></li><li><a href="#edição-de-veículo" class="table-of-contents__link toc-highlight">Edição de veículo</a></li><li><a href="#remover-veículo" class="table-of-contents__link toc-highlight">Remover veículo</a></li><li><a href="#cadastro-de-veículos" class="table-of-contents__link toc-highlight">Cadastro de veículos</a></li><li><a href="#consulta-de-equipamentos" class="table-of-contents__link toc-highlight">Consulta de equipamentos</a></li><li><a href="#edição-de-equipamento" class="table-of-contents__link toc-highlight">Edição de equipamento</a></li><li><a href="#remover-equipamento" class="table-of-contents__link toc-highlight">Remover equipamento</a></li><li><a href="#cadastro-de-equipamento" class="table-of-contents__link toc-highlight">Cadastro de equipamento</a></li><li><a href="#consulta-de-material-bélico" class="table-of-contents__link toc-highlight">Consulta de material bélico</a></li><li><a href="#edição-de-material-bélico" class="table-of-contents__link toc-highlight">Edição de material bélico</a></li><li><a href="#remover-material-bélico" class="table-of-contents__link toc-highlight">Remover material bélico</a></li><li><a href="#cadastro-de-material-bélico" class="table-of-contents__link toc-highlight">Cadastro de material bélico</a></li><li><a href="#consulta-de-efetivo-sinpom" class="table-of-contents__link toc-highlight">Consulta de efetivo SinPoM</a></li><li><a href="#cadastro-de-efetivo-sinpom" class="table-of-contents__link toc-highlight">Cadastro de efetivo SinPoM</a></li><li><a href="#prazos-de-documentos" class="table-of-contents__link toc-highlight">Prazos de documentos</a></li><li><a href="#gestão-da-agência" class="table-of-contents__link toc-highlight">Gestão da agência</a></li><li><a href="#processo-de-credenciamento" class="table-of-contents__link toc-highlight">Processo de credenciamento</a></li><li><a href="#processo-de-descredenciamento" class="table-of-contents__link toc-highlight">Processo de descredenciamento</a></li><li><a href="#dados-da-opm" class="table-of-contents__link toc-highlight">Dados da OPM</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentação</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/getting-starter/intro">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/configuration">Configuration</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/development">Development</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/deployment">Deployment</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/references/changelog">References</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/contributing">Contributing</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/giluansouza" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/your-profile" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div></div></footer></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="dados-da-opm">Dados da OPM<a href="#dados-da-opm" class="hash-link" aria-label="Direct link to Dados da OPM" title="Direct link to Dados da OPM">​</a></h3>
+<p><strong>Descrição:</strong> Exibir e modificar os dados da agência cadastrados no sistema.</p>
+<p><strong>Atores:</strong> Usuário</p>
+<p><strong>Pré-condições:</strong></p>
+<ul>
+<li>O usuário está autenticado no sistema.</li>
+</ul>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>O usuário clica na opção <strong>Dados da OPM</strong>.</li>
+<li>O sistema exibe uma tela com os dados da agência.</li>
+<li>O usuário pode alterar ou adicionar informações nos campos disponíveis.</li>
+<li>O usuário clica no botão <strong>&quot;Salvar&quot;</strong>.</li>
+<li>O sistema redireciona o usuário para a tela principal do sistema e exibe um modal de sucesso.</li>
+</ol>
+<p><strong>Fluxo Alternativo:</strong></p>
+<ul>
+<li><strong>F1:</strong> O usuário não faz alterações nos campos e sai da tela.</li>
+</ul>
+<ol>
+<li>Os passos anteriores seguem o fluxo principal (passos 1-3).</li>
+<li>O usuário clica em qualquer outra opção do menu lateral.</li>
+<li>O sistema redireciona o usuário para a tela escolhida.</li>
+</ol>
+<p><strong>Pós-condições:</strong></p>
+<ul>
+<li>O sistema exibe os dados da agência ao qual o usuário está registrado.</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>O usuário só pode visualizar e editar os dados da sua agência.</li>
+</ul>
+<p><strong>Exemplo de Interface:</strong></p>
+<ul>
+<li>No inicio da página são exibidos o nome da agência, comandante, subcomandante, Analista/Chefe da SOInt.</li>
+<li>Abaixo são mostrados campos com os dados da agência que podem ser modificados.</li>
+<li>No final da tela é exibido o botão <strong>&quot;Salvar&quot;</strong>.</li>
+</ul>
+<hr></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs-sinpom/docs/development/version-control"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Controle de Versão</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs-sinpom/docs/development/feature-details"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Detalhamento de Funcionalidades</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#login-no-sistema" class="table-of-contents__link toc-highlight">Login no sistema</a></li><li><a href="#novo-documento-no-sistema" class="table-of-contents__link toc-highlight">Novo Documento no Sistema</a></li><li><a href="#análises" class="table-of-contents__link toc-highlight">Análises</a><ul><li><a href="#consulta-de-entidade-pessoa" class="table-of-contents__link toc-highlight">Consulta de Entidade Pessoa</a></li><li><a href="#cadastro-de-logocrim" class="table-of-contents__link toc-highlight">Cadastro de logocrim</a></li><li><a href="#consulta-de-logocrim" class="table-of-contents__link toc-highlight">Consulta de logocrim</a></li><li><a href="#cadastro-de-localidade" class="table-of-contents__link toc-highlight">Cadastro de localidade</a></li><li><a href="#consulta-de-localidade" class="table-of-contents__link toc-highlight">Consulta de localidade</a></li></ul></li><li><a href="#recursos" class="table-of-contents__link toc-highlight">Recursos</a><ul><li><a href="#consulta-de-veículos" class="table-of-contents__link toc-highlight">Consulta de veículos</a></li><li><a href="#edição-de-veículo" class="table-of-contents__link toc-highlight">Edição de veículo</a></li><li><a href="#remover-veículo" class="table-of-contents__link toc-highlight">Remover veículo</a></li><li><a href="#cadastro-de-veículos" class="table-of-contents__link toc-highlight">Cadastro de veículos</a></li><li><a href="#consulta-de-equipamentos" class="table-of-contents__link toc-highlight">Consulta de equipamentos</a></li><li><a href="#edição-de-equipamento" class="table-of-contents__link toc-highlight">Edição de equipamento</a></li><li><a href="#remover-equipamento" class="table-of-contents__link toc-highlight">Remover equipamento</a></li><li><a href="#cadastro-de-equipamento" class="table-of-contents__link toc-highlight">Cadastro de equipamento</a></li><li><a href="#consulta-de-material-bélico" class="table-of-contents__link toc-highlight">Consulta de material bélico</a></li><li><a href="#edição-de-material-bélico" class="table-of-contents__link toc-highlight">Edição de material bélico</a></li><li><a href="#remover-material-bélico" class="table-of-contents__link toc-highlight">Remover material bélico</a></li><li><a href="#cadastro-de-material-bélico" class="table-of-contents__link toc-highlight">Cadastro de material bélico</a></li><li><a href="#consulta-de-efetivo-sinpom" class="table-of-contents__link toc-highlight">Consulta de efetivo SinPoM</a></li><li><a href="#prazos-de-documentos" class="table-of-contents__link toc-highlight">Prazos de documentos</a></li><li><a href="#gestão-da-agência" class="table-of-contents__link toc-highlight">Gestão da agência</a></li><li><a href="#processo-de-credenciamento" class="table-of-contents__link toc-highlight">Processo de credenciamento</a></li><li><a href="#processo-de-descredenciamento" class="table-of-contents__link toc-highlight">Processo de descredenciamento</a></li><li><a href="#dados-da-opm" class="table-of-contents__link toc-highlight">Dados da OPM</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentação</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/getting-starter/intro">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/configuration">Configuration</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/development">Development</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/deployment">Deployment</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/references/changelog">References</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/contributing">Contributing</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/giluansouza" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/your-profile" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div></div></footer></div>
 </body>
 </html>
