@@ -868,9 +868,74 @@ sidebar_position: 2
 
 ### Consulta de efetivo SinPoM
 
-### Cadastro de efetivo SinPoM
+**Descrição:** Consulta do efetido SinPoM no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O usuário tem permissão para visualizar o efetivo.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Efetivo SinPoM**.
+3. O sistema exibe uma tela com uma lista do pessoal cadastrado.
+4. O usuário pode filtrar o efetivo por unidade e nome/matrícula.
+5. O usuário clica em um das opções listadas na tabela.
+6. O sistema exibe um modal com todos os dados da pessoa.
+
+**Pós-condições:**
+
+- O sistema exibe a lista do efetivo cadastrado em formato de tabela.
+- O sistema mostra um modal com todos os dados da pessoa selecionada pelo usuário.
+
+**Regras de Negócio:**
+
+- O usuário só consegue visualizar os equipamentos da sua agência ou de agências subordinadas.
+
+**Exemplo de Interface:**
+
+- Na parte superior da tela tem os campos de filtro e os botões **"Filtrar"** e **"Limpar"**.
+- Logo abaixo aparece os dados quantitativos total e por hierarquia.
+- Uma lista com cada membro cadastrado exibindo avatar, posto/graduação, nome, unidade, nível de acesso
+- No final da tela aparece a paginação.
+
+---
 
 ### Prazos de documentos
+
+**Descrição:** Acompanhamento de prazos de documentos no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Prazos de documentos**.
+3. O sistema exibe uma tela com os prazos de documentos recebidos.
+4. O usuário pode alternar entre os prazos de documentos recebidos ou solicitados.
+
+**Pós-condições:**
+
+- O sistema exibe a lista de prazos de documentos recebidos.
+- Os documentos com prazo vencidos são destacados com fundo vermelho.
+
+**Regras de Negócio:**
+
+**Exemplo de Interface:**
+
+- Na parte superior da tela está os botões da tab **"Solicitados"** e **"Recebidos"**.
+- Abaixo é exibido uma lista com o tipo, o número, a seção e o assunto do documento.
+- Na lista o prazo está em destaque.
+- Se o documento estiver com prazo vencido a linha em questão terá um fundo vermelho.
+
+---
 
 ### Gestão da agência
 
@@ -879,3 +944,44 @@ sidebar_position: 2
 ### Processo de descredenciamento
 
 ### Dados da OPM
+
+**Descrição:** Exibir e modificar os dados da agência cadastrados no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Dados da OPM**.
+3. O sistema exibe uma tela com os dados da agência.
+4. O usuário pode alterar ou adicionar informações nos campos disponíveis.
+5. O usuário clica no botão **"Salvar"**.
+6. O sistema redireciona o usuário para a tela principal do sistema e exibe um modal de sucesso.
+
+**Fluxo Alternativo:**
+
+- **F1:** O usuário não faz alterações nos campos e sai da tela.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-3).
+2. O usuário clica em qualquer outra opção do menu lateral.
+3. O sistema redireciona o usuário para a tela escolhida.
+
+**Pós-condições:**
+
+- O sistema exibe os dados da agência ao qual o usuário está registrado.
+
+**Regras de Negócio:**
+
+- O usuário só pode visualizar e editar os dados da sua agência.
+
+**Exemplo de Interface:**
+
+- No inicio da página são exibidos o nome da agência, comandante, subcomandante, Analista/Chefe da SOInt.
+- Abaixo são mostrados campos com os dados da agência que podem ser modificados.
+- No final da tela é exibido o botão **"Salvar"**.
+
+---
