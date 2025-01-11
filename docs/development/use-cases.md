@@ -937,11 +937,283 @@ sidebar_position: 2
 
 ---
 
-### Gestão da agência
+### PRA (Credenciamento) - Solicitação
 
-### Processo de credenciamento
+**Descrição:** Processo inicial de solicitação de credenciamento, passando pela
+criação da solicitação pela agência local, análise pelo comandante da agência e
+despacho pela CoordOInt.
 
-### Processo de descredenciamento
+**Atores:**
+
+- Membro da SOInt (Agente/analista/chefe)
+- Comandante da unidade
+- Chefe da CoordOInt
+
+**Pré-condições:**
+
+- O calendário para credenciamento está aberto.
+- O usuário está autenticado e ter permissão para solicitar credenciamento.
+
+**Fluxo Principal:**
+
+1. Usuário membro do SOInt:
+
+   - 1.1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+   - 1.2. O usuário clica na opção **Gestão da agência**.
+   - 1.3. O botão **"Solicitar credenciamento"** está disponível e o membro clica nele.
+   - 1.4. O sistema redireciona para o formulário de solicitação de credenciamento.
+   - 1.5. O usuário preenche e marca os campos necessários, insere a foto e os documentos em formato PDF.
+   - 1.6. O usuário clica em **"Solicitar"**.
+
+2. Comandante da unidade:
+
+   - 2.1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+   - 2.2. O usuário clica na opção **Gestão da agência**.
+   - 2.3. O sistema exibe a tela com as solicitações da agência com um badge colorido/clicável.
+   - 2.4. O usuário clica nesse badge se disponível e o sistema redireciona para a tela de assinatura.
+   - 2.5. O usuário clica em **"Assinar solicitação"**.
+   - 2.6. O sistema abre um modal com um botão de confirmação e recomendações.
+
+3. Chefe da CoordOInt:
+   - 3.1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+   - 3.2. O usuário clica na opção **Gestão da agência**.
+   - 3.3. O sistema exibe a tela com as solicitações de todas as agências subordinadas.
+   - 3.4. O usuário escolhe a solicitação e clica no badge.
+   - 3.5. O sistema redireciona e exibe a tela com as informações da solicitação.
+   - 3.6. O usuário clica em **"Solicitar Pesquisa Social"**.
+   - 3.7. O sistema abre um modal com o campo para escolha da agência que vai realizar a pesquisa e o botão de confirmação
+
+**Pós-condições:**
+
+- A solicitação foi corretamente despachada para a agência de pesquisa social, com os dados e documentos em conformidade.
+- Em caso de inconsistências, a solicitação é devolvida à agência solicitante para correção.
+
+**Regras de Negócio:**
+
+- O botão **"Solicitar Credenciamento"** só aparece se o calendário para credenciamento estiver aberto.
+- Todos os campos obrigatórios do formulário devem ser preenchidos antes do envio.
+- Documentos anexados devem estar no formato PDF e com tamanho máximo definido pelo sistema (e.g., 5MB).
+
+**Exemplo de Interface:**
+
+**Tela de Gestão da Agência (Membro):**
+
+- Menu lateral com a opção Gestão da Agência.
+- Botão "Solicitar Credenciamento" (visível apenas se o calendário estiver aberto).
+- Formulário com campos tipo: Nome, CPF, imagem.
+
+**Tela de Revisão do Comandante:**
+
+- Listagem de solicitações pendentes.
+- Visualização do texto da solicitação.
+- Botão Assinar Solicitação.
+
+**Tela de Revisão do Chefe CoordOInt:**
+
+- Listagem de solicitações das agências.
+- Visualização do formulário da solicitação.
+- Botão Solicitar Pesquisa Social.
+
+### PRA (Credenciamento) - Pesquisa social
+
+**Descrição:** Processo de pesquisa social pela agência responsável.
+
+**Atores:**
+
+- Membro da SOInt (Agente)
+- Chefe/Analista da SOInt
+- Comandante da unidade
+
+**Pré-condições:**
+
+- A solicitação foi enviada pela CoordOInt para a Agência Responsável pela Pesquisa Social.
+- O formulário de pesquisa está configurado e acessível no sistema.
+
+**Fluxo Principal:**
+
+1. Agente responsável pela pesquisa social:
+
+   - 1.1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+   - 1.2. O usuário clica na opção **Gestão da agência**.
+   - 1.3. Um agente acessa a lista de solicitações pendentes de pesquisa social.
+   - 1.4. O primeiro agente que abrir a solicitação torna-se responsável pela conclusão.
+   - 1.5. O usuário realiza a pesquisa social, preenche o formulário com os resultados e clica em **"Salvar pesquisa social"**
+
+2. Chefe/Analista da SOInt:
+
+   - 2.1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+   - 2.2. O usuário clica na opção **Gestão da agência**.
+   - 2.3. O sistema exibe a tela com as solicitações da agência com um badge colorido/clicável.
+   - 2.4. O usuário clica nesse badge se disponível e o sistema redireciona para a tela da pesquisa.
+   - 2.5. O usuário preenche o campo "Parecer do chefe da agência" e clica em **"Concluir pesquisa social"**.
+   - 2.6. O sistema abre um modal com um botão de confirmação e recomendações.
+
+3. Comandante da unidade:
+   - 3.1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+   - 3.2. O usuário clica na opção **Gestão da agência**.
+   - 3.3. O sistema exibe a tela com as solicitações da agência.
+   - 3.4. O usuário escolhe a solicitação e clica no badge.
+   - 3.5. O sistema redireciona e exibe a tela com as informações da solicitação.
+   - 3.6. O usuário clica em **"Assinar documento"**.
+   - 3.7. O sistema abre um modal com um botão de confirmação e recomendações.
+
+**Pós-condições:**
+
+- A solicitação foi corretamente despachada para chefe, com os dados e documentos em conformidade.
+- Em caso de inconsistências, a solicitação pode ser devolvida pele chefe para o agente responsável.
+- O sistema redireciona o usuário para a tela escolhida.
+
+**Regras de Negócio:**
+
+- O badge só é clicável para cada usuário se o fluxo estiver na sua responsabilidade.
+- Todos os campos obrigatórios do formulário devem ser preenchidos antes do envio.
+- Somente o agente pode realizar alterações na pesquisa social.
+
+**Exemplo de Interface:**
+
+**Tela do agente:**
+
+- Menu lateral com a opção Gestão da Agência.
+- Lista de solicitações de pesquisa social.
+- Formulário de pesquisa social
+
+**Tela de Chefe/Analista da SOInt:**
+
+- Listagem de solicitações pendentes.
+- Visualizção dos detalhes da pesquisa e campo para parecer.
+- Botão Concluir pesquisa social.
+
+**Tela do comandante:**
+
+- Listagem de solicitações das agências.
+- Visualização dos detalhes da pesquisa.
+- Botão Assinar documento.
+
+### PRA (Credenciamento) - Despacho do comando regional
+
+**Descrição:** Avaliação de pesquisa social e despacho do comando.
+
+**Atores:**
+
+- Chefe da CoordOInt
+- Comandante regional
+
+**Pré-condições:**
+
+- A solicitação foi enviada pela unidade responsável pela pesquisa social.
+- O formulário de pesquisa está configurado e acessível no sistema.
+
+**Fluxo Principal:**
+
+1. Chefe da CoordOInt:
+
+   - 1.1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+   - 1.2. O usuário clica na opção **Gestão da agência**.
+   - 1.3. O usuário escolhe a solicitação e clica no badge colorido/clicável se disponível.
+   - 1.4. O usuário preenche o campo "Parecer do chefe da CoordOInt" e clica em **"Encaminhar ao comandante"**.
+   - 1.5. O sistema abre um modal com um botão de confirmação.
+   - 1.6. O sistema redireciona para a tela de Gestão da agência.
+
+2. Comandante regional:
+
+   - 2.1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+   - 2.2. O usuário clica na opção **Gestão da agência**.
+   - 2.3. O sistema exibe a tela com as solicitações da agência com um badge colorido/clicável.
+   - 2.4. O sistema redireciona para os detalhes da solicitação
+   - 2.5. O usuário clica em um dos botões disponíveis **"Indeferir"** ou **"Assinar documento"**.
+   - 2.6. O sistema abre um modal com um botão de confirmação e recomendações.
+   - 2.7. O sistema redireciona para a tela de Gestão da agência.
+
+**Pós-condições:**
+
+- A solicitação foi corretamente despachada para o chefe, com os dados e documentos em conformidade.
+- Se o comandante clicar em **""Indeferir""**, o sistema redireciona para a tela de Gestão da agência e encerra o processo.
+- Indeferido: Aparecerá para todos os usuários interessados um bagde vermelho com a mensagem "Indeferido".
+- Se o comandante clicar em **"Assinar documento""**, o sistema redireciona para a tela de Gestão da agência e enviar o processo o COInt.
+
+**Regras de Negócio:**
+
+- O badge só é clicável para o usuário se o fluxo estiver na sua responsabilidade.
+- Todos os campos obrigatórios do formulário devem ser preenchidos antes do envio.
+- Somente o chefe do CoordOInt pode acessar o processo.
+- Somente o comandante pode indeferir ou assinar o documento.
+
+**Exemplo de Interface:**
+
+**Tela do chefe da CoordOInt:**
+
+- Menu lateral com a opção Gestão da Agência.
+- Lista de solicitações de credenciamento/descredenciamento.
+- Formulário de detalhes da pesquisa social e campo para Parecer
+- Botão "Encaminhar ao comandante"
+
+**Tela do comandante:**
+
+- Menu lateral com a opção Gestão da Agência.
+- Lista de solicitações de credenciamento/descredenciamento.
+- Formulário com os detalhes da solicitação
+- Botões de "Indeferir" e "Assinar documento"
+
+### Descredenciamento
+
+**Descrição:** Processo de descredenciamento de agente/usuário do sistema
+
+**Atores:**
+
+- Comandante do agente
+- Comandante regional
+- COInt
+
+**Pré-condições:**
+
+- A solicitação foi realizada pelo comandante do agente.
+
+**Fluxo Principal:**
+
+1. Comandante da unidade:
+
+   - 1.1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+   - 1.2. O usuário clica na opção **Efetivo SinPoM**.
+   - 1.3. O sistema exibe uma lista com todos agente do sistema.
+   - 1.4. O usuário clica em **"Descredenciar**.
+   - 1.5. O sistema abre um modal com um botão de confirmação e campo para informar o motivo.
+   - 1.6. O sistema redireciona para a tela inicial
+
+2. Comandante regional:
+
+   - 2.1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+   - 2.2. O usuário clica na opção **Gestão da agência**.
+   - 2.3. O sistema exibe a tela com as solicitações da agência com um badge colorido/clicável.
+   - 2.4. O usuário clica na opção adequada.
+   - 2.5. O sistema redireciona para os detalhes da solicitação.
+   - 2.6. O usuário clica no botão **"Assinar solicitação"**.
+   - 2.7. O sistema abre um modal com um botão de confirmação.
+   - 2.8. O sistema redireciona para a tela de Gestão da agência.
+
+**Pós-condições:**
+
+- A solicitação foi corretamente despachada exibindo o status atual da solicitação.
+- Após descredenciamento do COInt o usuário descredenciado não conseguirá mais acessar o sistema.
+
+**Regras de Negócio:**
+
+- O badge só é clicável para o usuário se o fluxo estiver na sua responsabilidade.
+- Somente o comandante da unidade pode inicial o processo de descredenciamento.
+- Somente o COInt conseguirá descredenciar o agente e remover o acesso do usuário.
+
+**Exemplo de Interface:**
+
+**Tela do comandante da unidade:**
+
+- Menu lateral com a opção Efetivo SinPoM.
+- Lista de usuários cadastrados com botão "Descredenciar" disponível.
+
+**Tela do comandante regional:**
+
+- Menu lateral com a opção Gestão da Agência.
+- Lista de solicitações de credenciamento/descredenciamento.
+- Formulário com os detalhes da solicitação
+- Botão de "Assinar solicitação"
 
 ### Dados da OPM
 
