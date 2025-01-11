@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Casos de Uso | Sinpom Docs</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://giluansouza.github.io/docs-sinpom/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://giluansouza.github.io/docs-sinpom/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://giluansouza.github.io/docs-sinpom/docs/development/use-cases"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Casos de Uso | Sinpom Docs"><meta data-rh="true" name="description" content="Login no sistema"><meta data-rh="true" property="og:description" content="Login no sistema"><link data-rh="true" rel="icon" href="/docs-sinpom/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://giluansouza.github.io/docs-sinpom/docs/development/use-cases"><link data-rh="true" rel="alternate" href="https://giluansouza.github.io/docs-sinpom/docs/development/use-cases" hreflang="en"><link data-rh="true" rel="alternate" href="https://giluansouza.github.io/docs-sinpom/docs/development/use-cases" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/docs-sinpom/blog/rss.xml" title="Sinpom Docs RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/docs-sinpom/blog/atom.xml" title="Sinpom Docs Atom Feed"><link rel="stylesheet" href="/docs-sinpom/assets/css/styles.87b86382.css">
-<script src="/docs-sinpom/assets/js/runtime~main.bc7ecca1.js" defer="defer"></script>
+<script src="/docs-sinpom/assets/js/runtime~main.9d9cbaa2.js" defer="defer"></script>
 <script src="/docs-sinpom/assets/js/main.4f10732b.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -895,9 +895,298 @@
 <li>Se o documento estiver com prazo vencido a linha em questão terá um fundo vermelho.</li>
 </ul>
 <hr>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="gestão-da-agência">Gestão da agência<a href="#gestão-da-agência" class="hash-link" aria-label="Direct link to Gestão da agência" title="Direct link to Gestão da agência">​</a></h3>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="processo-de-credenciamento">Processo de credenciamento<a href="#processo-de-credenciamento" class="hash-link" aria-label="Direct link to Processo de credenciamento" title="Direct link to Processo de credenciamento">​</a></h3>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="processo-de-descredenciamento">Processo de descredenciamento<a href="#processo-de-descredenciamento" class="hash-link" aria-label="Direct link to Processo de descredenciamento" title="Direct link to Processo de descredenciamento">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="pra-credenciamento---solicitação">PRA (Credenciamento) - Solicitação<a href="#pra-credenciamento---solicitação" class="hash-link" aria-label="Direct link to PRA (Credenciamento) - Solicitação" title="Direct link to PRA (Credenciamento) - Solicitação">​</a></h3>
+<p><strong>Descrição:</strong> Processo inicial de solicitação de credenciamento, passando pela
+criação da solicitação pela agência local, análise pelo comandante da agência e
+despacho pela CoordOInt.</p>
+<p><strong>Atores:</strong></p>
+<ul>
+<li>Membro da SOInt (Agente/analista/chefe)</li>
+<li>Comandante da unidade</li>
+<li>Chefe da CoordOInt</li>
+</ul>
+<p><strong>Pré-condições:</strong></p>
+<ul>
+<li>O calendário para credenciamento está aberto.</li>
+<li>O usuário está autenticado e ter permissão para solicitar credenciamento.</li>
+</ul>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>
+<p>Usuário membro do SOInt:</p>
+<ul>
+<li>1.1. O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>1.2. O usuário clica na opção <strong>Gestão da agência</strong>.</li>
+<li>1.3. O botão <strong>&quot;Solicitar credenciamento&quot;</strong> está disponível e o membro clica nele.</li>
+<li>1.4. O sistema redireciona para o formulário de solicitação de credenciamento.</li>
+<li>1.5. O usuário preenche e marca os campos necessários, insere a foto e os documentos em formato PDF.</li>
+<li>1.6. O usuário clica em <strong>&quot;Solicitar&quot;</strong>.</li>
+</ul>
+</li>
+<li>
+<p>Comandante da unidade:</p>
+<ul>
+<li>2.1. O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>2.2. O usuário clica na opção <strong>Gestão da agência</strong>.</li>
+<li>2.3. O sistema exibe a tela com as solicitações da agência com um badge colorido/clicável.</li>
+<li>2.4. O usuário clica nesse badge se disponível e o sistema redireciona para a tela de assinatura.</li>
+<li>2.5. O usuário clica em <strong>&quot;Assinar solicitação&quot;</strong>.</li>
+<li>2.6. O sistema abre um modal com um botão de confirmação e recomendações.</li>
+</ul>
+</li>
+<li>
+<p>Chefe da CoordOInt:</p>
+<ul>
+<li>3.1. O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>3.2. O usuário clica na opção <strong>Gestão da agência</strong>.</li>
+<li>3.3. O sistema exibe a tela com as solicitações de todas as agências subordinadas.</li>
+<li>3.4. O usuário escolhe a solicitação e clica no badge.</li>
+<li>3.5. O sistema redireciona e exibe a tela com as informações da solicitação.</li>
+<li>3.6. O usuário clica em <strong>&quot;Solicitar Pesquisa Social&quot;</strong>.</li>
+<li>3.7. O sistema abre um modal com o campo para escolha da agência que vai realizar a pesquisa e o botão de confirmação</li>
+</ul>
+</li>
+</ol>
+<p><strong>Pós-condições:</strong></p>
+<ul>
+<li>A solicitação foi corretamente despachada para a agência de pesquisa social, com os dados e documentos em conformidade.</li>
+<li>Em caso de inconsistências, a solicitação é devolvida à agência solicitante para correção.</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>O botão <strong>&quot;Solicitar Credenciamento&quot;</strong> só aparece se o calendário para credenciamento estiver aberto.</li>
+<li>Todos os campos obrigatórios do formulário devem ser preenchidos antes do envio.</li>
+<li>Documentos anexados devem estar no formato PDF e com tamanho máximo definido pelo sistema (e.g., 5MB).</li>
+</ul>
+<p><strong>Exemplo de Interface:</strong></p>
+<p><strong>Tela de Gestão da Agência (Membro):</strong></p>
+<ul>
+<li>Menu lateral com a opção Gestão da Agência.</li>
+<li>Botão &quot;Solicitar Credenciamento&quot; (visível apenas se o calendário estiver aberto).</li>
+<li>Formulário com campos tipo: Nome, CPF, imagem.</li>
+</ul>
+<p><strong>Tela de Revisão do Comandante:</strong></p>
+<ul>
+<li>Listagem de solicitações pendentes.</li>
+<li>Visualização do texto da solicitação.</li>
+<li>Botão Assinar Solicitação.</li>
+</ul>
+<p><strong>Tela de Revisão do Chefe CoordOInt:</strong></p>
+<ul>
+<li>Listagem de solicitações das agências.</li>
+<li>Visualização do formulário da solicitação.</li>
+<li>Botão Solicitar Pesquisa Social.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="pra-credenciamento---pesquisa-social">PRA (Credenciamento) - Pesquisa social<a href="#pra-credenciamento---pesquisa-social" class="hash-link" aria-label="Direct link to PRA (Credenciamento) - Pesquisa social" title="Direct link to PRA (Credenciamento) - Pesquisa social">​</a></h3>
+<p><strong>Descrição:</strong> Processo de pesquisa social pela agência responsável.</p>
+<p><strong>Atores:</strong></p>
+<ul>
+<li>Membro da SOInt (Agente)</li>
+<li>Chefe/Analista da SOInt</li>
+<li>Comandante da unidade</li>
+</ul>
+<p><strong>Pré-condições:</strong></p>
+<ul>
+<li>A solicitação foi enviada pela CoordOInt para a Agência Responsável pela Pesquisa Social.</li>
+<li>O formulário de pesquisa está configurado e acessível no sistema.</li>
+</ul>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>
+<p>Agente responsável pela pesquisa social:</p>
+<ul>
+<li>1.1. O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>1.2. O usuário clica na opção <strong>Gestão da agência</strong>.</li>
+<li>1.3. Um agente acessa a lista de solicitações pendentes de pesquisa social.</li>
+<li>1.4. O primeiro agente que abrir a solicitação torna-se responsável pela conclusão.</li>
+<li>1.5. O usuário realiza a pesquisa social, preenche o formulário com os resultados e clica em <strong>&quot;Salvar pesquisa social&quot;</strong></li>
+</ul>
+</li>
+<li>
+<p>Chefe/Analista da SOInt:</p>
+<ul>
+<li>2.1. O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>2.2. O usuário clica na opção <strong>Gestão da agência</strong>.</li>
+<li>2.3. O sistema exibe a tela com as solicitações da agência com um badge colorido/clicável.</li>
+<li>2.4. O usuário clica nesse badge se disponível e o sistema redireciona para a tela da pesquisa.</li>
+<li>2.5. O usuário preenche o campo &quot;Parecer do chefe da agência&quot; e clica em <strong>&quot;Concluir pesquisa social&quot;</strong>.</li>
+<li>2.6. O sistema abre um modal com um botão de confirmação e recomendações.</li>
+</ul>
+</li>
+<li>
+<p>Comandante da unidade:</p>
+<ul>
+<li>3.1. O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>3.2. O usuário clica na opção <strong>Gestão da agência</strong>.</li>
+<li>3.3. O sistema exibe a tela com as solicitações da agência.</li>
+<li>3.4. O usuário escolhe a solicitação e clica no badge.</li>
+<li>3.5. O sistema redireciona e exibe a tela com as informações da solicitação.</li>
+<li>3.6. O usuário clica em <strong>&quot;Assinar documento&quot;</strong>.</li>
+<li>3.7. O sistema abre um modal com um botão de confirmação e recomendações.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Pós-condições:</strong></p>
+<ul>
+<li>A solicitação foi corretamente despachada para chefe, com os dados e documentos em conformidade.</li>
+<li>Em caso de inconsistências, a solicitação pode ser devolvida pele chefe para o agente responsável.</li>
+<li>O sistema redireciona o usuário para a tela escolhida.</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>O badge só é clicável para cada usuário se o fluxo estiver na sua responsabilidade.</li>
+<li>Todos os campos obrigatórios do formulário devem ser preenchidos antes do envio.</li>
+<li>Somente o agente pode realizar alterações na pesquisa social.</li>
+</ul>
+<p><strong>Exemplo de Interface:</strong></p>
+<p><strong>Tela do agente:</strong></p>
+<ul>
+<li>Menu lateral com a opção Gestão da Agência.</li>
+<li>Lista de solicitações de pesquisa social.</li>
+<li>Formulário de pesquisa social</li>
+</ul>
+<p><strong>Tela de Chefe/Analista da SOInt:</strong></p>
+<ul>
+<li>Listagem de solicitações pendentes.</li>
+<li>Visualizção dos detalhes da pesquisa e campo para parecer.</li>
+<li>Botão Concluir pesquisa social.</li>
+</ul>
+<p><strong>Tela do comandante:</strong></p>
+<ul>
+<li>Listagem de solicitações das agências.</li>
+<li>Visualização dos detalhes da pesquisa.</li>
+<li>Botão Assinar documento.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="pra-credenciamento---despacho-do-comando-regional">PRA (Credenciamento) - Despacho do comando regional<a href="#pra-credenciamento---despacho-do-comando-regional" class="hash-link" aria-label="Direct link to PRA (Credenciamento) - Despacho do comando regional" title="Direct link to PRA (Credenciamento) - Despacho do comando regional">​</a></h3>
+<p><strong>Descrição:</strong> Avaliação de pesquisa social e despacho do comando.</p>
+<p><strong>Atores:</strong></p>
+<ul>
+<li>Chefe da CoordOInt</li>
+<li>Comandante regional</li>
+</ul>
+<p><strong>Pré-condições:</strong></p>
+<ul>
+<li>A solicitação foi enviada pela unidade responsável pela pesquisa social.</li>
+<li>O formulário de pesquisa está configurado e acessível no sistema.</li>
+</ul>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>
+<p>Chefe da CoordOInt:</p>
+<ul>
+<li>1.1. O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>1.2. O usuário clica na opção <strong>Gestão da agência</strong>.</li>
+<li>1.3. O usuário escolhe a solicitação e clica no badge colorido/clicável se disponível.</li>
+<li>1.4. O usuário preenche o campo &quot;Parecer do chefe da CoordOInt&quot; e clica em <strong>&quot;Encaminhar ao comandante&quot;</strong>.</li>
+<li>1.5. O sistema abre um modal com um botão de confirmação.</li>
+<li>1.6. O sistema redireciona para a tela de Gestão da agência.</li>
+</ul>
+</li>
+<li>
+<p>Comandante regional:</p>
+<ul>
+<li>2.1. O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>2.2. O usuário clica na opção <strong>Gestão da agência</strong>.</li>
+<li>2.3. O sistema exibe a tela com as solicitações da agência com um badge colorido/clicável.</li>
+<li>2.4. O sistema redireciona para os detalhes da solicitação</li>
+<li>2.5. O usuário clica em um dos botões disponíveis <strong>&quot;Indeferir&quot;</strong> ou <strong>&quot;Assinar documento&quot;</strong>.</li>
+<li>2.6. O sistema abre um modal com um botão de confirmação e recomendações.</li>
+<li>2.7. O sistema redireciona para a tela de Gestão da agência.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Pós-condições:</strong></p>
+<ul>
+<li>A solicitação foi corretamente despachada para o chefe, com os dados e documentos em conformidade.</li>
+<li>Se o comandante clicar em <strong>&quot;&quot;Indeferir&quot;&quot;</strong>, o sistema redireciona para a tela de Gestão da agência e encerra o processo.</li>
+<li>Indeferido: Aparecerá para todos os usuários interessados um bagde vermelho com a mensagem &quot;Indeferido&quot;.</li>
+<li>Se o comandante clicar em <strong>&quot;Assinar documento&quot;&quot;</strong>, o sistema redireciona para a tela de Gestão da agência e enviar o processo o COInt.</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>O badge só é clicável para o usuário se o fluxo estiver na sua responsabilidade.</li>
+<li>Todos os campos obrigatórios do formulário devem ser preenchidos antes do envio.</li>
+<li>Somente o chefe do CoordOInt pode acessar o processo.</li>
+<li>Somente o comandante pode indeferir ou assinar o documento.</li>
+</ul>
+<p><strong>Exemplo de Interface:</strong></p>
+<p><strong>Tela do chefe da CoordOInt:</strong></p>
+<ul>
+<li>Menu lateral com a opção Gestão da Agência.</li>
+<li>Lista de solicitações de credenciamento/descredenciamento.</li>
+<li>Formulário de detalhes da pesquisa social e campo para Parecer</li>
+<li>Botão &quot;Encaminhar ao comandante&quot;</li>
+</ul>
+<p><strong>Tela do comandante:</strong></p>
+<ul>
+<li>Menu lateral com a opção Gestão da Agência.</li>
+<li>Lista de solicitações de credenciamento/descredenciamento.</li>
+<li>Formulário com os detalhes da solicitação</li>
+<li>Botões de &quot;Indeferir&quot; e &quot;Assinar documento&quot;</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="descredenciamento">Descredenciamento<a href="#descredenciamento" class="hash-link" aria-label="Direct link to Descredenciamento" title="Direct link to Descredenciamento">​</a></h3>
+<p><strong>Descrição:</strong> Processo de descredenciamento de agente/usuário do sistema</p>
+<p><strong>Atores:</strong></p>
+<ul>
+<li>Comandante do agente</li>
+<li>Comandante regional</li>
+<li>COInt</li>
+</ul>
+<p><strong>Pré-condições:</strong></p>
+<ul>
+<li>A solicitação foi realizada pelo comandante do agente.</li>
+</ul>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>
+<p>Comandante da unidade:</p>
+<ul>
+<li>1.1. O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>1.2. O usuário clica na opção <strong>Efetivo SinPoM</strong>.</li>
+<li>1.3. O sistema exibe uma lista com todos agente do sistema.</li>
+<li>1.4. O usuário clica em <strong>&quot;Descredenciar</strong>.</li>
+<li>1.5. O sistema abre um modal com um botão de confirmação e campo para informar o motivo.</li>
+<li>1.6. O sistema redireciona para a tela inicial</li>
+</ul>
+</li>
+<li>
+<p>Comandante regional:</p>
+<ul>
+<li>2.1. O usuário acessa a seção <strong>Recursos</strong> no menu lateral esquerdo.</li>
+<li>2.2. O usuário clica na opção <strong>Gestão da agência</strong>.</li>
+<li>2.3. O sistema exibe a tela com as solicitações da agência com um badge colorido/clicável.</li>
+<li>2.4. O usuário clica na opção adequada.</li>
+<li>2.5. O sistema redireciona para os detalhes da solicitação.</li>
+<li>2.6. O usuário clica no botão <strong>&quot;Assinar solicitação&quot;</strong>.</li>
+<li>2.7. O sistema abre um modal com um botão de confirmação.</li>
+<li>2.8. O sistema redireciona para a tela de Gestão da agência.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Pós-condições:</strong></p>
+<ul>
+<li>A solicitação foi corretamente despachada exibindo o status atual da solicitação.</li>
+<li>Após descredenciamento do COInt o usuário descredenciado não conseguirá mais acessar o sistema.</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>O badge só é clicável para o usuário se o fluxo estiver na sua responsabilidade.</li>
+<li>Somente o comandante da unidade pode inicial o processo de descredenciamento.</li>
+<li>Somente o COInt conseguirá descredenciar o agente e remover o acesso do usuário.</li>
+</ul>
+<p><strong>Exemplo de Interface:</strong></p>
+<p><strong>Tela do comandante da unidade:</strong></p>
+<ul>
+<li>Menu lateral com a opção Efetivo SinPoM.</li>
+<li>Lista de usuários cadastrados com botão &quot;Descredenciar&quot; disponível.</li>
+</ul>
+<p><strong>Tela do comandante regional:</strong></p>
+<ul>
+<li>Menu lateral com a opção Gestão da Agência.</li>
+<li>Lista de solicitações de credenciamento/descredenciamento.</li>
+<li>Formulário com os detalhes da solicitação</li>
+<li>Botão de &quot;Assinar solicitação&quot;</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="dados-da-opm">Dados da OPM<a href="#dados-da-opm" class="hash-link" aria-label="Direct link to Dados da OPM" title="Direct link to Dados da OPM">​</a></h3>
 <p><strong>Descrição:</strong> Exibir e modificar os dados da agência cadastrados no sistema.</p>
 <p><strong>Atores:</strong> Usuário</p>
@@ -937,6 +1226,6 @@
 <li>Abaixo são mostrados campos com os dados da agência que podem ser modificados.</li>
 <li>No final da tela é exibido o botão <strong>&quot;Salvar&quot;</strong>.</li>
 </ul>
-<hr></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs-sinpom/docs/development/version-control"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Controle de Versão</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs-sinpom/docs/development/feature-details"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Detalhamento de Funcionalidades</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#login-no-sistema" class="table-of-contents__link toc-highlight">Login no sistema</a></li><li><a href="#novo-documento-no-sistema" class="table-of-contents__link toc-highlight">Novo Documento no Sistema</a></li><li><a href="#análises" class="table-of-contents__link toc-highlight">Análises</a><ul><li><a href="#consulta-de-entidade-pessoa" class="table-of-contents__link toc-highlight">Consulta de Entidade Pessoa</a></li><li><a href="#cadastro-de-logocrim" class="table-of-contents__link toc-highlight">Cadastro de logocrim</a></li><li><a href="#consulta-de-logocrim" class="table-of-contents__link toc-highlight">Consulta de logocrim</a></li><li><a href="#cadastro-de-localidade" class="table-of-contents__link toc-highlight">Cadastro de localidade</a></li><li><a href="#consulta-de-localidade" class="table-of-contents__link toc-highlight">Consulta de localidade</a></li></ul></li><li><a href="#recursos" class="table-of-contents__link toc-highlight">Recursos</a><ul><li><a href="#consulta-de-veículos" class="table-of-contents__link toc-highlight">Consulta de veículos</a></li><li><a href="#edição-de-veículo" class="table-of-contents__link toc-highlight">Edição de veículo</a></li><li><a href="#remover-veículo" class="table-of-contents__link toc-highlight">Remover veículo</a></li><li><a href="#cadastro-de-veículos" class="table-of-contents__link toc-highlight">Cadastro de veículos</a></li><li><a href="#consulta-de-equipamentos" class="table-of-contents__link toc-highlight">Consulta de equipamentos</a></li><li><a href="#edição-de-equipamento" class="table-of-contents__link toc-highlight">Edição de equipamento</a></li><li><a href="#remover-equipamento" class="table-of-contents__link toc-highlight">Remover equipamento</a></li><li><a href="#cadastro-de-equipamento" class="table-of-contents__link toc-highlight">Cadastro de equipamento</a></li><li><a href="#consulta-de-material-bélico" class="table-of-contents__link toc-highlight">Consulta de material bélico</a></li><li><a href="#edição-de-material-bélico" class="table-of-contents__link toc-highlight">Edição de material bélico</a></li><li><a href="#remover-material-bélico" class="table-of-contents__link toc-highlight">Remover material bélico</a></li><li><a href="#cadastro-de-material-bélico" class="table-of-contents__link toc-highlight">Cadastro de material bélico</a></li><li><a href="#consulta-de-efetivo-sinpom" class="table-of-contents__link toc-highlight">Consulta de efetivo SinPoM</a></li><li><a href="#prazos-de-documentos" class="table-of-contents__link toc-highlight">Prazos de documentos</a></li><li><a href="#gestão-da-agência" class="table-of-contents__link toc-highlight">Gestão da agência</a></li><li><a href="#processo-de-credenciamento" class="table-of-contents__link toc-highlight">Processo de credenciamento</a></li><li><a href="#processo-de-descredenciamento" class="table-of-contents__link toc-highlight">Processo de descredenciamento</a></li><li><a href="#dados-da-opm" class="table-of-contents__link toc-highlight">Dados da OPM</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentação</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/getting-starter/intro">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/configuration">Configuration</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/development">Development</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/deployment">Deployment</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/references/changelog">References</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/contributing">Contributing</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/giluansouza" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/your-profile" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div></div></footer></div>
+<hr></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs-sinpom/docs/development/version-control"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Controle de Versão</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs-sinpom/docs/development/feature-details"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Detalhamento de Funcionalidades</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#login-no-sistema" class="table-of-contents__link toc-highlight">Login no sistema</a></li><li><a href="#novo-documento-no-sistema" class="table-of-contents__link toc-highlight">Novo Documento no Sistema</a></li><li><a href="#análises" class="table-of-contents__link toc-highlight">Análises</a><ul><li><a href="#consulta-de-entidade-pessoa" class="table-of-contents__link toc-highlight">Consulta de Entidade Pessoa</a></li><li><a href="#cadastro-de-logocrim" class="table-of-contents__link toc-highlight">Cadastro de logocrim</a></li><li><a href="#consulta-de-logocrim" class="table-of-contents__link toc-highlight">Consulta de logocrim</a></li><li><a href="#cadastro-de-localidade" class="table-of-contents__link toc-highlight">Cadastro de localidade</a></li><li><a href="#consulta-de-localidade" class="table-of-contents__link toc-highlight">Consulta de localidade</a></li></ul></li><li><a href="#recursos" class="table-of-contents__link toc-highlight">Recursos</a><ul><li><a href="#consulta-de-veículos" class="table-of-contents__link toc-highlight">Consulta de veículos</a></li><li><a href="#edição-de-veículo" class="table-of-contents__link toc-highlight">Edição de veículo</a></li><li><a href="#remover-veículo" class="table-of-contents__link toc-highlight">Remover veículo</a></li><li><a href="#cadastro-de-veículos" class="table-of-contents__link toc-highlight">Cadastro de veículos</a></li><li><a href="#consulta-de-equipamentos" class="table-of-contents__link toc-highlight">Consulta de equipamentos</a></li><li><a href="#edição-de-equipamento" class="table-of-contents__link toc-highlight">Edição de equipamento</a></li><li><a href="#remover-equipamento" class="table-of-contents__link toc-highlight">Remover equipamento</a></li><li><a href="#cadastro-de-equipamento" class="table-of-contents__link toc-highlight">Cadastro de equipamento</a></li><li><a href="#consulta-de-material-bélico" class="table-of-contents__link toc-highlight">Consulta de material bélico</a></li><li><a href="#edição-de-material-bélico" class="table-of-contents__link toc-highlight">Edição de material bélico</a></li><li><a href="#remover-material-bélico" class="table-of-contents__link toc-highlight">Remover material bélico</a></li><li><a href="#cadastro-de-material-bélico" class="table-of-contents__link toc-highlight">Cadastro de material bélico</a></li><li><a href="#consulta-de-efetivo-sinpom" class="table-of-contents__link toc-highlight">Consulta de efetivo SinPoM</a></li><li><a href="#prazos-de-documentos" class="table-of-contents__link toc-highlight">Prazos de documentos</a></li><li><a href="#pra-credenciamento---solicitação" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Solicitação</a></li><li><a href="#pra-credenciamento---pesquisa-social" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Pesquisa social</a></li><li><a href="#pra-credenciamento---despacho-do-comando-regional" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Despacho do comando regional</a></li><li><a href="#descredenciamento" class="table-of-contents__link toc-highlight">Descredenciamento</a></li><li><a href="#dados-da-opm" class="table-of-contents__link toc-highlight">Dados da OPM</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentação</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/getting-starter/intro">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/configuration">Configuration</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/development">Development</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/deployment">Deployment</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/references/changelog">References</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/contributing">Contributing</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/giluansouza" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/your-profile" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div></div></footer></div>
 </body>
 </html>
