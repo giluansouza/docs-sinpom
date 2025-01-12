@@ -1257,3 +1257,169 @@ despacho pela CoordOInt.
 - No final da tela é exibido o botão **"Salvar"**.
 
 ---
+
+## Nova ocorrência
+
+**Descrição:** Cadastro de nova ocorrência no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O usuário tem permissão para criar novas ocorrências.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Ocorrências** no menu lateral esquerdo.
+2. O usuário clica na opção **Nova**.
+3. O sistema exibe uma tela com um select com os tipos de ocorrências.
+4. O usuário escolhe o tipo de ocorrência.
+5. O sistema então cria a ocorrência e redireciona para a tela do formulário adequado.
+6. O usuário preenche os campos obrigatórios e se possível os campos opcionais.
+7. Caso exista entidades o usuário deve clicar no botão correspondente **"Pessoa"**, **"Veículo"**, **"Arma"**
+8. O sistema abre o modal com o formulário da entidade, que poderá ser criada uma nova ou aproveitada uma
+9. O usuário clica no botão **"Salvar"**.
+10. O sistema atualiza a página confirmando o sucesso da operação.
+
+**Fluxo Alternativo:**
+
+- **F1:** O usuário desiste de criar a ocorrência.
+
+  1.  Os passos anteriores seguem o fluxo principal (passos 1-5).
+  2.  O usuário precisa clicar em **"Excluir"** para que a ocorrência seja apagada do sistema.
+  3.  O sistema abre um modal para confirmação do usuário.
+  4.  O sistema redireciona para a tela de escolha do tipo de nova ocorrência.
+
+- **F2:** O usuário não faz alterações nos campos e sai da tela.
+
+  1.  Os passos anteriores seguem o fluxo principal (passos 1-5).
+  2.  A ocorrência foi criada mas naõ tem as informações necessárias.
+  3.  O usuário clica em qualquer outra opção do menu lateral.
+  4.  O sistema redireciona o usuário para a tela escolhida.
+
+**Pós-condições:**
+
+- A ocorrência foi corretamente criada.
+- O sistema exibe o formulário adequado ao tipo de ocorrência selecionado.
+- O campo com tipo de ocorrência no formulário não pode alterado pelo usuário.
+- A ocorrência excluída não deve aparecer na listagem de ocorrências.
+- A ocorrência não finalizada não aparece na lista de ocorrências.
+
+**Regras de Negócio:**
+
+- Em cada formulário existem campos de preenchimento obrigatório.
+
+**Exemplo de Interface:**
+
+- Na primeira tela um select de tipo de ocorrência **"Selecione o tipo de ocorrência"**
+- No formulário campos de select como **Unidade da área onde ocorreu o fato**, **Cidade**, **Zona**.
+- No formulário campos do tipo input, textarea e date picker e um mapa para adição de marcadores.
+- No final da tela é exibido o botão **"Salvar"** e o botão **"Excluir"**.
+
+---
+
+## Listar ocorrências
+
+**Descrição:** Lista as ocorrências registradas no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O usuário tem permissão para visualizar as ocorrências.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Ocorrências** no menu lateral esquerdo.
+2. O usuário clica na opção **Listar**.
+3. O sistema exibe uma tela com um opção de filtros e a listagem de ocorrências disponíveis.
+4. O usuário clica em uma das ocorrências.
+5. O sistema redireciona para a tela de detalhes da ocorrência.
+6. Se disponível o usuário pode clicar nas entidades e visualizar os dados por um modal.
+
+**Pós-condições:**
+
+- O sistema exibe listagem de ocorrências de acordo com o nível de usuário.
+- O sistema exibe os detalhes de acordo com o clique do usuário.
+- O sistema exibe as entidades em links clicáveis para abertura do modal.
+- O sistema exibe um mapa que pode ter marcadores de localização.
+
+**Regras de Negócio:**
+
+- O usuário só pode visualizar as ocorrências da sua agência ou agências subordinadas.
+- O botão de **"Editar"** só está disponível para o usuário da sua agência.
+
+**Exemplo de Interface:**
+
+- Na primeira tela temos os inputs para filtragem de ocorrência
+- Logo abaixo a listagem com as ocorrências cadastradas.
+- Na tela de detalhes os dados da ocorrência e um mapa.
+- Caso o usuário tenha permissão no final após o mapa deve ter um botão de **"Editar"**.
+
+---
+
+## Tutorial
+
+**Descrição:** Exibir os tutoriais para uso do sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Tutorial** no menu lateral esquerdo.
+2. O sistema exibe uma tela com os cards de cada tutorial, com o título e o player de vídeo.
+
+**Pós-condições:**
+
+- O sistema exibe players de video do youtube, é possível assistir nessa tela ou redirecionar para o youtube.
+
+**Regras de Negócio:**
+
+**Exemplo de Interface:**
+
+- Cards brancos com sombreamento com o título e o player de video.
+
+---
+
+## Ajuda
+
+**Descrição:** Solicitar ajuda no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Ajudar** no menu lateral esquerdo.
+2. O sistema exibe uma tela com os dados da agência.
+3. O usuário escolhe o tipo de solicitação ou sugestão no campo adequado.
+4. O usuário preencher o textarea da descrição.
+5. O usuário clica no botão **"Gravar"**.
+6. O sistema exibe logo acima do formulário os chamados, inclusive o chamado aberto.
+
+**Pós-condições:**
+
+- O sistema exibe os chamados com o tipo, a data, o status a descrição.
+- Se houver resposta o sistema exibe a resposta.
+
+**Regras de Negócio:**
+
+- O usuário só visualiza os chamados criado por ele mesmo.
+
+**Exemplo de Interface:**
+
+- Título da página e descrição da página.
+- Logo o após a lista com todos so chamdos criados.
+- Formulário para abertura de novo chamado.
+- Botão de **"Gravar"** e **"Voltar"**.
+
+---

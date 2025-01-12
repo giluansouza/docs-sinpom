@@ -24,6 +24,14 @@ Documentos que devem ser mantidos fora da documentação técnica online.
 - Política de Backup e Recuperação (Avaliar se será incluída ou não na seção monitoramento e manutenção)
 - Especificação de Requisitos de Software (ERS) - Sugestão de ferramentas Jira ou Confluence
 
+:::warning
+Dúvidas
+:::
+
+- [ ] **Cadastro de ocorrência:** Quando eu saio sem clicar em salvar o sistema exclui o registro no BD?
+- [ ] **OTP:** Existe o botão mas o sistema dispara o evento ao preencher o OTP.
+- [ ] **Cadastro de ocorrência:** Existe o botão salvar mas o sistema dispara o evento ao escolher o tipo.
+
 :::danger
 Problemas encontrados ao utilizar o sistema.
 :::
