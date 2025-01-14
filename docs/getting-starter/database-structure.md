@@ -219,4 +219,4 @@ Lista todos os agentes de uma OPM ou de um CPR
 
 ## Diagrama ER
 
-![Diagrama ER](./../assets/er-diagram.png)
+![Diagrama ER](./../assets/bd_sinpom.png)
