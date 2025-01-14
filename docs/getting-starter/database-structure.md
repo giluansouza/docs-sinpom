@@ -24,7 +24,32 @@ O banco de dados do SINPOM é a espinha dorsal do sistema, permitindo armazename
 | created_at        | TIMESTAMP    | Record creation timestamp.    |
 | updated_at        | TIMESTAMP    | Record last update timestamp. |
 
-### 2. **`documents`**: Tabela de documentos.
+### 2. **`staff`**: Tabela de funcionários
+
+| Field Name         | Data Type       | Description                                              |
+| ------------------ | --------------- | -------------------------------------------------------- |
+| id                 | BIGINT unsigned | Primary key, auto-increment.                             |
+| nome               | VARCHAR(191)    | Name of the staff member.                                |
+| rank_id            | BIGINT unsigned | Foreign key, references `ranks.id` (permanent position). |
+| opm_id             | BIGINT unsigned | Foreign key, references `opms.id` (unit).                |
+| gender_id          | BIGINT unsigned | Foreign key, references `genders.id` (gender).           |
+| leave_kind_id      | BIGINT unsigned | Status of the staff (functional situation).              |
+| cpf                | VARCHAR(25)     | CPF (Brazilian personal identification number).          |
+| data_de_nascimento | DATE            | Date of birth.                                           |
+| endereco           | VARCHAR(191)    | Address of the staff member.                             |
+| numero             | VARCHAR(25)     | Number of the address.                                   |
+| bairro             | VARCHAR(191)    | Neighborhood of the staff member.                        |
+| complemento        | VARCHAR(191)    | Address complement.                                      |
+| cidade             | VARCHAR(191)    | City of residence.                                       |
+| uf                 | VARCHAR(30)     | State of residence.                                      |
+| cep                | VARCHAR(25)     | Postal code.                                             |
+| rg                 | VARCHAR(25)     | RG (General Registration number).                        |
+| orgao_expedidor    | VARCHAR(20)     | Issuing authority of RG.                                 |
+| data_de_admissao   | DATE            | Date of admission.                                       |
+| mae                | VARCHAR(191)    | Mother's name.                                           |
+| pai                | VARCHAR(191)    | Father's name.                                           |
+
+### 3. **`documents`**: Tabela de documentos.
 
 | Field Name            | Data Type       | Description                        |
 | --------------------- | --------------- | ---------------------------------- |
@@ -46,7 +71,7 @@ O banco de dados do SINPOM é a espinha dorsal do sistema, permitindo armazename
 | created_at            | TIMESTAMP       | Record creation timestamp.         |
 | updated_at            | TIMESTAMP       | Record last update timestamp.      |
 
-### 3. **`entity_people`**: Tabela de entidade de pessoas
+### 4. **`entity_people`**: Tabela de entidade de pessoas
 
 | Field Name                          | Data Type       | Description                      |
 | ----------------------------------- | --------------- | -------------------------------- |
@@ -76,7 +101,7 @@ O banco de dados do SINPOM é a espinha dorsal do sistema, permitindo armazename
 | FOREIGN KEY (created_by_staff_id)   | STAFF(ID)       | References `staff` table.        |
 | FOREIGN KEY (opm_id)                | OPMS(ID)        | References `opms` table.         |
 
-### 4. **`occurrences`**: Tabela de registro de ocorrências
+### 5. **`occurrences`**: Tabela de registro de ocorrências
 
 | Field Name                   | Data Type       | Description                                               |
 | ---------------------------- | --------------- | --------------------------------------------------------- |
@@ -119,15 +144,36 @@ O banco de dados do SINPOM é a espinha dorsal do sistema, permitindo armazename
 | FOREIGN KEY (staff_id)       | STAFF(ID)       | References the `staff` table.                             |
 | FOREIGN KEY (rank_id)        | RANKS(ID)       | References the `ranks` table.                             |
 
+### 6. **`opms`**: Tabela de OPMs
+
+| Field Name      | Data Type        | Description                                         |
+| --------------- | ---------------- | --------------------------------------------------- |
+| id              | BIGINT unsigned  | Primary key, auto-increment.                        |
+| nome            | VARCHAR(191)     | Name of the unit.                                   |
+| descricao       | VARCHAR(191)     | Description of the unit.                            |
+| opm_superior_id | BIGINT           | ID of the superior unit (nullable).                 |
+| ativa           | TINYINT(1)       | Status of the unit (active/inactive).               |
+| opm_kind_id     | BIGINT unsigned  | Foreign key, references `opm_kinds.id`.             |
+| cpr_id          | BIGINT unsigned  | ID of the CPR (nullable).                           |
+| grande_comando  | TINYINT unsigned | Indicates whether it is a large command (nullable). |
+
 ## Principais Relacionamentos
 
 ### Relationamentos de `users`
 
 ![Diagrama relacionamento Users](./../assets/users_relationship.png)
 
+### Relationamentos de `staff`
+
+![Diagrama relacionamento Staff](./../assets/bd_sinpom-staff.png)
+
 ### Relationamentos de `documents`
 
 ![Diagrama relacionamento Documents](./../assets/documents_relationship.png)
+
+### Relationamentos de `opms`
+
+![Diagrama relacionamento OPMs](./../assets/bd_sinpom-opms.png)
 
 ## Exemplo de Consulta SQL
 
