@@ -157,23 +157,34 @@ O banco de dados do SINPOM é a espinha dorsal do sistema, permitindo armazename
 | cpr_id          | BIGINT unsigned  | ID of the CPR (nullable).                           |
 | grande_comando  | TINYINT unsigned | Indicates whether it is a large command (nullable). |
 
+### 7. **`faccoes`**: Tabela de facções
+
+| Field Name | Data Type       | Description                  |
+| ---------- | --------------- | ---------------------------- |
+| id         | BIGINT unsigned | Primary key, auto-increment. |
+| nome       | VARCHAR(191)    | Name of the criminal group.  |
+
 ## Principais Relacionamentos
 
-### Relationamentos de `users`
+### Relacionamentos de `users`
 
 ![Diagrama relacionamento Users](./../assets/users_relationship.png)
 
-### Relationamentos de `staff`
+### Relacionamentos de `staff`
 
 ![Diagrama relacionamento Staff](./../assets/bd_sinpom-staff.png)
 
-### Relationamentos de `documents`
+### Relacionamentos de `documents`
 
 ![Diagrama relacionamento Documents](./../assets/documents_relationship.png)
 
-### Relationamentos de `opms`
+### Relacionamentos de `opms`
 
 ![Diagrama relacionamento OPMs](./../assets/bd_sinpom-opms.png)
+
+### Relacionamentos de `faccoes`
+
+![Diagrama relacionamento Facções](./../assets/bd_sinpom-faccoes.png)
 
 ## Exemplo de Consulta SQL
 
