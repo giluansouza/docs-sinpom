@@ -937,6 +937,53 @@ sidebar_position: 2
 
 ---
 
+### PRA (Credenciamento) - Calendário de credenciamento
+
+**Descrição:** Controle de solicitações de credenciamento de acordo com o calendário de autorização.
+
+**Atores:**
+
+- Usuário lotado na SSO, com permissão para ajustar calendário de credenciamento.
+
+**Pré-condições:**
+
+- O calendário não está aberto.
+- O usuário está autenticado e ter permissão para alterar calendário de credenciamento.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Gestão de agência**.
+3. O sistema exibe a de gestão da agência.
+4. O usuário clica no botão **"Janela de credenciamento"**.
+5. O sistema exibe o formulário com dois campos de data: **"Data inicial"** e **"Data final"**.
+6. O usuário preenche os campos e clica em **"Gravar"**.
+7. O sistema redireciona para tela de Gestão da Agência e exibe modal com mensagem de sucesso.
+
+**Pós-condições:**
+
+- O calendário de credenciamento é atualizado com as datas preenchidas pelo usuário.
+- O botão **"Solicitar credenciamento"** aparecerá na tela de Gestão da Agência de todos os usuários.
+
+**Regras de Negócio:**
+
+- O botão **"Solicitar credenciamento"** aparecerá apenas se o calendário estiver aberto.
+- Os campos **"Data inicial"** e **"Data final"** são obrigatórios.
+- Os campos **"Data inicial"** e **"Data final"** devem estar no formato DD/MM/AAAA e a data inicial deve ser menor que a data final.
+
+**Exemplo de Interface:**
+
+**Tela de Gestão da Agência:**
+
+- Menu lateral com a opção Gestão da Agência.
+- Botão "Janela de Credenciamento" (visível apenas para usuários nível SSO).
+
+**Tela de Janela de Credenciamento de Agente:**
+
+- Formulário com 2 inputs tipo data, para data inicial e data final.
+- Botão "Gravar".
+- Botão "Cancelar".
+
 ### PRA (Credenciamento) - Solicitação
 
 **Descrição:** Processo inicial de solicitação de credenciamento, passando pela

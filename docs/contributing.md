@@ -24,6 +24,12 @@ Documentos que devem ser mantidos fora da documentação técnica online.
 - Política de Backup e Recuperação (Avaliar se será incluída ou não na seção monitoramento e manutenção)
 - Especificação de Requisitos de Software (ERS) - Sugestão de ferramentas Jira ou Confluence
 
+:::tip
+Sugestões
+:::
+
+- [ ] **Novos usuários:** Adicionar o TAI online no sistema para novos usuários, além de uma introdução as funcionalidades do sistema.
+
 :::warning
 Dúvidas
 :::
