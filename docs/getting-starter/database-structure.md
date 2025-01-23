@@ -157,7 +157,16 @@ O banco de dados do SINPOM é a espinha dorsal do sistema, permitindo armazename
 | cpr_id          | BIGINT unsigned  | ID of the CPR (nullable).                           |
 | grande_comando  | TINYINT unsigned | Indicates whether it is a large command (nullable). |
 
-### 7. **`faccoes`**: Tabela de facções
+### 7. **`opm_structures`**: Estrutura de hierarquia das OPMs
+
+| Field Name | Data Type       | Description                                                             |
+| ---------- | --------------- | ----------------------------------------------------------------------- |
+| id         | BIGINT unsigned | Primary key, auto-increment.                                            |
+| parent_id  | BIGINT unsigned | Reference to the parent structure, forming a hierarchical relationship. |
+| nome       | VARCHAR(191)    | Name of the structure.                                                  |
+| opm_id     | BIGINT unsigned | Reference to the related OPM.                                           |
+
+### 8. **`faccoes`**: Tabela de facções
 
 | Field Name | Data Type       | Description                  |
 | ---------- | --------------- | ---------------------------- |
@@ -166,21 +175,25 @@ O banco de dados do SINPOM é a espinha dorsal do sistema, permitindo armazename
 
 ## Principais Relacionamentos
 
-### Relacionamentos de `users`
+### Relationamentos de `users`
 
 ![Diagrama relacionamento Users](./../assets/users_relationship.png)
 
-### Relacionamentos de `staff`
+### Relationamentos de `staff`
 
 ![Diagrama relacionamento Staff](./../assets/bd_sinpom-staff.png)
 
-### Relacionamentos de `documents`
+### Relationamentos de `documents`
 
 ![Diagrama relacionamento Documents](./../assets/documents_relationship.png)
 
-### Relacionamentos de `opms`
+### Relationamentos de `opms`
 
 ![Diagrama relacionamento OPMs](./../assets/bd_sinpom-opms.png)
+
+### Relationamentos de `opm_structures`
+
+![Diagrama relacionamento OPM Structures](./../assets/bd_sinpom-opm_structures.png)
 
 ### Relacionamentos de `faccoes`
 
@@ -231,3 +244,5 @@ Lista todos os agentes de uma OPM ou de um CPR
 ## Diagrama ER
 
 ![Diagrama ER](./../assets/bd_sinpom.png)
+
+---
