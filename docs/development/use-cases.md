@@ -279,6 +279,93 @@ sidebar_position: 2
 
 ---
 
+### Gerenciamento de facções
+
+**Descrição:** Cadastro/alteração de facção no sistema.
+
+**Atores:** Usuário nível SPO.
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+- O usuário possui o nível de permissão SPO (Segurança Pública e Ouvidoria).
+- O módulo de gerenciamento de facções está habilitado para o perfil do usuário.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Análises** no menu lateral esquerdo.
+2. O usuário clica na opção **Facções**.
+3. O sistema exibe uma tela com as facções cadastradas.
+4. O usuário clica em **"Cadastrar nova"** no canto superior direito da tela.
+5. O sistema exibe uma tela com o campo "Nome do grupo crime" para cadastrar uma nova facção.
+6. O usuário preenche o campo.
+7. O usuário clica em **"Gravar"**.
+
+**Fluxos Alternativos:**
+
+- **F1**: Caso o usuário desista de cadastrar uma nova facção, ele deve clicar em cancelar no final da página e então será redirecionado para a tela de facções.
+
+- **F2**: O usuário precisa editar o nome do grupo-crime.
+
+1. Os passos 1-3 do fluxo principal.
+2. O usuário escolhe uma das opções listadas na tabela e clica.
+3. O sistema exibe uma tela com o campo "Nome do grupo crime" para editar a facção.
+4. O usuário preenche o campo.
+5. O usuário clica em **"Gravar"**.
+
+**Pós-condições:**
+
+- O sistema deve atualizar a lista de facções com a nova facção ou as alterações realizadas, exibindo-a em ordem alfabética.
+
+**Regras de Negócio:**
+
+- O campo "Nome do grupo crime" é obrigatório.
+- Não é permitido cadastrar facções com o mesmo nome.
+- Apenas usuários com permissão de nível SPO podem acessar o gerenciamento de facções.
+- A ordenação da lista de facções deve ser feita de forma alfabética.
+
+**Exemplo de Interface:**
+
+**Interface 1: Tela de Listagem de Facções**
+
+1. **Título:** "FACÇÕES"
+
+2. **Botão** "Cadastrar nova":
+
+- Localização: Canto superior direito da lista.
+- Ação: Abre a tela de cadastro de uma nova facção.
+
+3. **Tabela:**
+
+- Exibe a lista de facções cadastradas em ordem alfabética.
+- Cada facção listada é clicável e redireciona o usuário para a edição.
+
+4. **Menu Lateral:**
+
+- Localização: Lado esquerdo da tela.
+- Itens Relevantes:
+  - Categoria "Análises" (expandida).
+  - Subitem destacado: "Facções".
+
+**Interface 2: Tela de Cadastro/Edição de Facções**
+
+1. **Título:** "Alteração do Nome do Grupo Crime"
+
+2. **Campo de Entrada:**
+
+- "Nome do Grupo Crime": Permite inserir ou editar o nome da facção.
+- Validação: Campo obrigatório.
+
+3. **Botões:**
+
+- "Gravar": Salva as alterações ou cria uma nova facção.
+- "Cancelar": Retorna para a listagem sem salvar.
+
+4. **Menu Lateral:**
+   - Idêntico ao da Tela de Listagem de Facções.
+
+---
+
 ## Recursos
 
 ### Consulta de veículos
@@ -1512,7 +1599,7 @@ despacho pela CoordOInt.
 
 ### Usuários
 
-**Descrição:** Acesso a estatísticas de ocorrências.
+**Descrição:** Gerenciamento de usuários do sistema.
 
 **Atores:** Usuário com nível adequado
 
@@ -1523,98 +1610,189 @@ despacho pela CoordOInt.
 
 **Fluxo Principal:**
 
-1. O usuário acessa a seção **"Estatísticas"** no menu lateral esquerdo
-2. O usuário clica em **"Ocorrências" na lista de submenus de **"Estatísticas"\*\*.
-3. O sistema exibe a tela com a lista de ocorrências separada por OPM e Total".
+1. O usuário acessa a seção **"Efetivo"** no menu lateral esquerdo
+2. O usuário clica em **"Usuários"** no submenu de **"Efetivo"**.
+3. O sistema exibe uma tabela com os usuários do sistema.
 4. O usuário pode clicar em uma das opções da lista
-5. O sistema redireciona para a lista de ocorrências da unidade selecionada.
+5. O sistema redireciona para os detalhes do usuário selecionado.
+6. O usuário pode alterar os campos de "E-mail", "Nível de aceso" e "Vínculo"
+7. O usuário clica em **"Gravar"**
+8. O sistema redireciona para a tela de usuários.
+
+**Fluxo Alternativo:**
+
+- **F1:** Resetando OTP do usuário selecionado
+  1.  Os passos 1-5 do fluxo principal.
+  2.  O usuário clica no botão **"Resetar OTP"**
+
+**Pós-condições:**
+
+- O "E-mail", "Nível de aceso" ou "Vínculo" refletem as alterações.
+- O OTP do usuário foi resetado com sucesso.
+
+**Regras de Negócio:**
+
+- Somente usuários com nível adequado podem editar as informações.
+- O menu efetivo e os submenus só aparecem para usuários com nível adequado.
 
 **Exemplo de Interface:**
 
-- Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.
-- Tela com um título "TOTAL DE OCORRÊNCIAS: X", exibindo o total geral.
-- Tabela com linhas clicáveis e duas colunas por linha sendo uma "OPM" e outra "Total"
+**Interface 1: Tela de Listagem de Usuários**
+
+1. **Título:** "USUÁRIOS"
+
+2. **Campo de Busca:**
+
+- Localização: Na parte superior da tabela.
+- Ação: Permite filtrar usuários pelo nome ou matrícula do servidor.
+
+3. **Tabela:**
+
+- Colunas:
+  - Nome: Exibe o nome completo, matrícula e e-mail do usuário.
+  - OPM: Mostra a unidade operacional (exemplo: "31ª CIPM - VALÉRIA").
+  - Nível: Indica o status ou nível do usuário (exemplo: "Descredenciado em [data]" com texto em vermelho para ênfase).
+- Itens listados:
+  - Os usuários aparecem em ordem, com detalhes em cada linha.
+
+4. **Menu Lateral:**
+
+- Localização: Lado esquerdo da tela.
+- Itens Relevantes:
+  - Categoria "Efetivo" (presumivelmente expandida).
+  - Subitem destacado: "Usuários" (correspondente à tela atual).
 
 ---
 
 ### Gerar Token para cadastro
 
-**Descrição:** Acesso a estatísticas de ocorrências.
+**Descrição:** Geração de um token único para que novos usuários possam se cadastrar no sistema.
 
-**Atores:** Usuário com nível adequado
+**Atores:** Usuário com nível de acesso adequado.
 
 **Pré-condições:**
 
-- O usuário já possui uma conta ativa no sistema
-- O usuário tem nível de acesso compatível com a funcionalidade
+- O usuário já possui uma conta ativa no sistema.
+- O usuário tem nível de acesso compatível com a funcionalidade (mínimo "usuário").
 
 **Fluxo Principal:**
 
-1. O usuário acessa a seção **"Estatísticas"** no menu lateral esquerdo
-2. O usuário clica em **"Ocorrências" na lista de submenus de **"Estatísticas"\*\*.
-3. O sistema exibe a tela com a lista de ocorrências separada por OPM e Total".
-4. O usuário pode clicar em uma das opções da lista
-5. O sistema redireciona para a lista de ocorrências da unidade selecionada.
+1. O usuário acessa a seção **"Efetivo"** no menu lateral esquerdo.
+2. O usuário clica em **"Gerar Token para cadastro"** no submenu de **"Efetivo"**.
+3. O sistema exibe uma interface.
+4. O usuário preenche os campos obrigatórios:
+   - Matrícula do policial.
+   - O sistema gera o código de cadastro
+   - E-mail válido.
+5. O usuário clica no botão **"Enviar"**.
+6. O sistema valida as informações fornecidas.
+7. O sistema envia o token gerado para o e-mail informado.
+8. O sistema exibe uma mensagem de confirmação de sucesso.
+
+**Fluxo Alternativo:**
+
+- **F1:** Campos obrigatórios não preenchidos
+
+  1. Após o passo 5 do fluxo principal, o sistema detecta que um ou mais campos obrigatórios estão vazios.
+  2. O sistema exibe uma mensagem de erro informando os campos que devem ser preenchidos.
+  3. O usuário preenche os campos e clica novamente em **"Enviar"**.
+
+- **F2:** E-mail inválido ou falha no envio
+  1. Após o passo 5 do fluxo principal, o sistema valida o e-mail informado e detecta um erro (formato inválido ou falha no envio).
+  2. O sistema exibe uma mensagem de erro informando o problema.
+  3. O usuário corrige o e-mail e clica novamente em **"Enviar"**.
+
+**Pós-condições:**
+
+- O token foi gerado com sucesso.
+- O token foi enviado ao e-mail informado.
+
+**Regras de Negócio:**
+
+- Todos os campos são obrigatórios.
+- Somente usuários com nível de acesso adequado podem acessar esta funcionalidade.
+- O sistema deve garantir que o token seja único e válido para um único uso.
 
 **Exemplo de Interface:**
 
-- Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.
-- Tela com um título "TOTAL DE OCORRÊNCIAS: X", exibindo o total geral.
-- Tabela com linhas clicáveis e duas colunas por linha sendo uma "OPM" e outra "Total"
+**Interface: Tela de Geração de Token**
+
+1. **Título:** "GERAÇÃO DE TOKEN PARA CADASTRO DO USUÁRIO"
+2. **Campos:**
+   - **Matrícula do policial:** Campo obrigatório de seleção.
+   - **E-mail para envio do código:** Campo obrigatório de entrada.
+   - **Código de cadastro:** Campo somente leitura preenchido pelo sistema após a geração do token.
+3. **Botão:** "Enviar" para concluir a ação.
 
 ---
 
 ### Pecúlio PM
 
-**Descrição:** Acesso a estatísticas de ocorrências.
+**Descrição:** Permite ao usuário ajustar informações cadastrais de um servidor, nome de guerra, posto/graduação, OPM e vínculo.
 
-**Atores:** Usuário com nível adequado
+**Atores:** Usuário com nível de acesso adequado.
 
 **Pré-condições:**
 
-- O usuário já possui uma conta ativa no sistema
+- O usuário já possui uma conta ativa no sistema.
 - O usuário tem nível de acesso compatível com a funcionalidade
 
 **Fluxo Principal:**
 
-1. O usuário acessa a seção **"Estatísticas"** no menu lateral esquerdo
-2. O usuário clica em **"Ocorrências" na lista de submenus de **"Estatísticas"\*\*.
-3. O sistema exibe a tela com a lista de ocorrências separada por OPM e Total".
-4. O usuário pode clicar em uma das opções da lista
-5. O sistema redireciona para a lista de ocorrências da unidade selecionada.
+1. O usuário acessa a seção **"Efetivo"** no menu lateral esquerdo.
+2. O usuário seleciona o submenu **"Lista agentes"** ou realiza uma busca pelo servidor na seção de consulta.
+3. O usuário seleciona o servidor que deseja ajustar.
+4. O sistema exibe a interface de **"Ajuste de Servidor"**.
+5. O usuário edita as informações necessárias:
+   - Nome.
+   - Nome de guerra.
+   - Posto/Graduação.
+   - OPM.
+   - Vínculo.
+6. O usuário clica no botão **"Gravar"**.
+7. O sistema valida as informações fornecidas.
+8. O sistema salva as alterações realizadas e exibe uma mensagem de confirmação de sucesso.
+
+**Fluxo Alternativo:**
+
+- **F1:** Campos obrigatórios não preenchidos
+
+  1. Após o passo 6 do fluxo principal, o sistema detecta que um ou mais campos obrigatórios estão vazios.
+  2. O sistema exibe uma mensagem de erro informando os campos que devem ser preenchidos.
+  3. O usuário preenche os campos e clica novamente em **"Gravar"**.
+
+- **F2:** Informações inválidas
+  1. Após o passo 6 do fluxo principal, o sistema valida os dados informados e detecta inconsistências (por exemplo, posto/graduação incompatível com a OPM).
+  2. O sistema exibe uma mensagem de erro detalhando o problema.
+  3. O usuário corrige os dados e clica novamente em **"Gravar"**.
+
+**Pós-condições:**
+
+- As informações do servidor foram atualizadas com sucesso.
+- O sistema mantém um registro das alterações realizadas.
+
+**Regras de Negócio:**
+
+- Não é possível alterar o nome do servidor.
+- Apenas usuários com nível de acesso adequado podem realizar ajustes cadastrais.
+- O sistema deve validar a consistência entre as informações (ex.: OPM e posto/graduação compatíveis).
 
 **Exemplo de Interface:**
 
-- Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.
-- Tela com um título "TOTAL DE OCORRÊNCIAS: X", exibindo o total geral.
-- Tabela com linhas clicáveis e duas colunas por linha sendo uma "OPM" e outra "Total"
+**Interface: Tela de Ajuste de Servidor**
+
+1. **Título:** "AJUSTE DE SERVIDOR"
+2. **Campos:**
+   - **Nome:** Campo obrigatório de entrada.
+   - **Nome de guerra:** Campo opcional de entrada.
+   - **Posto/Graduação:** Campo obrigatório de seleção.
+   - **OPM:** Campo obrigatório de seleção.
+   - **Vínculo:** Campo obrigatório de seleção.
+3. **Botão:** "Gravar" para concluir a ação.
 
 ---
 
 ### Lista agentes
-
-**Descrição:** Acesso a estatísticas de ocorrências.
-
-**Atores:** Usuário com nível adequado
-
-**Pré-condições:**
-
-- O usuário já possui uma conta ativa no sistema
-- O usuário tem nível de acesso compatível com a funcionalidade
-
-**Fluxo Principal:**
-
-1. O usuário acessa a seção **"Estatísticas"** no menu lateral esquerdo
-2. O usuário clica em **"Ocorrências" na lista de submenus de **"Estatísticas"\*\*.
-3. O sistema exibe a tela com a lista de ocorrências separada por OPM e Total".
-4. O usuário pode clicar em uma das opções da lista
-5. O sistema redireciona para a lista de ocorrências da unidade selecionada.
-
-**Exemplo de Interface:**
-
-- Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.
-- Tela com um título "TOTAL DE OCORRÊNCIAS: X", exibindo o total geral.
-- Tabela com linhas clicáveis e duas colunas por linha sendo uma "OPM" e outra "Total"
 
 ---
 
@@ -1622,7 +1800,7 @@ despacho pela CoordOInt.
 
 **Descrição:** Cadastro de nova ocorrência no sistema.
 
-**Atores:** Usuário
+**Atores:** Usuário com permissão para cadastro
 
 **Pré-condições:**
 
@@ -1669,6 +1847,7 @@ despacho pela CoordOInt.
 **Regras de Negócio:**
 
 - Em cada formulário existem campos de preenchimento obrigatório.
+- O botão "Cadastrar" só estará disponível para o usuário com permissão de cadastro.
 
 **Exemplo de Interface:**
 
