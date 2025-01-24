@@ -937,6 +937,51 @@ sidebar_position: 2
 
 ---
 
+### Dados da OPM
+
+**Descrição:** Exibir e modificar os dados da agência cadastrados no sistema.
+
+**Atores:** Usuário
+
+**Pré-condições:**
+
+- O usuário está autenticado no sistema.
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Dados da OPM**.
+3. O sistema exibe uma tela com os dados da agência.
+4. O usuário pode alterar ou adicionar informações nos campos disponíveis.
+5. O usuário clica no botão **"Salvar"**.
+6. O sistema redireciona o usuário para a tela principal do sistema e exibe um modal de sucesso.
+
+**Fluxo Alternativo:**
+
+- **F1:** O usuário não faz alterações nos campos e sai da tela.
+
+1. Os passos anteriores seguem o fluxo principal (passos 1-3).
+2. O usuário clica em qualquer outra opção do menu lateral.
+3. O sistema redireciona o usuário para a tela escolhida.
+
+**Pós-condições:**
+
+- O sistema exibe os dados da agência ao qual o usuário está registrado.
+
+**Regras de Negócio:**
+
+- O usuário só pode visualizar e editar os dados da sua agência.
+
+**Exemplo de Interface:**
+
+- No inicio da página são exibidos o nome da agência, comandante, subcomandante, Analista/Chefe da SOInt.
+- Abaixo são mostrados campos com os dados da agência que podem ser modificados.
+- No final da tela é exibido o botão **"Salvar"**.
+
+---
+
+## PRA (Credenciamento)
+
 ### PRA (Credenciamento) - Calendário de credenciamento
 
 **Descrição:** Controle de solicitações de credenciamento de acordo com o calendário de autorização.
@@ -1201,6 +1246,207 @@ despacho pela CoordOInt.
 - Formulário com os detalhes da solicitação
 - Botões de "Indeferir" e "Assinar documento"
 
+### PRA (Credenciamento) - Gestão do CoInt
+
+**Descrição:** Analise das solicitações de credenciamento pelas seções do CoInt.
+
+**Atores:**
+
+- Usuário da SSO
+- Usuário da SAI
+- Usuário da SAPC
+- Usuário da CCI
+
+**Pré-condições:**
+
+- O credenciamento foi enviado pelo CPR.
+- O formulário de pesquisa está configurado e acessível no sistema.
+
+**Fluxo Principal:**
+
+1. Usuário SAI:
+
+   - 1.1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+   - 1.2. O usuário clica na opção **Gestão da agência**.
+   - 1.3. O usuário escolhe a solicitação e clica na opção disponível.
+   - 1.4. O usuário confere as informações, baixa os anexos PDFs.
+   - 1.4. O usuário anexa o **Extrato SAI** e preenche o campo "Parecer da seção de assuntos institucionais" e clica em **"Finalizar avaliação"**.
+   - 1.5. O sistema abre um modal com um botão de confirmação.
+   - 1.6. O sistema redireciona para a tela de Gestão da agência.
+
+2. Usuário SAPC:
+
+   - 2.1. Os passos 1 (1.1 até 1.4) do fluxo de credenciamento.
+   - 2.2. O usuário anexa o **Extrato SAPC** e preenche o campo "Parecer da seção de acompanhamento de pessoal e corregedoria" e clica em **"Finalizar avaliação"**.
+   - 2.3. O sistema abre um modal com um botão de confirmação.
+   - 2.4. O sistema redireciona para a tela de Gestão da agência.
+
+3. Usuário SAPC:
+
+   - 3.1. Os passos 1 (1.1 até 1.4) do fluxo de credenciamento.
+   - 3.2. O usuário anexa o **Extrato CCI** e preenche o campo "Parecer da Coordenação de Contrainteligência" e clica em **"Finalizar avaliação"**.
+   - 3.3. O sistema abre um modal com um botão de confirmação.
+   - 3.4. O sistema redireciona para a tela de Gestão da agência.
+
+4. Usuário SAPC:
+
+   - 4.1. Os passos 1 (1.1 até 1.4) do fluxo de credenciamento.
+   - 4.2. O usuário anexa o **Extrato SSO** e preenche o campo "Parecer da seção de segurança orgânica" e clica em **"Finalizar avaliação"**.
+   - 4.3. O sistema abre um modal com um botão de confirmação.
+   - 4.4. O sistema redireciona para a tela de Gestão da agência.
+
+**Pós-condições:**
+
+- A solicitação foi corretamente despachada por cada um dos atores responsáveis
+- Indeferido: Aparecerá para todos os usuários interessados um bagde vermelho com a mensagem "Indeferido".
+- Se o usuário SSO clicar em **"Finalizar avaliação"** o processo só estará disponível para acesso pelo comandante do CoInt.
+
+**Regras de Negócio:**
+
+- O processo já deve ter sido enviado pelo CPR.
+- O usuário SSO só conseguirá finalizar a avaliação após o parecer dos outros atores envolvidos.
+- O botão do usuário SSO ficará na cor amarela e informando quais atores ainda precisam avaliar o processo.
+- Os anexos e as avaliações são de preenchimento obrigatório para todos os atores.
+
+**Exemplo de Interface:**
+
+**Tela do usuário SAI:**
+
+- Menu lateral com a opção Gestão da Agência.
+- Lista de solicitações de credenciamento/descredenciamento.
+- Formulário de detalhes da pesquisa social e campo para Parecer
+- Input tipo file para anexar documento PDF, campo textarea para registro de parecer.
+- Botão "Finalizar avaliação"
+
+**Tela do usuário SAPC:**
+
+- Menu lateral com a opção Gestão da Agência.
+- Lista de solicitações de credenciamento/descredenciamento.
+- Formulário de detalhes da pesquisa social e campo para Parecer
+- Input tipo file para anexar documento PDF, campo textarea para registro de parecer.
+- Botão "Finalizar avaliação"
+
+**Tela do usuário CCI:**
+
+- Menu lateral com a opção Gestão da Agência.
+- Lista de solicitações de credenciamento/descredenciamento.
+- Formulário de detalhes da pesquisa social e campo para Parecer
+- Input tipo file para anexar documento PDF, campo textarea para registro de parecer.
+- Botão "Finalizar avaliação"
+
+**Tela do usuário SSO:**
+
+- Menu lateral com a opção Gestão da Agência.
+- Lista de solicitações de credenciamento/descredenciamento.
+- Formulário de detalhes da pesquisa social e campo para Parecer
+- Input tipo file para anexar documento PDF, campo textarea para registro de parecer.
+- Botão "Finalizar avaliação" ou "Aguardando parecer de ..." dependendo do fluxo.
+
+### PRA (Credenciamento) - Indeferimento ou autorização de agente
+
+**Descrição:** Passo final de analise pelo atores sobre autorização ou indeferimento de solicitação.
+
+**Atores:**
+
+- Usuário comandante do CoInt
+- Usuário subcomandante do CoInt
+
+**Pré-condições:**
+
+- O credenciamento passou pelos fluxos de PRA - Gestão CoInt.
+- O formulário de pesquisa está configurado e acessível no sistema.
+
+**Fluxo Principal:**
+
+1.  O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2.  O usuário clica na opção **Gestão da agência**.
+3.  O usuário escolhe a solicitação e clica na opção disponível.
+4.  O usuário confere as informações, baixa os anexos PDFs.
+5.  O usuário clica em **"Autorizar credenciamento"**.
+6.  O sistema exibe modal para confirmação do usuário.
+7.  O sistema redireciona para a tela inicial.
+
+**Fluxo Alternativo**
+
+- **F1:**
+  1.  Passos de 1 a 4 do fluxo principal.
+  2.  O usuário clica em **"Indeferir"**
+
+**Pós-condições:**
+
+- A solicitação foi corretamente despachada por cada um dos atores responsáveis
+- Autorizado: Aparecerá para todos os usuários interessados um bagde verde com a mensagem "Autorizado".
+- Indeferido: Aparecerá para todos os usuários interessados um bagde vermelho com a mensagem "Indeferido".
+- O processo estará novamente disponível para o usuário SSO.
+
+**Regras de Negócio:**
+
+- O processo já deve ter sido enviado pela SSO.
+- O usuário terá a opção de clicar em um dos 2 botões: "Autorizar credenciamento" ou "Indeferir".
+
+**Exemplo de Interface:**
+
+- Menu lateral com a opção Gestão da Agência.
+- Lista de solicitações de credenciamento/descredenciamento.
+- Tela de detalhes com todas as informações da solicitação
+- No final da tela os botões "Voltar", "Autorizar credenciamento" e "Indeferir"
+
+### PRA (Credenciamento) - Credenciamento pela SSO
+
+**Descrição:** Finalização de processo de credenciamento.
+
+**Atores:**
+
+- Usuário SSO
+
+**Pré-condições:**
+
+- O credenciamento não foi indeferido pelo comandante/subcomandate CoInt.
+- Os detalhes da pesquisa está configurado e acessível no sistema.
+
+**Fluxo Principal:**
+
+1.  O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2.  O usuário clica na opção **Gestão da agência**.
+3.  O usuário escolhe a solicitação e clica na opção disponível.
+4.  O usuário confere as informações.
+5.  O usuário clica em **"Credenciar"**.
+6.  O sistema redireciona para a tela de geração de token.
+7.  O usuário clica em "Enviar".
+8.  O sistema envia um e-mail com o token de cadastro de usuário para o agente.
+
+**Fluxo Alternativo**
+
+- **F1:**
+  1.  Passos de 1 a 4 do fluxo principal.
+  2.  O usuário clica em **"Retornar ao comandante"**
+  3.  O processo retorna para a fase de **Indeferimento ou autorização de agente**
+
+**Pós-condições:**
+
+- A solicitação foi corretamente despachada pelo usuário comandante/subcomandante
+- O processo estará novamente disponível para o usuário SSO.
+
+**Regras de Negócio:**
+
+- O usuário terá a opção de clicar em um dos 2 botões: "Credenciar" ou "Retornar ao comandante".
+- Geração de token: Não será possível alterar o "policial" ou o código de cadastro.
+- É possível fazer alteração no e-mail que vai receber o código.
+
+**Exemplo de Interface:**
+
+**Tela de credenciamento**
+
+- Menu lateral com a opção Gestão da Agência.
+- Tela de detalhes com todas as informações da solicitação
+- No final da tela os botões "Voltar", "Credenciar" e "Retornar ao comandante"
+
+**Tela de geração de token para cadastro do usuário**
+
+- Menu lateral com a opção Gestão da Agência.
+- Formulário com informações sobre policial, código e e-mail
+- Botão "Enviar".
+
 ### Descredenciamento
 
 **Descrição:** Processo de descredenciamento de agente/usuário do sistema
@@ -1261,49 +1507,6 @@ despacho pela CoordOInt.
 - Lista de solicitações de credenciamento/descredenciamento.
 - Formulário com os detalhes da solicitação
 - Botão de "Assinar solicitação"
-
-### Dados da OPM
-
-**Descrição:** Exibir e modificar os dados da agência cadastrados no sistema.
-
-**Atores:** Usuário
-
-**Pré-condições:**
-
-- O usuário está autenticado no sistema.
-
-**Fluxo Principal:**
-
-1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
-2. O usuário clica na opção **Dados da OPM**.
-3. O sistema exibe uma tela com os dados da agência.
-4. O usuário pode alterar ou adicionar informações nos campos disponíveis.
-5. O usuário clica no botão **"Salvar"**.
-6. O sistema redireciona o usuário para a tela principal do sistema e exibe um modal de sucesso.
-
-**Fluxo Alternativo:**
-
-- **F1:** O usuário não faz alterações nos campos e sai da tela.
-
-1. Os passos anteriores seguem o fluxo principal (passos 1-3).
-2. O usuário clica em qualquer outra opção do menu lateral.
-3. O sistema redireciona o usuário para a tela escolhida.
-
-**Pós-condições:**
-
-- O sistema exibe os dados da agência ao qual o usuário está registrado.
-
-**Regras de Negócio:**
-
-- O usuário só pode visualizar e editar os dados da sua agência.
-
-**Exemplo de Interface:**
-
-- No inicio da página são exibidos o nome da agência, comandante, subcomandante, Analista/Chefe da SOInt.
-- Abaixo são mostrados campos com os dados da agência que podem ser modificados.
-- No final da tela é exibido o botão **"Salvar"**.
-
----
 
 ## Nova ocorrência
 

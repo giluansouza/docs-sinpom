@@ -37,6 +37,8 @@ Dúvidas
 - [ ] **Cadastro de ocorrência:** Quando eu saio sem clicar em salvar o sistema exclui o registro no BD?
 - [ ] **OTP:** Existe o botão mas o sistema dispara o evento ao preencher o OTP.
 - [ ] **Cadastro de ocorrência:** Existe o botão salvar mas o sistema dispara o evento ao escolher o tipo.
+- [ ] **Credenciamento SAPC:** Não é obrigatório preencher o campo de parecer?
+- [ ] **Credenciamento CCI:** O formulário não bloqueia o submit em caso de falta do arquivo.
 
 :::danger
 Problemas encontrados ao utilizar o sistema.
