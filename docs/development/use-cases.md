@@ -1508,6 +1508,116 @@ despacho pela CoordOInt.
 - Formulário com os detalhes da solicitação
 - Botão de "Assinar solicitação"
 
+## Efetivo
+
+### Usuários
+
+**Descrição:** Acesso a estatísticas de ocorrências.
+
+**Atores:** Usuário com nível adequado
+
+**Pré-condições:**
+
+- O usuário já possui uma conta ativa no sistema
+- O usuário tem nível de acesso compatível com a funcionalidade
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **"Estatísticas"** no menu lateral esquerdo
+2. O usuário clica em **"Ocorrências" na lista de submenus de **"Estatísticas"\*\*.
+3. O sistema exibe a tela com a lista de ocorrências separada por OPM e Total".
+4. O usuário pode clicar em uma das opções da lista
+5. O sistema redireciona para a lista de ocorrências da unidade selecionada.
+
+**Exemplo de Interface:**
+
+- Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.
+- Tela com um título "TOTAL DE OCORRÊNCIAS: X", exibindo o total geral.
+- Tabela com linhas clicáveis e duas colunas por linha sendo uma "OPM" e outra "Total"
+
+---
+
+### Gerar Token para cadastro
+
+**Descrição:** Acesso a estatísticas de ocorrências.
+
+**Atores:** Usuário com nível adequado
+
+**Pré-condições:**
+
+- O usuário já possui uma conta ativa no sistema
+- O usuário tem nível de acesso compatível com a funcionalidade
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **"Estatísticas"** no menu lateral esquerdo
+2. O usuário clica em **"Ocorrências" na lista de submenus de **"Estatísticas"\*\*.
+3. O sistema exibe a tela com a lista de ocorrências separada por OPM e Total".
+4. O usuário pode clicar em uma das opções da lista
+5. O sistema redireciona para a lista de ocorrências da unidade selecionada.
+
+**Exemplo de Interface:**
+
+- Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.
+- Tela com um título "TOTAL DE OCORRÊNCIAS: X", exibindo o total geral.
+- Tabela com linhas clicáveis e duas colunas por linha sendo uma "OPM" e outra "Total"
+
+---
+
+### Pecúlio PM
+
+**Descrição:** Acesso a estatísticas de ocorrências.
+
+**Atores:** Usuário com nível adequado
+
+**Pré-condições:**
+
+- O usuário já possui uma conta ativa no sistema
+- O usuário tem nível de acesso compatível com a funcionalidade
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **"Estatísticas"** no menu lateral esquerdo
+2. O usuário clica em **"Ocorrências" na lista de submenus de **"Estatísticas"\*\*.
+3. O sistema exibe a tela com a lista de ocorrências separada por OPM e Total".
+4. O usuário pode clicar em uma das opções da lista
+5. O sistema redireciona para a lista de ocorrências da unidade selecionada.
+
+**Exemplo de Interface:**
+
+- Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.
+- Tela com um título "TOTAL DE OCORRÊNCIAS: X", exibindo o total geral.
+- Tabela com linhas clicáveis e duas colunas por linha sendo uma "OPM" e outra "Total"
+
+---
+
+### Lista agentes
+
+**Descrição:** Acesso a estatísticas de ocorrências.
+
+**Atores:** Usuário com nível adequado
+
+**Pré-condições:**
+
+- O usuário já possui uma conta ativa no sistema
+- O usuário tem nível de acesso compatível com a funcionalidade
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **"Estatísticas"** no menu lateral esquerdo
+2. O usuário clica em **"Ocorrências" na lista de submenus de **"Estatísticas"\*\*.
+3. O sistema exibe a tela com a lista de ocorrências separada por OPM e Total".
+4. O usuário pode clicar em uma das opções da lista
+5. O sistema redireciona para a lista de ocorrências da unidade selecionada.
+
+**Exemplo de Interface:**
+
+- Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.
+- Tela com um título "TOTAL DE OCORRÊNCIAS: X", exibindo o total geral.
+- Tabela com linhas clicáveis e duas colunas por linha sendo uma "OPM" e outra "Total"
+
+---
+
 ## Nova ocorrência
 
 **Descrição:** Cadastro de nova ocorrência no sistema.
@@ -1607,6 +1717,33 @@ despacho pela CoordOInt.
 - Logo abaixo a listagem com as ocorrências cadastradas.
 - Na tela de detalhes os dados da ocorrência e um mapa.
 - Caso o usuário tenha permissão no final após o mapa deve ter um botão de **"Editar"**.
+
+---
+
+## Estatísticas - Ocorrências
+
+**Descrição:** Acesso a estatísticas de ocorrências.
+
+**Atores:** Usuário com nível adequado
+
+**Pré-condições:**
+
+- O usuário já possui uma conta ativa no sistema
+- O usuário tem nível de acesso compatível com a funcionalidade
+
+**Fluxo Principal:**
+
+1. O usuário acessa a seção **"Estatísticas"** no menu lateral esquerdo
+2. O usuário clica em **"Ocorrências" na lista de submenus de **"Estatísticas"\*\*.
+3. O sistema exibe a tela com a lista de ocorrências separada por OPM e Total".
+4. O usuário pode clicar em uma das opções da lista
+5. O sistema redireciona para a lista de ocorrências da unidade selecionada.
+
+**Exemplo de Interface:**
+
+- Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.
+- Tela com um título "TOTAL DE OCORRÊNCIAS: X", exibindo o total geral.
+- Tabela com linhas clicáveis e duas colunas por linha sendo uma "OPM" e outra "Total"
 
 ---
 
