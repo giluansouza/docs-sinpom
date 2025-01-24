@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Casos de Uso | Sinpom Docs</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://giluansouza.github.io/docs-sinpom/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://giluansouza.github.io/docs-sinpom/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://giluansouza.github.io/docs-sinpom/docs/development/use-cases"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Casos de Uso | Sinpom Docs"><meta data-rh="true" name="description" content="Login no sistema"><meta data-rh="true" property="og:description" content="Login no sistema"><link data-rh="true" rel="icon" href="/docs-sinpom/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://giluansouza.github.io/docs-sinpom/docs/development/use-cases"><link data-rh="true" rel="alternate" href="https://giluansouza.github.io/docs-sinpom/docs/development/use-cases" hreflang="en"><link data-rh="true" rel="alternate" href="https://giluansouza.github.io/docs-sinpom/docs/development/use-cases" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/docs-sinpom/blog/rss.xml" title="Sinpom Docs RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/docs-sinpom/blog/atom.xml" title="Sinpom Docs Atom Feed"><link rel="stylesheet" href="/docs-sinpom/assets/css/styles.87b86382.css">
-<script src="/docs-sinpom/assets/js/runtime~main.86787398.js" defer="defer"></script>
+<script src="/docs-sinpom/assets/js/runtime~main.4d4f5704.js" defer="defer"></script>
 <script src="/docs-sinpom/assets/js/main.4f10732b.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -261,6 +261,113 @@
 <li>Na tela principal de localidades é exibido uma lista em formato de tabela com os items cadastrados.</li>
 <li>Na tela de detalhes da localidade a lista de dados é exibido do lado esquerdo da tela em formato de lista e o mapa do lado direito. O mapa interativo permite zoom e movimentação para visualização detalhada.</li>
 </ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="gerenciamento-de-facções">Gerenciamento de facções<a href="#gerenciamento-de-facções" class="hash-link" aria-label="Direct link to Gerenciamento de facções" title="Direct link to Gerenciamento de facções">​</a></h3>
+<p><strong>Descrição:</strong> Cadastro/alteração de facção no sistema.</p>
+<p><strong>Atores:</strong> Usuário nível SPO.</p>
+<p><strong>Pré-condições:</strong></p>
+<ul>
+<li>O usuário está autenticado no sistema.</li>
+<li>O usuário possui o nível de permissão SPO (Segurança Pública e Ouvidoria).</li>
+<li>O módulo de gerenciamento de facções está habilitado para o perfil do usuário.</li>
+</ul>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>O usuário acessa a seção <strong>Análises</strong> no menu lateral esquerdo.</li>
+<li>O usuário clica na opção <strong>Facções</strong>.</li>
+<li>O sistema exibe uma tela com as facções cadastradas.</li>
+<li>O usuário clica em <strong>&quot;Cadastrar nova&quot;</strong> no canto superior direito da tela.</li>
+<li>O sistema exibe uma tela com o campo &quot;Nome do grupo crime&quot; para cadastrar uma nova facção.</li>
+<li>O usuário preenche o campo.</li>
+<li>O usuário clica em <strong>&quot;Gravar&quot;</strong>.</li>
+</ol>
+<p><strong>Fluxos Alternativos:</strong></p>
+<ul>
+<li>
+<p><strong>F1</strong>: Caso o usuário desista de cadastrar uma nova facção, ele deve clicar em cancelar no final da página e então será redirecionado para a tela de facções.</p>
+</li>
+<li>
+<p><strong>F2</strong>: O usuário precisa editar o nome do grupo-crime.</p>
+</li>
+</ul>
+<ol>
+<li>Os passos 1-3 do fluxo principal.</li>
+<li>O usuário escolhe uma das opções listadas na tabela e clica.</li>
+<li>O sistema exibe uma tela com o campo &quot;Nome do grupo crime&quot; para editar a facção.</li>
+<li>O usuário preenche o campo.</li>
+<li>O usuário clica em <strong>&quot;Gravar&quot;</strong>.</li>
+</ol>
+<p><strong>Pós-condições:</strong></p>
+<ul>
+<li>O sistema deve atualizar a lista de facções com a nova facção ou as alterações realizadas, exibindo-a em ordem alfabética.</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>O campo &quot;Nome do grupo crime&quot; é obrigatório.</li>
+<li>Não é permitido cadastrar facções com o mesmo nome.</li>
+<li>Apenas usuários com permissão de nível SPO podem acessar o gerenciamento de facções.</li>
+<li>A ordenação da lista de facções deve ser feita de forma alfabética.</li>
+</ul>
+<p><strong>Exemplo de Interface:</strong></p>
+<p><strong>Interface 1: Tela de Listagem de Facções</strong></p>
+<ol>
+<li>
+<p><strong>Título:</strong> &quot;FACÇÕES&quot;</p>
+</li>
+<li>
+<p><strong>Botão</strong> &quot;Cadastrar nova&quot;:</p>
+</li>
+</ol>
+<ul>
+<li>Localização: Canto superior direito da lista.</li>
+<li>Ação: Abre a tela de cadastro de uma nova facção.</li>
+</ul>
+<ol start="3">
+<li><strong>Tabela:</strong></li>
+</ol>
+<ul>
+<li>Exibe a lista de facções cadastradas em ordem alfabética.</li>
+<li>Cada facção listada é clicável e redireciona o usuário para a edição.</li>
+</ul>
+<ol start="4">
+<li><strong>Menu Lateral:</strong></li>
+</ol>
+<ul>
+<li>Localização: Lado esquerdo da tela.</li>
+<li>Itens Relevantes:<!-- -->
+<ul>
+<li>Categoria &quot;Análises&quot; (expandida).</li>
+<li>Subitem destacado: &quot;Facções&quot;.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Interface 2: Tela de Cadastro/Edição de Facções</strong></p>
+<ol>
+<li>
+<p><strong>Título:</strong> &quot;Alteração do Nome do Grupo Crime&quot;</p>
+</li>
+<li>
+<p><strong>Campo de Entrada:</strong></p>
+</li>
+</ol>
+<ul>
+<li>&quot;Nome do Grupo Crime&quot;: Permite inserir ou editar o nome da facção.</li>
+<li>Validação: Campo obrigatório.</li>
+</ul>
+<ol start="3">
+<li><strong>Botões:</strong></li>
+</ol>
+<ul>
+<li>&quot;Gravar&quot;: Salva as alterações ou cria uma nova facção.</li>
+<li>&quot;Cancelar&quot;: Retorna para a listagem sem salvar.</li>
+</ul>
+<ol start="4">
+<li><strong>Menu Lateral:</strong>
+<ul>
+<li>Idêntico ao da Tela de Listagem de Facções.</li>
+</ul>
+</li>
+</ol>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="recursos">Recursos<a href="#recursos" class="hash-link" aria-label="Direct link to Recursos" title="Direct link to Recursos">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="consulta-de-veículos">Consulta de veículos<a href="#consulta-de-veículos" class="hash-link" aria-label="Direct link to Consulta de veículos" title="Direct link to Consulta de veículos">​</a></h3>
@@ -1482,7 +1589,7 @@ despacho pela CoordOInt.</p>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="efetivo">Efetivo<a href="#efetivo" class="hash-link" aria-label="Direct link to Efetivo" title="Direct link to Efetivo">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="usuários">Usuários<a href="#usuários" class="hash-link" aria-label="Direct link to Usuários" title="Direct link to Usuários">​</a></h3>
-<p><strong>Descrição:</strong> Acesso a estatísticas de ocorrências.</p>
+<p><strong>Descrição:</strong> Gerenciamento de usuários do sistema.</p>
 <p><strong>Atores:</strong> Usuário com nível adequado</p>
 <p><strong>Pré-condições:</strong></p>
 <ul>
@@ -1491,91 +1598,225 @@ despacho pela CoordOInt.</p>
 </ul>
 <p><strong>Fluxo Principal:</strong></p>
 <ol>
-<li>O usuário acessa a seção <strong>&quot;Estatísticas&quot;</strong> no menu lateral esquerdo</li>
-<li>O usuário clica em **&quot;Ocorrências&quot; na lista de submenus de **&quot;Estatísticas&quot;**.</li>
-<li>O sistema exibe a tela com a lista de ocorrências separada por OPM e Total&quot;.</li>
+<li>O usuário acessa a seção <strong>&quot;Efetivo&quot;</strong> no menu lateral esquerdo</li>
+<li>O usuário clica em <strong>&quot;Usuários&quot;</strong> no submenu de <strong>&quot;Efetivo&quot;</strong>.</li>
+<li>O sistema exibe uma tabela com os usuários do sistema.</li>
 <li>O usuário pode clicar em uma das opções da lista</li>
-<li>O sistema redireciona para a lista de ocorrências da unidade selecionada.</li>
+<li>O sistema redireciona para os detalhes do usuário selecionado.</li>
+<li>O usuário pode alterar os campos de &quot;E-mail&quot;, &quot;Nível de aceso&quot; e &quot;Vínculo&quot;</li>
+<li>O usuário clica em <strong>&quot;Gravar&quot;</strong></li>
+<li>O sistema redireciona para a tela de usuários.</li>
 </ol>
-<p><strong>Exemplo de Interface:</strong></p>
+<p><strong>Fluxo Alternativo:</strong></p>
 <ul>
-<li>Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.</li>
-<li>Tela com um título &quot;TOTAL DE OCORRÊNCIAS: X&quot;, exibindo o total geral.</li>
-<li>Tabela com linhas clicáveis e duas colunas por linha sendo uma &quot;OPM&quot; e outra &quot;Total&quot;</li>
+<li><strong>F1:</strong> Resetando OTP do usuário selecionado<!-- -->
+<ol>
+<li>Os passos 1-5 do fluxo principal.</li>
+<li>O usuário clica no botão <strong>&quot;Resetar OTP&quot;</strong></li>
+</ol>
+</li>
+</ul>
+<p><strong>Pós-condições:</strong></p>
+<ul>
+<li>O &quot;E-mail&quot;, &quot;Nível de aceso&quot; ou &quot;Vínculo&quot; refletem as alterações.</li>
+<li>O OTP do usuário foi resetado com sucesso.</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>Somente usuários com nível adequado podem editar as informações.</li>
+<li>O menu efetivo e os submenus só aparecem para usuários com nível adequado.</li>
+</ul>
+<p><strong>Exemplo de Interface:</strong></p>
+<p><strong>Interface 1: Tela de Listagem de Usuários</strong></p>
+<ol>
+<li>
+<p><strong>Título:</strong> &quot;USUÁRIOS&quot;</p>
+</li>
+<li>
+<p><strong>Campo de Busca:</strong></p>
+</li>
+</ol>
+<ul>
+<li>Localização: Na parte superior da tabela.</li>
+<li>Ação: Permite filtrar usuários pelo nome ou matrícula do servidor.</li>
+</ul>
+<ol start="3">
+<li><strong>Tabela:</strong></li>
+</ol>
+<ul>
+<li>Colunas:<!-- -->
+<ul>
+<li>Nome: Exibe o nome completo, matrícula e e-mail do usuário.</li>
+<li>OPM: Mostra a unidade operacional (exemplo: &quot;31ª CIPM - VALÉRIA&quot;).</li>
+<li>Nível: Indica o status ou nível do usuário (exemplo: &quot;Descredenciado em [data]&quot; com texto em vermelho para ênfase).</li>
+</ul>
+</li>
+<li>Itens listados:<!-- -->
+<ul>
+<li>Os usuários aparecem em ordem, com detalhes em cada linha.</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li><strong>Menu Lateral:</strong></li>
+</ol>
+<ul>
+<li>Localização: Lado esquerdo da tela.</li>
+<li>Itens Relevantes:<!-- -->
+<ul>
+<li>Categoria &quot;Efetivo&quot; (presumivelmente expandida).</li>
+<li>Subitem destacado: &quot;Usuários&quot; (correspondente à tela atual).</li>
+</ul>
+</li>
 </ul>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="gerar-token-para-cadastro">Gerar Token para cadastro<a href="#gerar-token-para-cadastro" class="hash-link" aria-label="Direct link to Gerar Token para cadastro" title="Direct link to Gerar Token para cadastro">​</a></h3>
-<p><strong>Descrição:</strong> Acesso a estatísticas de ocorrências.</p>
-<p><strong>Atores:</strong> Usuário com nível adequado</p>
+<p><strong>Descrição:</strong> Geração de um token único para que novos usuários possam se cadastrar no sistema.</p>
+<p><strong>Atores:</strong> Usuário com nível de acesso adequado.</p>
 <p><strong>Pré-condições:</strong></p>
 <ul>
-<li>O usuário já possui uma conta ativa no sistema</li>
-<li>O usuário tem nível de acesso compatível com a funcionalidade</li>
+<li>O usuário já possui uma conta ativa no sistema.</li>
+<li>O usuário tem nível de acesso compatível com a funcionalidade (mínimo &quot;usuário&quot;).</li>
 </ul>
 <p><strong>Fluxo Principal:</strong></p>
 <ol>
-<li>O usuário acessa a seção <strong>&quot;Estatísticas&quot;</strong> no menu lateral esquerdo</li>
-<li>O usuário clica em **&quot;Ocorrências&quot; na lista de submenus de **&quot;Estatísticas&quot;**.</li>
-<li>O sistema exibe a tela com a lista de ocorrências separada por OPM e Total&quot;.</li>
-<li>O usuário pode clicar em uma das opções da lista</li>
-<li>O sistema redireciona para a lista de ocorrências da unidade selecionada.</li>
-</ol>
-<p><strong>Exemplo de Interface:</strong></p>
+<li>O usuário acessa a seção <strong>&quot;Efetivo&quot;</strong> no menu lateral esquerdo.</li>
+<li>O usuário clica em <strong>&quot;Gerar Token para cadastro&quot;</strong> no submenu de <strong>&quot;Efetivo&quot;</strong>.</li>
+<li>O sistema exibe uma interface.</li>
+<li>O usuário preenche os campos obrigatórios:<!-- -->
 <ul>
-<li>Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.</li>
-<li>Tela com um título &quot;TOTAL DE OCORRÊNCIAS: X&quot;, exibindo o total geral.</li>
-<li>Tabela com linhas clicáveis e duas colunas por linha sendo uma &quot;OPM&quot; e outra &quot;Total&quot;</li>
+<li>Matrícula do policial.</li>
+<li>O sistema gera o código de cadastro</li>
+<li>E-mail válido.</li>
 </ul>
+</li>
+<li>O usuário clica no botão <strong>&quot;Enviar&quot;</strong>.</li>
+<li>O sistema valida as informações fornecidas.</li>
+<li>O sistema envia o token gerado para o e-mail informado.</li>
+<li>O sistema exibe uma mensagem de confirmação de sucesso.</li>
+</ol>
+<p><strong>Fluxo Alternativo:</strong></p>
+<ul>
+<li>
+<p><strong>F1:</strong> Campos obrigatórios não preenchidos</p>
+<ol>
+<li>Após o passo 5 do fluxo principal, o sistema detecta que um ou mais campos obrigatórios estão vazios.</li>
+<li>O sistema exibe uma mensagem de erro informando os campos que devem ser preenchidos.</li>
+<li>O usuário preenche os campos e clica novamente em <strong>&quot;Enviar&quot;</strong>.</li>
+</ol>
+</li>
+<li>
+<p><strong>F2:</strong> E-mail inválido ou falha no envio</p>
+<ol>
+<li>Após o passo 5 do fluxo principal, o sistema valida o e-mail informado e detecta um erro (formato inválido ou falha no envio).</li>
+<li>O sistema exibe uma mensagem de erro informando o problema.</li>
+<li>O usuário corrige o e-mail e clica novamente em <strong>&quot;Enviar&quot;</strong>.</li>
+</ol>
+</li>
+</ul>
+<p><strong>Pós-condições:</strong></p>
+<ul>
+<li>O token foi gerado com sucesso.</li>
+<li>O token foi enviado ao e-mail informado.</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>Todos os campos são obrigatórios.</li>
+<li>Somente usuários com nível de acesso adequado podem acessar esta funcionalidade.</li>
+<li>O sistema deve garantir que o token seja único e válido para um único uso.</li>
+</ul>
+<p><strong>Exemplo de Interface:</strong></p>
+<p><strong>Interface: Tela de Geração de Token</strong></p>
+<ol>
+<li><strong>Título:</strong> &quot;GERAÇÃO DE TOKEN PARA CADASTRO DO USUÁRIO&quot;</li>
+<li><strong>Campos:</strong>
+<ul>
+<li><strong>Matrícula do policial:</strong> Campo obrigatório de seleção.</li>
+<li><strong>E-mail para envio do código:</strong> Campo obrigatório de entrada.</li>
+<li><strong>Código de cadastro:</strong> Campo somente leitura preenchido pelo sistema após a geração do token.</li>
+</ul>
+</li>
+<li><strong>Botão:</strong> &quot;Enviar&quot; para concluir a ação.</li>
+</ol>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="pecúlio-pm">Pecúlio PM<a href="#pecúlio-pm" class="hash-link" aria-label="Direct link to Pecúlio PM" title="Direct link to Pecúlio PM">​</a></h3>
-<p><strong>Descrição:</strong> Acesso a estatísticas de ocorrências.</p>
-<p><strong>Atores:</strong> Usuário com nível adequado</p>
+<p><strong>Descrição:</strong> Permite ao usuário ajustar informações cadastrais de um servidor, nome de guerra, posto/graduação, OPM e vínculo.</p>
+<p><strong>Atores:</strong> Usuário com nível de acesso adequado.</p>
 <p><strong>Pré-condições:</strong></p>
 <ul>
-<li>O usuário já possui uma conta ativa no sistema</li>
+<li>O usuário já possui uma conta ativa no sistema.</li>
 <li>O usuário tem nível de acesso compatível com a funcionalidade</li>
 </ul>
 <p><strong>Fluxo Principal:</strong></p>
 <ol>
-<li>O usuário acessa a seção <strong>&quot;Estatísticas&quot;</strong> no menu lateral esquerdo</li>
-<li>O usuário clica em **&quot;Ocorrências&quot; na lista de submenus de **&quot;Estatísticas&quot;**.</li>
-<li>O sistema exibe a tela com a lista de ocorrências separada por OPM e Total&quot;.</li>
-<li>O usuário pode clicar em uma das opções da lista</li>
-<li>O sistema redireciona para a lista de ocorrências da unidade selecionada.</li>
-</ol>
-<p><strong>Exemplo de Interface:</strong></p>
+<li>O usu ário acessa a seção <strong>&quot;Efetivo&quot;</strong> no menu lateral esquerdo.</li>
+<li>O usuário seleciona o submenu <strong>&quot;Lista agentes&quot;</strong> ou realiza uma busca pelo servidor na seção de consulta.</li>
+<li>O usuário seleciona o servidor que deseja ajustar.</li>
+<li>O sistema exibe a interface de <strong>&quot;Ajuste de Servidor&quot;</strong>.</li>
+<li>O usuário edita as informações necessárias:<!-- -->
 <ul>
-<li>Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.</li>
-<li>Tela com um título &quot;TOTAL DE OCORRÊNCIAS: X&quot;, exibindo o total geral.</li>
-<li>Tabela com linhas clicáveis e duas colunas por linha sendo uma &quot;OPM&quot; e outra &quot;Total&quot;</li>
+<li>Nome.</li>
+<li>Nome de guerra.</li>
+<li>Posto/Graduação.</li>
+<li>OPM.</li>
+<li>Vínculo.</li>
 </ul>
+</li>
+<li>O usuário clica no botão <strong>&quot;Gravar&quot;</strong>.</li>
+<li>O sistema valida as informações fornecidas.</li>
+<li>O sistema salva as alterações realizadas e exibe uma mensagem de confirmação de sucesso.</li>
+</ol>
+<p><strong>Fluxo Alternativo:</strong></p>
+<ul>
+<li>
+<p><strong>F1:</strong> Campos obrigatórios não preenchidos</p>
+<ol>
+<li>Após o passo 6 do fluxo principal, o sistema detecta que um ou mais campos obrigatórios estão vazios.</li>
+<li>O sistema exibe uma mensagem de erro informando os campos que devem ser preenchidos.</li>
+<li>O usuário preenche os campos e clica novamente em <strong>&quot;Gravar&quot;</strong>.</li>
+</ol>
+</li>
+<li>
+<p><strong>F2:</strong> Informações inválidas</p>
+<ol>
+<li>Após o passo 6 do fluxo principal, o sistema valida os dados informados e detecta inconsistências (por exemplo, posto/graduação incompatível com a OPM).</li>
+<li>O sistema exibe uma mensagem de erro detalhando o problema.</li>
+<li>O usuário corrige os dados e clica novamente em <strong>&quot;Gravar&quot;</strong>.</li>
+</ol>
+</li>
+</ul>
+<p><strong>Pós-condições:</strong></p>
+<ul>
+<li>As informações do servidor foram atualizadas com sucesso.</li>
+<li>O sistema mantém um registro das alterações realizadas.</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>Não é possível alterar o nome do servidor.</li>
+<li>Apenas usuários com nível de acesso adequado podem realizar ajustes cadastrais.</li>
+<li>O sistema deve validar a consistência entre as informações (ex.: OPM e posto/graduação compatíveis).</li>
+</ul>
+<p><strong>Exemplo de Interface:</strong></p>
+<p><strong>Interface: Tela de Ajuste de Servidor</strong></p>
+<ol>
+<li><strong>Título:</strong> &quot;AJUSTE DE SERVIDOR&quot;</li>
+<li><strong>Campos:</strong>
+<ul>
+<li><strong>Nome:</strong> Campo obrigatório de entrada.</li>
+<li><strong>Nome de guerra:</strong> Campo opcional de entrada.</li>
+<li><strong>Posto/Graduação:</strong> Campo obrigatório de seleção.</li>
+<li><strong>OPM:</strong> Campo obrigatório de seleção.</li>
+<li><strong>Vínculo:</strong> Campo obrigatório de seleção.</li>
+</ul>
+</li>
+<li><strong>Botão:</strong> &quot;Gravar&quot; para concluir a ação.</li>
+</ol>
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="lista-agentes">Lista agentes<a href="#lista-agentes" class="hash-link" aria-label="Direct link to Lista agentes" title="Direct link to Lista agentes">​</a></h3>
-<p><strong>Descrição:</strong> Acesso a estatísticas de ocorrências.</p>
-<p><strong>Atores:</strong> Usuário com nível adequado</p>
-<p><strong>Pré-condições:</strong></p>
-<ul>
-<li>O usuário já possui uma conta ativa no sistema</li>
-<li>O usuário tem nível de acesso compatível com a funcionalidade</li>
-</ul>
-<p><strong>Fluxo Principal:</strong></p>
-<ol>
-<li>O usuário acessa a seção <strong>&quot;Estatísticas&quot;</strong> no menu lateral esquerdo</li>
-<li>O usuário clica em **&quot;Ocorrências&quot; na lista de submenus de **&quot;Estatísticas&quot;**.</li>
-<li>O sistema exibe a tela com a lista de ocorrências separada por OPM e Total&quot;.</li>
-<li>O usuário pode clicar em uma das opções da lista</li>
-<li>O sistema redireciona para a lista de ocorrências da unidade selecionada.</li>
-</ol>
-<p><strong>Exemplo de Interface:</strong></p>
-<ul>
-<li>Menu lateral com a opção Estatísticas e submenu Ocorrẽncias.</li>
-<li>Tela com um título &quot;TOTAL DE OCORRÊNCIAS: X&quot;, exibindo o total geral.</li>
-<li>Tabela com linhas clicáveis e duas colunas por linha sendo uma &quot;OPM&quot; e outra &quot;Total&quot;</li>
-</ul>
 <hr>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="nova-ocorrência">Nova ocorrência<a href="#nova-ocorrência" class="hash-link" aria-label="Direct link to Nova ocorrência" title="Direct link to Nova ocorrência">​</a></h2>
 <p><strong>Descrição:</strong> Cadastro de nova ocorrência no sistema.</p>
-<p><strong>Atores:</strong> Usuário</p>
+<p><strong>Atores:</strong> Usuário com permissão para cadastro</p>
 <p><strong>Pré-condições:</strong></p>
 <ul>
 <li>O usuário está autenticado no sistema.</li>
@@ -1626,6 +1867,7 @@ despacho pela CoordOInt.</p>
 <p><strong>Regras de Negócio:</strong></p>
 <ul>
 <li>Em cada formulário existem campos de preenchimento obrigatório.</li>
+<li>O botão &quot;Cadastrar&quot; só estará disponível para o usuário com permissão de cadastro.</li>
 </ul>
 <p><strong>Exemplo de Interface:</strong></p>
 <ul>
@@ -1749,6 +1991,6 @@ despacho pela CoordOInt.</p>
 <li>Formulário para abertura de novo chamado.</li>
 <li>Botão de <strong>&quot;Gravar&quot;</strong> e <strong>&quot;Voltar&quot;</strong>.</li>
 </ul>
-<hr></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs-sinpom/docs/development/version-control"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Controle de Versão</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs-sinpom/docs/development/feature-details"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Funcionalidades do Sistema</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#login-no-sistema" class="table-of-contents__link toc-highlight">Login no sistema</a></li><li><a href="#novo-documento-no-sistema" class="table-of-contents__link toc-highlight">Novo Documento no Sistema</a></li><li><a href="#análises" class="table-of-contents__link toc-highlight">Análises</a><ul><li><a href="#consulta-de-entidade-pessoa" class="table-of-contents__link toc-highlight">Consulta de Entidade Pessoa</a></li><li><a href="#cadastro-de-logocrim" class="table-of-contents__link toc-highlight">Cadastro de logocrim</a></li><li><a href="#consulta-de-logocrim" class="table-of-contents__link toc-highlight">Consulta de logocrim</a></li><li><a href="#cadastro-de-localidade" class="table-of-contents__link toc-highlight">Cadastro de localidade</a></li><li><a href="#consulta-de-localidade" class="table-of-contents__link toc-highlight">Consulta de localidade</a></li></ul></li><li><a href="#recursos" class="table-of-contents__link toc-highlight">Recursos</a><ul><li><a href="#consulta-de-veículos" class="table-of-contents__link toc-highlight">Consulta de veículos</a></li><li><a href="#edição-de-veículo" class="table-of-contents__link toc-highlight">Edição de veículo</a></li><li><a href="#remover-veículo" class="table-of-contents__link toc-highlight">Remover veículo</a></li><li><a href="#cadastro-de-veículos" class="table-of-contents__link toc-highlight">Cadastro de veículos</a></li><li><a href="#consulta-de-equipamentos" class="table-of-contents__link toc-highlight">Consulta de equipamentos</a></li><li><a href="#ediç ão-de-equipamento" class="table-of-contents__link toc-highlight">Edição de equipamento</a></li><li><a href="#remover-equipamento" class="table-of-contents__link toc-highlight">Remover equipamento</a></li><li><a href="#cadastro-de-equipamento" class="table-of-contents__link toc-highlight">Cadastro de equipamento</a></li><li><a href="#consulta-de-material-bélico" class="table-of-contents__link toc-highlight">Consulta de material bélico</a></li><li><a href="#edição-de-material-bélico" class="table-of-contents__link toc-highlight">Edição de material bélico</a></li><li><a href="#remover-material-bélico" class="table-of-contents__link toc-highlight">Remover material bélico</a></li><li><a href="#cadastro-de-material-bélico" class="table-of-contents__link toc-highlight">Cadastro de material bélico</a></li><li><a href="#consulta-de-efetivo-sinpom" class="table-of-contents__link toc-highlight">Consulta de efetivo SinPoM</a></li><li><a href="#prazos-de-documentos" class="table-of-contents__link toc-highlight">Prazos de documentos</a></li><li><a href="#dados-da-opm" class="table-of-contents__link toc-highlight">Dados da OPM</a></li></ul></li><li><a href="#pra-credenciamento" class="table-of-contents__link toc-highlight">PRA (Credenciamento)</a><ul><li><a href="#pra-credenciamento---calendário-de-credenciamento" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Calendário de credenciamento</a></li><li><a href="#pra-credenciamento---solicitação" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Solicitação</a></li><li><a href="#pra-credenciamento---pesquisa-social" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Pesquisa social</a></li><li><a href="#pra-credenciamento---despacho-do-comando-regional" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Despacho do comando regional</a></li><li><a href="#pra-credenciamento---gestão-do-coint" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Gestão do CoInt</a></li><li><a href="#pra-credenciamento---indeferimento-ou-autorização-de-agente" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Indeferimento ou autorização de agente</a></li><li><a href="#pra-credenciamento---credenciamento-pela-sso" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Credenciamento pela SSO</a></li><li><a href="#descredenciamento" class="table-of-contents__link toc-highlight">Descredenciamento</a></li></ul></li><li><a href="#efetivo" class="table-of-contents__link toc-highlight">Efetivo</a><ul><li><a href="#usuários" class="table-of-contents__link toc-highlight">Usuários</a></li><li><a href="#gerar-token-para-cadastro" class="table-of-contents__link toc-highlight">Gerar Token para cadastro</a></li><li><a href="#pecúlio-pm" class="table-of-contents__link toc-highlight">Pecúlio PM</a></li><li><a href="#lista-agentes" class="table-of-contents__link toc-highlight">Lista agentes</a></li></ul></li><li><a href="#nova-ocorrência" class="table-of-contents__link toc-highlight">Nova ocorrência</a></li><li><a href="#listar-ocorrências" class="table-of-contents__link toc-highlight">Listar ocorrências</a></li><li><a href="#estatísticas---ocorrências" class="table-of-contents__link toc-highlight">Estatísticas - Ocorrências</a></li><li><a href="#tutorial" class="table-of-contents__link toc-highlight">Tutorial</a></li><li><a href="#ajuda" class="table-of-contents__link toc-highlight">Ajuda</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentação</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/getting-starter/intro">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/configuration">Configuration</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/development">Development</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/deployment">Deployment</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/references/changelog">References</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/contributing">Contributing</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/giluansouza" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/your-profile" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div></div></footer></div>
+<hr></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs-sinpom/docs/development/version-control"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Controle de Versão</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs-sinpom/docs/development/feature-details"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Funcionalidades do Sistema</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#login-no-sistema" class="table-of-contents__link toc-highlight">Login no sistema</a></li><li><a href="#novo-documento-no-sistema" class="table-of-contents__link toc-highlight">Novo Documento no Sistema</a></li><li><a href="#análises" class="table-of-contents__link toc-highlight">Análises</a><ul><li><a href="#consulta-de-entidade-pessoa" class="table-of-contents__link toc-highlight">Consulta de Entidade Pessoa</a></li><li><a href="#cadastro-de-logocrim" class="table-of-contents__link toc-highlight">Cadastro de logocrim</a></li><li><a href="#consulta-de-logocrim" class="table-of-contents__link toc-highlight">Consulta de logocrim</a></li><li><a href="#cadastro-de-localidade" class="table-of-contents__link toc-highlight">Cadastro de localidade</a></li><li><a href="#consulta-de-localidade" class="table-of-contents__link toc-highlight">Consulta de localidade</a></li><li><a href="#gerenciamento-de-facções" class="table-of-contents__link toc-highlight">Gerenciamento de facções</a></li></ul></li><li><a href="#recursos" class="table-of-contents__link toc-highlight">Recursos</a><ul><li><a href="#consulta-de-veículos" class="table-of-contents__link toc-highlight">Consulta de veículos</a></li><li><a href="#edição-de-veículo" class="table-of-contents__link toc-highlight">Edição de veículo</a></li><li><a href="#remover-veículo" class="table-of-contents__link toc-highlight">Remover veículo</a></li><li><a href="#cadastro-de-veículos" class="table-of-contents__link toc-highlight">Cadastro de veículos</a></li><li><a href="#consulta-de-equipamentos" class="table-of-contents__link toc-highlight">Consulta de equipamentos</a></li><li><a href="#edição-de-equipamento" class="table-of-contents__link toc-highlight">Edição de equipamento</a></li><li><a href="#remover-equipamento" class="table-of-contents__link toc-highlight">Remover equipamento</a></li><li><a href="#cadastro-de-equipamento" class="table-of-contents__link toc-highlight">Cadastro de equipamento</a></li><li><a href="#consulta-de-material-bélico" class="table-of-contents__link toc-highlight">Consulta de material bélico</a></li><li><a href="#edição-de-material-bélico" class="table-of-contents__link toc-highlight">Edição de material bélico</a></li><li><a href="#remover-material-bélico" class="table-of-contents__link toc-highlight">Remover material bélico</a></li><li><a href="#cadastro-de-material-bélico" class="table-of-contents__link toc-highlight">Cadastro de material bélico</a></li><li><a href="#consulta-de-efetivo-sinpom" class="table-of-contents__link toc-highlight">Consulta de efetivo SinPoM</a></li><li><a href="#prazos-de-documentos" class="table-of-contents__link toc-highlight">Prazos de documentos</a></li><li><a href="#dados-da-opm" class="table-of-contents__link toc-highlight">Dados da OPM</a></li></ul></li><li><a href="#pra-credenciamento" class="table-of-contents__link toc-highlight">PRA (Credenciamento)</a><ul><li><a href="#pra-credenciamento---calendário-de-credenciamento" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Calendário de credenciamento</a></li><li><a href="#pra-credenciamento---solicitação" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Solicitação</a></li><li><a href="#pra-credenciamento---pesquisa-social" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Pesquisa social</a></li><li><a href="#pra-credenciamento---despacho-do-comando-regional" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Despacho do comando regional</a></li><li><a href="#pra-credenciamento---gestão-do-coint" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Gestão do CoInt</a></li><li><a href="#pra-credenciamento---indeferimento-ou-autorização-de-agente" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Indeferimento ou autorização de agente</a></li><li><a href="#pra-credenciamento---credenciamento-pela-sso" class="table-of-contents__link toc-highlight">PRA (Credenciamento) - Credenciamento pela SSO</a></li><li><a href="#descredenciamento" class="table-of-contents__link toc-highlight">Descredenciamento</a></li></ul></li><li><a href="#efetivo" class="table-of-contents__link toc-highlight">Efetivo</a><ul><li><a href="#usuários" class="table-of-contents__link toc-highlight">Usuários</a></li><li><a href="#gerar-token-para-cadastro" class="table-of-contents__link toc-highlight">Gerar Token para cadastro</a></li><li><a href="#pecúlio-pm" class="table-of-contents__link toc-highlight">Pecúlio PM</a></li><li><a href="#lista-agentes" class="table-of-contents__link toc-highlight">Lista agentes</a></li></ul></li><li><a href="#nova-ocorrência" class="table-of-contents__link toc-highlight">Nova ocorrência</a></li><li><a href="#listar-ocorrências" class="table-of-contents__link toc-highlight">Listar ocorrências</a></li><li><a href="#estatísticas---ocorrências" class="table-of-contents__link toc-highlight">Estatísticas - Ocorrências</a></li><li><a href="#tutorial" class="table-of-contents__link toc-highlight">Tutorial</a></li><li><a href="#ajuda" class="table-of-contents__link toc-highlight">Ajuda</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentação</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/getting-starter/intro">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/configuration">Configuration</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/development">Development</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/deployment">Deployment</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/references/changelog">References</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/contributing">Contributing</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/giluansouza" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/your-profile" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div></div></footer></div>
 </body>
 </html>
