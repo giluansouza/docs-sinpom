@@ -347,6 +347,193 @@ Campos protegidos por `$guarded = ['id']`
 
 ---
 
+### 16. DocumentHasDifusaoAnterior Model
+
+Registra histórico de difusões anteriores de documentos.
+
+#### Table: `document_has_difusao_anterior`
+
+| Column             | Type    | Description             |
+| ------------------ | ------- | ----------------------- |
+| `id`               | integer | Primary Key             |
+| `opm_structure_id` | integer | FK para `opm_structure` |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships:
+
+- `opm_structure()`: **belongsTo** `App\OpmStructure`
+
+---
+
+### 17. DocumentImage Model
+
+Armazena imagens associadas a documentos.
+
+#### Table: `document_images`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+---
+
+### 18. DocumentKind Model
+
+Define tipos/categorias de documentos.
+
+#### Table: `document_kinds`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+---
+
+### 19. DocumentPlanoDeOperacoes Model
+
+Gerencia planos de operações vinculados a documentos.
+
+#### Table: `document_plano_de_operacoes`
+
+| Column        | Type    | Description         |
+| ------------- | ------- | ------------------- |
+| `id`          | integer | Primary Key         |
+| `document_id` | integer | FK para `documents` |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships:
+
+- `document()`: **belongsTo** `App\Document`
+
+---
+
+### 20. EntityFirearm Model
+
+Gerencia armas de fogo envolvidas em entidades, com auditoria.
+
+#### Table: `entity_firearms`
+
+| Column                            | Type    | Description                            |
+| --------------------------------- | ------- | -------------------------------------- |
+| `id`                              | integer | Primary Key                            |
+| `firearm_type_id`                 | integer | FK para `firearm_types`                |
+| `firearm_manufacturer_id`         | integer | FK para `firearm_manufacturers`        |
+| `firearm_caliber_id`              | integer | FK para `firearm_calibers`             |
+| `firearm_owner_id`                | integer | FK para `firearm_owners`               |
+| `firearm_serial_number_status_id` | integer | FK para `firearm_serial_number_status` |
+
+#### Relationships:
+
+- `firearm_type()`: **belongsTo** `App\FirearmType`
+- `firearm_manufacturer()`: **belongsTo** `App\FirearmManufacturer`
+- `firearm_caliber()`: **belongsTo** `App\FirearmCaliber`
+- `firearm_owner()`: **belongsTo** `App\FirearmOwner`
+- `firearm_serial_number_status()`: **belongsTo** `App\FirearmSerialNumberStatus`
+
+---
+
+### 21. EntityFirearmInvolvement Model
+
+Registra o envolvimento de armas de fogo com ocorrências e documentos.
+
+#### Table: `entity_firearm_involvements`
+
+| Column              | Type    | Description               |
+| ------------------- | ------- | ------------------------- |
+| `id`                | integer | Primary Key               |
+| `entity_firearm_id` | integer | FK para `entity_firearms` |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships:
+
+- `entity_firearm()`: **belongsTo** `App\EntityFirearm`
+
+---
+
+### 22. EntityPeople Model
+
+Gerencia entidades de pessoas com auditoria, múltiplos relacionamentos e atributos.
+
+#### Table: `entity_peoples`
+
+| Column                             | Type    | Description                           |
+| ---------------------------------- | ------- | ------------------------------------- |
+| `id`                               | integer | Primary Key                           |
+| `entity_people_involved_status_id` | integer | FK para status de envolvimento        |
+| `entity_people_color_id`           | integer | FK para cores associadas              |
+| `staff_id`                         | integer | FK para `staff` (relacionamento base) |
+| `created_by_staff_id`              | integer | FK para `staff` (criador)             |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships:
+
+- `entity_people_involved_status()`: **belongsTo** `App\EntityPeopleInvolvedStatus`
+- `staff()`: **belongsTo** `App\Staff`
+- `endereco()`: **hasMany** `App\EntityPeopleAddress`
+- `involved_firearms()`: **belongsToMany** `App\EntityFirearm`
+- `created_by()`: **belongsTo** `App\Staff` via `created_by_staff_id`
+- ... (12+ relações com modelos de apelidos, imagens, mandados, etc.)
+
+#### Attributes:
+
+- `status_atual`: Retorna último status de envolvimento
+- `entity_editor`: Verifica permissões de edição (baseado no usuário logado)
+
+---
+
+### 23. EntityPeopleAddress Model
+
+Armazena endereços de entidades de pessoas com auditoria.
+
+#### Table: `entity_people_addresses`
+
+| Column    | Type    | Description      |
+| --------- | ------- | ---------------- |
+| `id`      | integer | Primary Key      |
+| `city_id` | integer | FK para `cities` |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships:
+
+- `city()`: **belongsTo** `App\City`
+
+---
+
+### 24. EntityPeopleApelido Model
+
+Gerencia apelidos/nicknames de entidades de pessoas.
+
+#### Table: `entity_people_apelidos`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+---
+
+### 25. EntityPeopleArrestWarrant Model
+
+Controla mandados de prisão associados a entidades de pessoas.
+
+#### Table: `entity_people_arrest_warrants`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+---
+
 ## Views
 
 ```plaintext
