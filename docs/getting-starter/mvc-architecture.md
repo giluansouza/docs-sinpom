@@ -607,9 +607,261 @@ Gerencia estados de envolvimento de entidades em ocorrências.
 | ------ | ------- | ----------- |
 | `id`   | integer | Primary Key |
 
-_O campo `status` depende da migração._
+O campo `status` depende da migração.
 
 ---
+
+### 31. EntityPeopleGeolocation Model
+
+Armazena geolocalizações associadas a entidades de pessoas.
+
+#### Table: `entity_people_geolocations`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+Os campos `entity_people_id` e `geometry` devem ser definidos na migração.
+
+---
+
+### 32. EntityPeopleHasEntityFirearm Model
+
+Tabela pivô para relacionar entidades de pessoas com armas de fogo.
+
+#### Table: `entity_people_has_entity_firearms`
+
+| Column              | Type    | Description               |
+| ------------------- | ------- | ------------------------- |
+| `id`                | integer | Primary Key               |
+| `entity_people_id`  | integer | FK para `entity_peoples`  |
+| `entity_firearm_id` | integer | FK para `entity_firearms` |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships:
+
+- `entity_people()`: **belongsTo** `App\EntityPeople`
+
+---
+
+### 33. EntityPeopleHasEntityVehicle Model
+
+Tabela pivô para relacionar entidades de pessoas com veículos.
+
+#### Table: `entity_people_has_entity_vehicles`
+
+| Column             | Type    | Description              |
+| ------------------ | ------- | ------------------------ |
+| `id`               | integer | Primary Key              |
+| `entity_people_id` | integer | FK para `entity_peoples` |
+
+Campos protegidos por `$guarded = ['id']`
+
+Os campos `entity_vehicle_id`, `occurrence_id` e `document_id` dependem da migração.
+
+#### Relationships:
+
+- `entity_people()`: **belongsTo** `App\EntityPeople`
+
+---
+
+### 34. EntityPeopleImage Model
+
+Gerencia imagens associadas a entidades de pessoas.
+
+#### Table: `entity_people_images`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+Os campos `image_path` e `entity_people_id` dependem da migração.
+
+---
+
+### 35. EntityPeopleInvolvedStatus Model
+
+Define status da entidade pessoa.
+
+#### Table: `entity_people_involved_statuses`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+O campo `status` ou `color` deve ser definido na migração.
+
+---
+
+### 36. EntityPeopleInvolvement Model
+
+Registra o envolvimento de entidades em ocorrências, com tipos e status específicos e se PM a situação funcional.
+
+#### Table: `entity_people_involvements`
+
+| Column                                | Type    | Description                               |
+| ------------------------------------- | ------- | ----------------------------------------- |
+| `id`                                  | integer | Primary Key                               |
+| `entity_people_involvement_kind_id`   | integer | FK para `entity_people_involvement_kinds` |
+| `entity_people_id`                    | integer | FK para `entity_peoples`                  |
+| `entity_people_involved_status_id`    | integer | FK para status de envolvimento            |
+| `entity_people_situacao_funcional_id` | integer | FK para situação funcional                |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships:
+
+- `entity_people_involvement_kind()`: **belongsTo** `App\EntityPeopleInvolvementKind`
+- `entity_people()`: **belongsTo** `App\EntityPeople`
+- `entity_people_involved_status()`: **belongsTo** `App\EntityPeopleInvolvedStatus`
+- `entity_people_situacao_funcional()`: **belongsTo** `App\EntityPeopleSituacaoFuncional`
+
+---
+
+### 37. EntityPeopleInvolvementKind Model
+
+Define tipos de envolvimento de entidades em ocorrências.
+
+#### Table: `entity_people_involvement_kinds`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+O campo `tipo` deve ser definido na migração.
+
+---
+
+### 38. EntityPeopleMark Model
+
+Gerencia marcas/tatuagens associadas a entidades de pessoas.
+
+#### Table: `entity_people_marks`
+
+| Column                           | Type    | Description                   |
+| -------------------------------- | ------- | ----------------------------- |
+| `id`                             | integer | Primary Key                   |
+| `entity_people_mark_kind_id`     | integer | FK para tipos de marca        |
+| `entity_people_mark_location_id` | integer | FK para localizações de marca |
+
+Campos protegidos por `$guarded = ['id']`
+
+Os campos `entity_people_id` e `descricao` devem ser definidos na migração.
+
+#### Relationships:
+
+- `entity_people_mark_kind()`: **belongsTo** `App\EntityPeopleMarkKind`
+- `entity_people_mark_location()`: **belongsTo** `App\EntityPeopleMarkLocation`
+
+---
+
+### 39. EntityPeopleMarkKind Model
+
+Classifica tipos de marcas/tatuagens (ex: tribal, símbolo, texto).
+
+#### Table: `entity_people_mark_kinds`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+O campo `tipo` deve ser definido na migração.
+
+---
+
+### 40. EntityPeopleMarkLocation Model
+
+Define localizações corporais de marcas (ex: braço, costas, pescoço).
+
+#### Table: `entity_people_mark_locations`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+O campo `local` deve ser definido na migração.
+
+---
+
+### 41. EntityPeoplePriorityLevel Model
+
+Representa os níveis de prioridade das pessoas no sistema.
+
+#### Table: `entity_people_priority_levels`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships:
+
+(Nenhum relacionamento definido no código fornecido)
+
+#### Scopes:
+
+(Nenhum scope definido no código fornecido)
+
+### 42. EntityPeopleSituacaoFuncional Model
+
+Representa a situação funcional das pessoas no sistema.
+
+#### Table: `entity_people_situacao_funcional`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships:
+
+(Nenhum relacionamento definido no código fornecido)
+
+#### Scopes:
+
+(Nenhum scope definido no código fornecido)
+
+### 43. Faccao Model
+
+Representa facções no sistema com auditoria de alterações (OwenIt/Auditing).
+
+#### Table: `faccoes`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships:
+
+(Nenhum relacionamento definido no código fornecido)
+
+#### Scopes:
+
+(Nenhum scope definido no código fornecido)
+
+---
+
+### Modelos sem implementação
+
+- FirearmCaliber
+- FirearmInvolved
+- FirearmManufacturer
+- FirearmOwner
+- FirearmSerialNumberStatus
+- FirearmType
+- GadgetCondition
+- GadgetKind
+- Gender
+- ImprovementCourse
 
 ## Views
 
