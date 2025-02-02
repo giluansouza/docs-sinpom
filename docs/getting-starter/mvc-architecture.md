@@ -534,6 +534,83 @@ Campos protegidos por `$guarded = ['id']`
 
 ---
 
+### 26. EntityPeopleColor Model
+
+Define cores associadas a entidades de pessoas.
+
+#### Table: `entity_people_colors`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+_O campo `cor` ou `hex_code` deve ser definido na migração_
+
+---
+
+### 27. EntityPeopleCrime Model
+
+Vincula entidades de pessoas a crimes e facções, com auditoria.
+
+#### Table: `entity_people_crimes`
+
+| Column                        | Type    | Description                        |
+| ----------------------------- | ------- | ---------------------------------- |
+| `id`                          | integer | Primary Key                        |
+| `faccao_id`                   | integer | FK para `faccoes`                  |
+| `entity_people_crime_role_id` | integer | FK para `entity_people_crime_role` |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships:
+
+- `faccao()`: **belongsTo** `App\Faccao`
+- `entity_people_crime_role()`: **belongsTo** `App\EntityPeopleCrimeRole`
+
+---
+
+### 28. EntityPeopleCrimeCommitted Model
+
+Registra crimes cometidos por entidades de pessoas.
+
+#### Table: `entity_people_crime_committed`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+Os campos `entity_people_id` e `occurrence_kind_id` dependem da migração.
+
+---
+
+### 29. EntityPeopleCrimeRole Model
+
+Define cargos criminais das entidades pessoas.
+
+#### Table: `entity_people_crime_role`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+_O campo `funcao` depende da criação na migração._
+
+---
+
+### 30. EntityPeopleEstado Model
+
+Gerencia estados de envolvimento de entidades em ocorrências.
+
+#### Table: `entity_people_involved_statuses`
+
+| Column | Type    | Description |
+| ------ | ------- | ----------- |
+| `id`   | integer | Primary Key |
+
+_O campo `status` depende da migração._
+
+---
+
 ## Views
 
 ```plaintext
@@ -545,7 +622,6 @@ Campos protegidos por `$guarded = ['id']`
 │ ├── show.blade.php
 │ ├── teste.blade.php
 │ └── tokengenerate.blade.php
-├── 📂 ad/
 ├── 📂 agent/
 │ ├── aguarde.blade.php
 │ ├── check_correg.blade.php
@@ -576,26 +652,142 @@ Campos protegidos por `$guarded = ['id']`
 │ ├── reset.blade.php
 │ └── verify.blade.php
 ├── 📂 document/
+│   ├── arquivo.blade.php
+│   ├── arquivogeral.blade.php
+│   ├── arquivosecao.blade.php
+│   ├── caixadesaida.blade.php
+│   ├── document_planop.blade.php
+│   ├── documentedit.blade.php
+│   ├── documento-lido-por.blade.php
+│   ├── index.blade.php
+│   ├── listadocumentos.blade.php
+│   ├── menucontagemprazo.blade.php
+│   ├── menudocumentos.blade.php
+│   ├── modalencaminhar.blade.php
+│   ├── modalplanop.blade.php
+│   ├── prazos.blade.php
+│   ├── rascunho.blade.php
+│   ├── show-pdf.blade.php
+│   ├── show-tramitacao-e-depachos-assinado.blade.php
+│   ├── show-tramitacao-e-depachos.blade.php
+│   ├── show.blade.php
+│   └── teste.blade.php
 ├── 📂 documents/
+│   └── search.blade.php
 ├── 📂 emails/
+│   └── test-markdown.blade.php
 ├── 📂 entidades/
+│   ├── entityfirearmedit.blade.php
+│   ├── entitypeoplecreate.blade.php
+│   ├── entitypeopleedit.blade.php
+│   ├── entityvehicleedit.blade.php
+│   ├── index.blade.php
+│   ├── modalentidadearmacreate.blade.php
+│   ├── modalentidadearmashow.blade.php
+│   ├── modalentidadepessoacreate.blade.php
+│   ├── modalentidadepessoashow.blade.php
+│   ├── modalentidadeveiculocreate.blade.php
+│   ├── modalentidadeveiculoshow.blade.php
+│   ├── modalplayershow.blade.php
+│   ├── priority_target.blade.php
+│   └── querymodalentidadepessa.blade.php
 ├── 📂 faccao/
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   ├── index.blade.php
+│   ├── localidade_create.blade.php
+│   ├── localidade_edit.blade.php
+│   ├── localidade_form.blade.php
+│   ├── localidade_index.blade.php
+│   ├── localidade_show.blade.php
+│   ├── logocrim_create.blade.php
+│   ├── logocrim_edit.blade.php
+│   ├── logocrim_form.blade.php
+│   ├── logocrim_index.blade.php
+│   └── logocrim_show.blade.php
 ├── 📂 google2fa/
+│   ├── index.blade.php
+│   └── new_otp.blade.php
 ├── 📂 improvementcourse/
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   ├── index.blade.php
+│   └── listar.blade.php
 ├── 📂 layouts/
+│   ├── _notes
+│   ├── aplicacao.blade.php
+│   ├── autentica.blade.php
+│   ├── emailAccessoLiberado.blade.php
+│   ├── emailToken.blade.php
+│   ├── menu.blade.php
+│   ├── old-menu.blade.php
+│   └── otp.blade.php
 ├── 📂 news/
+│   ├── create_short_news.blade.php
+│   ├── create.blade.php
+│   ├── edit_short_news.blade.php
+│   ├── form.blade.php
+│   └── index.blade.php
 ├── 📂 occurrence/
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   ├── listar.blade.php
+│   ├── show.blade.php
+│   ├── --createOld2.blade.php (deprecated)
+│   ├── --editOld.blade.php (deprecated)
+│   └── --oldcreate.blade.php (deprecated)
 ├── 📂 opm/
+│   ├── edit.blade.php
+│   ├── index.blade.php
 ├── 📂 opm_resources/
+│   ├── create_gadget.blade.php
+│   ├── create_vehicle.blade.php
+│   ├── create_war.blade.php
+│   ├── edit_gadget.blade.php
+│   ├── edit_vehicle.blade.php
+│   ├── edit_war.blade.php
+│   ├── gadget_show.blade.php
+│   ├── gadgets.blade.php
+│   ├── vehicle_show.blade.php
+│   ├── vehicles.blade.php
+│   ├── war_show.blade.php
+│   └── war.blade.php
 ├── 📂 painel/
+│   ├── oldpainel.blade.php
+│   ├── painel.blade.php
+│   ├── painelnovo.blade.php
+│   └── tutorial.blade.php
 ├── 📂 search/
+│   └── index.blade.php
 ├── 📂 signature/
+│   ├── assinadas.blade.php
+│   ├── pendentes.blade.php
+│   ├── visualzafis.blade.php
+│   ├── visualzafiscoint.blade.php
+│   └── visualzafiscpr.blade.php
 ├── 📂 sinmail/
+│   ├── arquivo.blade.php
+│   ├── entrada.blade.php
+│   ├── novo.blade.php
+│   ├── saida.blade.php
+│   ├── show.blade.php
 ├── 📂 staff/
+│   ├── edit.blade.php
+│   └── index.blade.php
 ├── 📂 statistic/
+│   └── countoccurrencebyopm.blade.php
 ├── 📂 support/
+│   ├── index.blade.php
+│   ├── show.blade.php
+│   └── ticket-list.blade.php
 ├── 📂 taskorganization/
+│   ├── concluidas.blade.php
+│   ├── pendentes.blade.php
+│   └── visualizafis.blade.php
 ├── 📂 termsandconditions/
+│   ├── create.blade.php
+│   ├── index.blade.php
+│   └── last.blade.php
 ├── 📂 vendor/
 └── mapa.blade.php
 ```
