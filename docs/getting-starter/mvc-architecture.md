@@ -1580,6 +1580,135 @@ Campos protegidos por `$guarded = ['id']`
 
 ---
 
+### 82. VehicleModel Model
+
+Representa modelos de veículos no sistema.
+
+#### Table: `vehicle_models`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+#### Relationships
+
+- `vehicle_mark()`: Relacionamento **belongsTo** com `App\VehicleMark`.
+
+---
+
+### 83. WeaponKind Model
+
+Representa os tipos de armas no sistema.
+
+#### Table: `weapon_kinds`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+---
+
+### 84. Zona Model
+
+Representa as zonas no sistema.
+
+#### Table: `zonas`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+---
+
+### 85. OccurrenceVehicleInvolved Model
+
+Representa os veículos envolvidos em ocorrências no sistema.
+
+#### Table: `occurrence_vehicle_involveds`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+---
+
+### 86. Opm Model
+
+Representa as OPMs (Organizações Policiais Militares) no sistema.
+
+#### Table: `opms`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+---
+
+### 87. OpmGoverning Model
+
+Representa as entidades governantes de OPMs no sistema.
+
+#### Table: `opm_governings`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+---
+
+### 88. OpmStructure Model
+
+Representa a estrutura organizacional das OPMs no sistema.
+
+#### Table: `opm_structures`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+---
+
+### 89. User Model
+
+Representa os usuários do sistema com funcionalidades de autenticação e auditoria (OwenIt/Auditing).
+
+#### Table: `users`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+| `name` | string | Nome do usuário |
+| `staff_id` | integer | Foreign Key para `staff` |
+| `email` | string | Endereço de e-mail |
+| `password` | string | Senha criptografada |
+| `google2fa_secret` | string | Chave 2FA (criptografada) |
+| `email_verified_at` | datetime | Data de verificação do e-mail |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships
+
+- `staff()`: Relacionamento **belongsTo** com `App\Staff` (um usuário pertence a um membro do staff).
+- `terms()`: Relacionamento **belongsToMany** com `App\TermsAndConditions` através da tabela `term_user`.
+
+#### Scopes
+
+- `podeAssinar()`: Verifica se o usuário tem permissão para assinar documentos baseado na estrutura da OPM.
+- `arrayOpmStructure()`: Retorna um array com as estruturas da OPM do usuário.
+- `arrayOpmStructureExceptCO()`: Retorna um array com as estruturas da OPM do usuário, exceto a de ID 642.
+- `opmStructure()`: Retorna o ID da estrutura da OPM do usuário.
+- `opmStructureAgencia()`: Retorna o ID da estrutura da OPM do tipo "Agência".
+
+---
+
 ### Modelos sem implementação
 
 - FirearmCaliber
