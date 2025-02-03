@@ -14,12 +14,12 @@ O SINPOM utiliza uma arquitetura **MVC (Model-View-Controller)** que é o padrã
 
 Gerencia o painel do usuário, ações relacionadas ao perfil e visualizações condicionais de acordo com as permissões do usuário.
 
-#### Key Methods:
+#### Key Methods
 
 - `index(Request $request)`: Exibe painel dashboard ou redireciona com base nas permissões do usuário
 - `tutorial(Request $request)`: Exibe a página de tutorials para o usuário.
 
-#### Dependencies:
+#### Dependencies
 
 - `CustomQueries`: Recupera dados de consultas personalizadas, como ocorrências por tipo.
 - `Google2FA`: Usado para autenticação de dois fatores (não é utilizado ativamente no método index(), mas é referenciado).
@@ -45,13 +45,9 @@ Representa agentes no sistema com auditoria de alterações (OwenIt/Auditing).
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `staff()`: Relacionamento **belongsTo** com `App\Staff` (um agente pertence a um membro do staff).
-
-#### Scopes:
-
-(Nenhum scope definido no código fornecido)
 
 ---
 
@@ -75,7 +71,7 @@ Representa os FIS com auditoria de alterações e múltiplos relacionamentos com
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `staff_candidato()`: **belongsTo** `App\Staff` via `staff_id_candidato`
 - `staff_agente()`: **belongsTo** `App\Staff` via `staff_id_agente`
@@ -102,7 +98,7 @@ Gerencia dados de pesquisa social com auditoria.
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `staff_agente()`: **belongsTo** `App\Staff` via `staff_id_agente`
 - `staff_chefe_agencia()`: **belongsTo** `App\Staff` via `staff_id_chefe_agencia`
@@ -132,7 +128,7 @@ Controla solicitações de inclusão de agentes com múltiplas assinaturas e rel
 | `desc_solic_rank_id`          | integer | FK para `rank` (solicitação de descrição)  |
 | `city_id`                     | integer | FK para `city`                             |
 
-#### Relationships:
+#### Relationships
 
 - `staff()`: **belongsTo** `App\Staff`
 - `rank()`: **belongsTo** `App\Rank`
@@ -166,7 +162,7 @@ Registra alterações de status de agentes com auditoria.
 | `feito_por_staff_id` | integer | FK para `staff` (executado por) |
 | `feito_por_rank_id`  | integer | FK para `rank` (executado por)  |
 
-#### Relationships:
+#### Relationships
 
 - `opm()`: **belongsTo** `App\Opm`
 - `staff()`: **belongsTo** `App\Staff`
@@ -201,7 +197,7 @@ Representa cidades no sistema.
 | `id`       | integer | Primary Key      |
 | `state_id` | integer | FK para `states` |
 
-#### Relationships:
+#### Relationships
 
 - `state()`: **belongsTo** `App\State`
 
@@ -281,7 +277,7 @@ Gerencia decisões com auditoria e assinaturas de staff/rank.
 | `assinado_por`      | integer | FK para `staff` (assinatura)        |
 | `assinado_por_rank` | integer | FK para `rank` (rank da assinatura) |
 
-#### Relationships:
+#### Relationships
 
 - `assinado()`: **belongsTo** `App\Staff` via `assinado_por`
 - `assinado_rank()`: **belongsTo** `App\Rank` via `assinado_por_rank`
@@ -307,7 +303,7 @@ Gerencia documentos com controle de acesso, auditoria e múltiplos relacionament
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `readers()`: **belongsToMany** `App\User` (usuários que leram o documento)
 - `status()`: **hasOne** `App\DocumentHasDifusao`
@@ -317,7 +313,7 @@ Campos protegidos por `$guarded = ['id']`
 - `referencia()`: **belongsTo** `App\Document` (auto-relacionamento)
 - ... (demais relações como `entity_people_involvement`, `attachment`, etc.)
 
-#### Scopes:
+#### Scopes
 
 - Escopo global `bloqueio_sap`: Filtra documentos não bloqueados, exceto para usuários com estrutura OPM 636.
 
@@ -338,7 +334,7 @@ Controla fluxo de encaminhamento e gestão de documentos.
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `document()`: **belongsTo** `App\Document`
 - `criado_por_staff()`: **belongsTo** `App\Staff` via `criado_por_staff_id`
@@ -360,7 +356,7 @@ Registra histórico de difusões anteriores de documentos.
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `opm_structure()`: **belongsTo** `App\OpmStructure`
 
@@ -405,7 +401,7 @@ Gerencia planos de operações vinculados a documentos.
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `document()`: **belongsTo** `App\Document`
 
@@ -426,7 +422,7 @@ Gerencia armas de fogo envolvidas em entidades, com auditoria.
 | `firearm_owner_id`                | integer | FK para `firearm_owners`               |
 | `firearm_serial_number_status_id` | integer | FK para `firearm_serial_number_status` |
 
-#### Relationships:
+#### Relationships
 
 - `firearm_type()`: **belongsTo** `App\FirearmType`
 - `firearm_manufacturer()`: **belongsTo** `App\FirearmManufacturer`
@@ -449,7 +445,7 @@ Registra o envolvimento de armas de fogo com ocorrências e documentos.
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `entity_firearm()`: **belongsTo** `App\EntityFirearm`
 
@@ -471,7 +467,7 @@ Gerencia entidades de pessoas com auditoria, múltiplos relacionamentos e atribu
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `entity_people_involved_status()`: **belongsTo** `App\EntityPeopleInvolvedStatus`
 - `staff()`: **belongsTo** `App\Staff`
@@ -480,7 +476,7 @@ Campos protegidos por `$guarded = ['id']`
 - `created_by()`: **belongsTo** `App\Staff` via `created_by_staff_id`
 - ... (12+ relações com modelos de apelidos, imagens, mandados, etc.)
 
-#### Attributes:
+#### Attributes
 
 - `status_atual`: Retorna último status de envolvimento
 - `entity_editor`: Verifica permissões de edição (baseado no usuário logado)
@@ -500,7 +496,7 @@ Armazena endereços de entidades de pessoas com auditoria.
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `city()`: **belongsTo** `App\City`
 
@@ -544,7 +540,7 @@ Define cores associadas a entidades de pessoas.
 | ------ | ------- | ----------- |
 | `id`   | integer | Primary Key |
 
-_O campo `cor` ou `hex_code` deve ser definido na migração_
+O campo `cor` deve ser definido na migração.
 
 ---
 
@@ -562,7 +558,7 @@ Vincula entidades de pessoas a crimes e facções, com auditoria.
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `faccao()`: **belongsTo** `App\Faccao`
 - `entity_people_crime_role()`: **belongsTo** `App\EntityPeopleCrimeRole`
@@ -593,7 +589,7 @@ Define cargos criminais das entidades pessoas.
 | ------ | ------- | ----------- |
 | `id`   | integer | Primary Key |
 
-_O campo `funcao` depende da criação na migração._
+O campo `funcao` depende da criação na migração.
 
 ---
 
@@ -641,7 +637,7 @@ Tabela pivô para relacionar entidades de pessoas com armas de fogo.
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `entity_people()`: **belongsTo** `App\EntityPeople`
 
@@ -662,7 +658,7 @@ Campos protegidos por `$guarded = ['id']`
 
 Os campos `entity_vehicle_id`, `occurrence_id` e `document_id` dependem da migração.
 
-#### Relationships:
+#### Relationships
 
 - `entity_people()`: **belongsTo** `App\EntityPeople`
 
@@ -714,7 +710,7 @@ Registra o envolvimento de entidades em ocorrências, com tipos e status especí
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+#### Relationships
 
 - `entity_people_involvement_kind()`: **belongsTo** `App\EntityPeopleInvolvementKind`
 - `entity_people()`: **belongsTo** `App\EntityPeople`
@@ -753,7 +749,7 @@ Campos protegidos por `$guarded = ['id']`
 
 Os campos `entity_people_id` e `descricao` devem ser definidos na migração.
 
-#### Relationships:
+#### Relationships
 
 - `entity_people_mark_kind()`: **belongsTo** `App\EntityPeopleMarkKind`
 - `entity_people_mark_location()`: **belongsTo** `App\EntityPeopleMarkLocation`
@@ -800,13 +796,7 @@ Representa os níveis de prioridade das pessoas no sistema.
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
-
-(Nenhum relacionamento definido no código fornecido)
-
-#### Scopes:
-
-(Nenhum scope definido no código fornecido)
+---
 
 ### 42. EntityPeopleSituacaoFuncional Model
 
@@ -820,13 +810,7 @@ Representa a situação funcional das pessoas no sistema.
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
-
-(Nenhum relacionamento definido no código fornecido)
-
-#### Scopes:
-
-(Nenhum scope definido no código fornecido)
+---
 
 ### 43. Faccao Model
 
@@ -840,13 +824,759 @@ Representa facções no sistema com auditoria de alterações (OwenIt/Auditing).
 
 Campos protegidos por `$guarded = ['id']`
 
-#### Relationships:
+---
 
-(Nenhum relacionamento definido no código fornecido)
+### 44. InstituicoesFinanceiras Model
 
-#### Scopes:
+Representa instituições financeiras no sistema.
+
+#### Table: `institucoes_financeiras`
+
+| Column       | Type      | Description         |
+| ------------ | --------- | ------------------- |
+| `id`         | integer   | Primary Key         |
+
+O campo `nome` depende da implementação da migration.
+
+---
+
+### 45. Locality Model
+
+Representa localidades no sistema com suporte a coordenadas geográficas.
+
+#### Table: `localities`
+
+| Column        | Type      | Description             |
+| ------------- | --------- | ----------------------- |
+| `id`          | integer   | Primary Key             |
+| `coordinates` | geometry  | Coordenadas geográficas |
+
+Os campos `nome`, `endereco`, `bairro`, `city_id`, `historico`, `logo_crim_info_id`, `observacoes`, `opm_id` dependem da implementação da migration.
+
+#### Relationships
+
+- `city()`: Relacionamento **belongsTo** com `App\City` (localidade pertence a uma cidade)
+- `opm()`: Relacionamento **belongsTo** com `App\Opm` (localidade pertence a uma OPM)
+- `locality_criminal_info()`: Relacionamento **hasMany** com `App\LocalityCriminalInfo` (localidade tem várias informações criminais)
+- `locality_map_layer()`: Relacionamento **hasMany** com `App\LocalityMapLayer` (localidade tem várias camadas de mapa)
+- `logo_crim_info()`: Relacionamento **belongsTo** com `App\LogoCrimInfo` (localidade pertence a uma informação criminal)
+
+---
+
+### 46. LocalityCriminalInfo Model
+
+Representa informações criminais associadas a localidades.
+
+#### Table: `locality_criminal_infos`
+
+| Column                | Type      | Description                       |
+| --------------------- | --------- | --------------------------------- |
+| `id`                  | integer   | Primary Key                       |
+| `faccao_dominante_id` | integer   | Foreign Key para facção dominante |
+| `faccao_rival_id`     | integer   | Foreign Key para facção rival     |
+| `entity_people_id`    | integer   | Foreign Key para pessoas          |
+
+#### Relationships
+
+- `faccao_dominante()`: Relacionamento **belongsTo** com `App\Faccao` (info criminal tem uma facção dominante)
+- `faccao_rival()`: Relacionamento **belongsTo** com `App\Faccao` (info criminal tem uma facção rival)
+- `entity_people()`: Relacionamento **belongsTo** com `App\EntityPeople` (info criminal pertence a uma pessoa)
+
+---
+
+### 47. LocalityMapLayer Model
+
+Representa camadas de mapa associadas a localidades.
+
+#### Table: `locality_map_layers`
+
+| Column       | Type      | Description         |
+| ------------ | --------- | ------------------- |
+| `id`         | integer   | Primary Key         |
+
+O campo `file_path`depende da implementação da migration.
+
+#### Relationships
+
+Existe um relacionamento com localities, mas não definido no model.
+
+---
+
+### 48. LogoCrimInfo Model
+
+Representa informações criminais com suporte a coordenadas geográficas.
+
+#### Table: `logo_crim_infos`
+
+| Column        | Type      | Description             |
+| ------------- | --------- | ----------------------- |
+| `id`          | integer   | Primary Key             |
+| `coordinates` | geometry  | Coordenadas geográficas |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships
+
+- `faccao()`: Relacionamento **belongsTo** com `App\Faccao` (info criminal pertence a uma facção)
+- `prison()`: Relacionamento **belongsTo** com `App\Prison` (info criminal relacionada a uma prisão)
+- `crime_communication_kind()`: Relacionamento **belongsTo** com `App\CrimeCommunicationKind` (info criminal tem um tipo de comunicação)
+- `crime_connotation()`: Relacionamento **belongsTo** com `App\CrimeConnotation` (info criminal tem uma conotação)
+- `crime_information_source()`: Relacionamento **belongsTo** com `App\CrimeInformationSource` (info criminal tem uma fonte de informação)
+- `entity_people()`: Relacionamento **belongsTo** com `App\EntityPeople` (info criminal pertence a uma pessoa)
+- `city()`: Relacionamento **belongsTo** com `App\City` (info criminal pertence a uma cidade)
+- `opm()`: Relacionamento **belongsTo** com `App\Opm` (info criminal pertence a uma OPM)
+
+---
+
+### 49. MeiosAmeaca Model
+
+Representa os meios de ameaça no sistema.
+
+#### Table: `meios_ameaca`
+
+| Column       | Type      | Description         |
+| ------------ | --------- | ------------------- |
+| `id`         | integer   | Primary Key         |
+
+O campo `meio` depende da implementação na migration.
+
+---
+
+### 50. MeiosCrimeInstituicoesFinanceiras Model
+
+Representa os meios utilizados em crimes contra instituições financeiras.
+
+#### Table: `meios_crime_instituicoes_financeiras`
+
+| Column       | Type      | Description         |
+| ------------ | --------- | ------------------- |
+| `id`         | integer   | Primary Key         |
+
+O campo `meio` depende da implementação da migration.
+
+---
+
+### 51. ModalidadesCrimesInstituicoesFinanceiras Model
+
+Representa as modalidades de crimes contra instituições financeiras.
+
+#### Table: `modalidades_crimes_instituicoes_financeiras`
+
+| Column       | Type      | Description         |
+| ------------ | --------- | ------------------- |
+| `id`         | integer   | Primary Key         |
+
+O campo `modalidade` depende da implementação da migration.
+
+---
+
+### 52. Motivacao Model
+
+Representa as motivações de crimes no sistema.
+
+#### Table: `motivacoes_crimes`
+
+| Column       | Type      | Description         |
+| ------------ | --------- | ------------------- |
+| `id`         | integer   | Primary Key         |
+
+O campo `motivo` depende da implementação da migration.
+
+---
+
+### 53. News Model
+
+Representa notícias no sistema com auditoria de alterações (OwenIt/Auditing).
+
+#### Table: `news`
+
+| Column       | Type      | Description         |
+| ------------ | --------- | ------------------- |
+| `id`         | integer   | Primary Key         |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships
+
+- `staff()`: Relacionamento **belongsTo** com `App\Staff` (notícia pertence a um membro do staff)
+- `rank()`: Relacionamento **belongsTo** com `App\Rank` (notícia tem uma classificação/rank)
+
+---
+
+### 54. Occurrence Model  
+
+Registra ocorrências criminais com auditoria e múltiplos relacionamentos.  
+
+#### Table: `occurrences`
+
+| Column                  | Type    | Description                              |  
+| ----------------------- | ------- | ---------------------------------------- |  
+| `id`                    | integer | Primary Key                              |  
+| `opm_id`                | integer | FK para `opm` (unidade policial)         |  
+| `city_id`               | integer | FK para `cities` (cidade da ocorrência)  |  
+| `zona_id`               | integer | FK para `zonas` (zona geográfica)        |  
+| `vehicle_kind_id`       | integer | FK para tipos de veículos                |  
+| `opm_area`              | integer | FK para `opm` (área responsável)         |  
+| `occurrence_id_motivadora` | integer | FK para `occurrence_kinds` (ocorrência motivadora) |  
+| `faccao_id`             | integer | FK para `faccoes` (facção envolvida)     |  
+| `motivacao_id`          | integer | FK para motivações                       |  
+| `meios_ameaca_id`       | integer | FK para meios de ameaça                  |  
+
+#### Relationships
+
+- `occurrence_kind_involved()`: **hasMany** `App\OccurrenceKindInvolved`  
+- `opm()`: **belongsTo** `App\Opm`  
+- `city()`: **belongsTo** `App\City`  
+- `zona()`: **belongsTo** `App\Zona`  
+- `opm_resp()`: **belongsTo** `App\Opm` via `opm_area`  
+- `faccao_area()`: **belongsTo** `App\Faccao`  
+- `entity_people_involvement()`: **hasMany** `App\EntityPeopleInvolvement`  
+- `occurrence_geolocation()`: **hasOne** `App\OccurrenceGeolocation`  
+- ... (demais relações seguem padrão similar)  
+
+---
+
+### 55. OccurrenceFirearmInvolved Model
+
+Registra armas de fogo envolvidas em ocorrências, com auditoria.  
+
+#### Table: `occurrence_firearm_involved`
+
+| Column                    | Type    | Description                     |  
+| ------------------------- | ------- | ------------------------------- |  
+| `id`                      | integer | Primary Key                     |  
+| `firearm_type_id`         | integer | FK para `firearm_types`         |  
+| `people_involved_id`      | integer | FK para `occurrence_people_involved` |  
+| `firearm_manufacturer_id` | integer | FK para `firearm_manufacturers` |  
+| `firearm_caliber_id`      | integer | FK para `firearm_calibers`      |  
+
+Campos protegidos por `$guarded = ['id']`  
+
+#### Relationships
+
+- `firearm_type()`: **belongsTo** `App\FirearmType`  
+- `people_involved()`: **belongsTo** `App\OccurrencePeopleInvolved`  
+- `firearm_manufacturer()`: **belongsTo** `App\FirearmManufacturer`  
+- `firearm_caliber()`: **belongsTo** `App\FirearmCaliber`  
+
+---
+
+### 56. OccurrenceGeolocation Model
+
+Armazena geolocalizações vinculadas a ocorrências.  
+
+#### Table: `occurrence_geolocations`
+
+| Column            | Type    | Description                   |  
+| ----------------- | ------- | ----------------------------- |  
+| `id`              | integer | Primary Key                   |  
+| `occurrence_id`   | integer | FK para `occurrences`         |  
+
+Campos protegidos por `$guarded = ['id']`
+
+O campo `coordinates` deve ser implementado na migration.
+
+#### Relationships
+
+- `occurrence()`: **belongsTo** `App\Occurrence`  
+
+---
+
+### 57. OccurrenceKindInvolved Model
+
+Vincula tipos de ocorrências a casos específicos, com auditoria.  
+
+#### Table: `occurrence_kind_involved`
+
+| Column                 | Type    | Description                     |  
+| ---------------------- | ------- | ------------------------------- |  
+| `id`                   | integer | Primary Key                     |  
+| `occurrence_id`        | integer | FK para `occurrences`           |  
+| `occurrence_kind_id`   | integer | FK para `occurrence_kinds`      |  
+
+Campos protegidos por `$guarded = ['id']`  
+
+#### Relationships
+
+- `occurrence()`: **belongsTo** `App\Occurrence`  
+- `occurrence_kind()`: **belongsTo** `App\OccurrenceKind`  
+
+---
+
+### 58. OccurrencePeopleInvolved Model
+
+Registra pessoas envolvidas em ocorrências com auditoria e múltiplos atributos.
+
+#### Table: `occurrence_people_involved`  
+
+| Column                              | Type    | Description                              |  
+| ----------------------------------- | ------- | ---------------------------------------- |  
+| `id`                                | integer | Primary Key                              |  
+| `involvement_kind_id`               | integer | FK para tipos de envolvimento            |  
+| `gender_id`                         | integer | FK para gêneros                          |  
+| `faccao_id`                         | integer | FK para facções criminosas               |  
+| `staff_id`                          | integer | FK para membros do staff                 |  
+| `rank_id`                           | integer | FK para patentes                         |  
+| `city_id`                           | integer | FK para cidades                          |  
+| `people_color_id`                   | integer | FK para cores/etnias                     |  
+| `occurrence_people_involved_status_id` | integer | FK para status de envolvimento        |  
+| `occurrence_vehicle_involved_id`    | integer | FK para veículos envolvidos              |  
+| `weapon_kind_id`                    | integer | FK para tipos de armas                   |  
+| `civil_state_id`                    | integer | FK para estados civis                    |  
+
+Campos protegidos por `$guarded = ['id']`  
+
+#### Relationships
+
+- `involvement_kind()`: **belongsTo** `App\InvolvementKind`  
+- `gender()`: **belongsTo** `App\Gender`  
+- `faccao()`: **belongsTo** `App\Faccao`  
+- `staff()`: **belongsTo** `App\Staff`  
+- `city()`: **belongsTo** `App\City`  
+- `occurrence_firearm_involved()`: **hasOne** `App\OccurrenceFirearmInvolved`  
+- ... (12+ relações com `Rank`, `PeopleColor`, `WeaponKind`, etc.)  
+
+#### Observações
+
+- Modelo auditável via `OwenIt/Auditing`.  
+- Centraliza dados demográficos, criminais e operacionais de indivíduos vinculados a ocorrências.  
+- Relacionamento 1:1 com armas de fogo específicas (`occurrence_firearm_involved`).
+
+---
+
+### 59. ResourceGadget Model
+
+Gerencia recursos do tipo gadget (equipamentos) com relacionamentos para tipo, condição e imagens.  
+
+#### Table: `resource_gadgets`
+
+| Column                  | Type    | Description                     |  
+| ----------------------- | ------- | ------------------------------- |  
+| `id`                    | integer | Primary Key                     |  
+| `gadget_kind_id`        | integer | FK para `gadget_kinds`          |  
+| `gadget_condition_id`   | integer | FK para `gadget_conditions`     |  
+| `opm_id`                | integer | FK para `opm` (unidade responsável) |  
+
+#### Relationships
+
+- `gadget_kind()`: **belongsTo** `App\GadgetKind`  
+- `gadget_condition()`: **belongsTo** `App\GadgetCondition`  
+- `resource_gadget_image()`: **hasMany** `App\ResourceGadgetImage`  
+- `opm()`: **belongsTo** `App\Opm`  
+
+---
+
+### 60. ResourceGadgetImage Model
+
+Armazena imagens associadas a gadgets.  
+
+#### Table: `resource_gadget_images`
+
+| Column               | Type    | Description                   |  
+| -------------------- | ------- | ----------------------------- |  
+| `id`                 | integer | Primary Key                   |  
+| `resource_gadget_id` | integer | FK para `resource_gadgets`    |  
+
+Campos protegidos por `$guarded = ['id']`  
+
+O campo `image_path` deve ser definido na migração.
+
+---
+
+### 61. ResourceVehicle Model
+
+Gerencia recursos do tipo veículo, incluindo modelo, condição e imagens.  
+
+#### Table: `resource_vehicles`
+
+| Column                  | Type    | Description                     |  
+| ----------------------- | ------- | ------------------------------- |  
+| `id`                    | integer | Primary Key                     |  
+| `vehicle_condition_id`  | integer | FK para `vehicle_conditions`    |  
+| `vehicle_model_id`      | integer | FK para `vehicle_models`        |  
+| `vehicle_kind_id`       | integer | FK para `vehicle_kinds`         |  
+| `vehicle_color_id`      | integer | FK para `vehicle_colors`        |  
+| `opm_id`                | integer | FK para `opm` (unidade responsável) |  
+
+Os campos `ano_fabricacao`, `placa`, `placa_sigilosa`, `data_validade_placa_sigilosa`, `observacoes`.
+
+#### Relationships
+
+- `vehicle_condition()`: **belongsTo** `App\VehicleCondition`  
+- `vehicle_model()`: **belongsTo** `App\VehicleModel`  
+- `vehicle_kind()`: **belongsTo** `App\VehicleKind`  
+- `vehicle_color()`: **belongsTo** `App\VehicleColor`  
+- `resource_vehicle_image()`: **hasMany** `App\ResourceVehicleImage`  
+- `opm()`: **belongsTo** `App\Opm`  
+
+---
+
+### 62. ResourceGadget Model
+
+Gerencia recursos do tipo gadget (equipamentos) com relacionamentos para tipo, condição e imagens.  
+
+#### Table: `resource_gadgets`
+
+| Column                  | Type    | Description                     |  
+| ----------------------- | ------- | ------------------------------- |  
+| `id`                    | integer | Primary Key                     |  
+| `gadget_kind_id`        | integer | FK para `gadget_kinds`          |  
+| `gadget_condition_id`   | integer | FK para `gadget_conditions`     |  
+| `opm_id`                | integer | FK para `opm` (unidade responsável) |  
+
+#### Relationships
+
+- `gadget_kind()`: **belongsTo** `App\GadgetKind`  
+- `gadget_condition()`: **belongsTo** `App\GadgetCondition`  
+- `resource_gadget_image()`: **hasMany** `App\ResourceGadgetImage`  
+- `opm()`: **belongsTo** `App\Opm`  
+
+---
+
+### 63. ResourceGadgetImage Model
+
+Armazena imagens associadas a gadgets.  
+
+#### Table: `resource_gadget_images`
+
+| Column               | Type    | Description                   |  
+| -------------------- | ------- | ----------------------------- |  
+| `id`                 | integer | Primary Key                   |  
+| `resource_gadget_id` | integer | FK para `resource_gadgets`    |  
+
+Campos protegidos por `$guarded = ['id']`  
+
+O campos `image_path` deve ser definido na migração.
+
+---
+
+### 64. ResourceVehicle Model  
+
+Gerencia recursos do tipo veículo, incluindo modelo, condição e imagens.  
+
+#### Table: `resource_vehicles`
+
+| Column                  | Type    | Description                     |  
+| ----------------------- | ------- | ------------------------------- |  
+| `id`                    | integer | Primary Key                     |  
+| `vehicle_condition_id`  | integer | FK para `vehicle_conditions`    |  
+| `vehicle_model_id`      | integer | FK para `vehicle_models`        |  
+| `vehicle_kind_id`       | integer | FK para `vehicle_kinds`         |  
+| `vehicle_color_id`      | integer | FK para `vehicle_colors`        |  
+| `opm_id`                | integer | FK para `opm` (unidade responsável) |  
+
+#### Relationships
+
+- `vehicle_condition()`: **belongsTo** `App\VehicleCondition`  
+- `vehicle_model()`: **belongsTo** `App\VehicleModel`  
+- `vehicle_kind()`: **belongsTo** `App\VehicleKind`  
+- `vehicle_color()`: **belongsTo** `App\VehicleColor`  
+- `resource_vehicle_image()`: **hasMany** `App\ResourceVehicleImage`  
+- `opm()`: **belongsTo** `App\Opm`  
+
+---
+
+### 65. ResourceVehicleImage Model
+
+Representa imagens de veículos no sistema.
+
+#### Table: `resource_vehicle_images`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+O campo `image_path` deve ser implementado na migração.
+
+#### Relationships
+
+Existe um relacionamento `resource_vehicle_id` com `resource_vehicles`.
+
+### 66. ResourceWar Model
+
+Representa recursos bélicos no sistema.
+
+#### Table: `resource_wars`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+Os campos `resource_war_kind_id`, `manufacturer_id`, `firearm_type_id`, `firearm_caliber_id`, `resource_colete_kind_id`, `resource_war_condition_id`, `validade_colete`, `carga_fixa_staff_id`, `modelo`, `numeracao`, `observacoes`, `opm_id` devem ser implementados na migração.
+
+#### Relationships
+
+- `resource_war_kind()`: Relacionamento **belongsTo** com `App\ResourceWarKind`.
+- `manufacturer()`: Relacionamento **belongsTo** com `App\FirearmManufacturer`.
+- `firearm_type()`: Relacionamento **belongsTo** com `App\FirearmType`.
+- `firearm_caliber()`: Relacionamento **belongsTo** com `App\FirearmCaliber`.
+- `resource_colete_kind()`: Relacionamento **belongsTo** com `App\ResourceColeteKind`.
+- `resource_war_condition()`: Relacionamento **belongsTo** com `App\ResourceWarCondition`.
+- `carga_fixa_staff()`: Relacionamento **belongsTo** com `App\Staff`.
+- `opm()`: Relacionamento **belongsTo** com `App\Opm`.
+- `resource_war_image()`: Relacionamento **hasMany** com `App\ResourceWarImage`.
+
+#### Scopes
 
 (Nenhum scope definido no código fornecido)
+
+### 67. ResourceWarImage Model
+
+Representa imagens de recursos bélicos no sistema.
+
+#### Table: `resource_war_images`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+Os campos `resource_war_id` e `image_path` devem ser implementados na migração.
+
+### 68. Settings Model
+
+Representa configurações do sistema.
+
+#### Table: `settings`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+Os campos `credenciamento_inicio` e `credenciamento_fim` devem ser implementados na migração.
+
+### 69. Signature Model
+
+Representa assinaturas no sistema com auditoria de alterações (OwenIt/Auditing).
+
+#### Table: `signatures`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+---
+
+### 70. Staff Model
+
+Representa membros do staff no sistema com auditoria de alterações (OwenIt/Auditing).
+
+#### Table: `staff`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+Os campos `nome`, `rank_id`, `opm_id`, `gender_id`, `leave_kind_id`, `cpf`, `data_de_nascimento`, `endereco`, `numero`, `bairro`, `complemento`, `cidade`, `uf`, `cep`, `rg`, `orgao_expedidor`, `data_de_admissao`, `mae`, `pai` devem ser implementados na migração.
+
+#### Relationships
+
+- `condition()`: Relacionamento **belongsTo** com `App\Condition`.
+- `agent()`: Relacionamento **hasOne** com `App\Agent`.
+- `staff_quest()`: Relacionamento **hasMany** com `App\StaffQuest`.
+- `staff_additional_information()`: Relacionamento **hasOne** com `App\StaffAdditionalInformation`.
+- `staff_accreditation()`: Relacionamento **hasMany** com `App\StaffAccreditation`.
+- `gender()`: Relacionamento **belongsTo** com `App\Gender`.
+- `opm()`: Relacionamento **belongsTo** com `App\Opm`.
+- `rank()`: Relacionamento **belongsTo** com `App\Rank`.
+- `user()`: Relacionamento **hasOne** com `App\User`.
+- `naturalidade()`: Relacionamento **belongsTo** com `App\City`, chave estrangeira `naturalidade_city_id`.
+- `agent_status_log()`: Relacionamento **hasOne** com `App\AgentStatusLog`, ordenado pelo mais recente.
+- `historico_credenciamento()`: Relacionamento **hasMany** com `App\AgentStatusLog`, chave estrangeira `staff_id`.
+- `improvement_course()`: Relacionamento **hasMany** com `App\StaffHasImprovementCourse`.
+- `agent_request_for_inclusion()`: Relacionamento **hasMany** com `App\AgentRequestForInclusion`.
+
+---
+
+### 71. StaffAccreditation Model
+
+Representa credenciamentos do staff no sistema com auditoria de alterações (OwenIt/Auditing).
+
+#### Table: `staff_accreditations`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Os campos `staff_id`, `decidido_por`, `apto_chefe_cordoint`, `apto_sso` devem ser implementados na migração.
+
+#### Relationships
+
+- `staff()`: Relacionamento **belongsTo** com `App\Staff`.
+- `decisor()`: Relacionamento **belongsTo** com `App\Staff`, chave estrangeira `decidido_por`.
+
+---
+
+### 72. StaffAdditionalInformation Model
+
+Representa informações adicionais sobre membros do staff no sistema com auditoria de alterações (OwenIt/Auditing).
+
+#### Table: `staff_additional_informations`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships
+
+- `endereco_city()`: Relacionamento **belongsTo** com `App\City`, chave estrangeira `endereco_city_id`.
+- `staff()`: Relacionamento **belongsTo** com `App\Staff`.
+- `opm_structure()`: Relacionamento **belongsTo** com `App\OpmStructure`.
+
+---
+
+### 73. StaffHasImprovementCourse Model
+
+Representa a relação entre membros do staff e cursos de aperfeiçoamento no sistema.
+
+#### Table: `staff_has_improvement_courses`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships
+
+- `improvement_course()`: Relacionamento **belongsTo** com `App\ImprovementCourse`.
+
+### 74. StaffQuest Model
+
+Representa questionamentos e consultas feitos por membros do staff no sistema com auditoria de alterações (OwenIt/Auditing).
+
+#### Table: `staff_quests`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+#### Relationships
+
+- `staff()`: Relacionamento **belongsTo** com `App\Staff`.
+- `quest_kind()`: Relacionamento **belongsTo** com `App\QuestKind`.
+- `consultante()`: Relacionamento **belongsTo** com `App\Staff`, chave estrangeira `consulta_feita_por`.
+
+---
+
+### 75. SupportTicket Model
+
+Representa tickets de suporte no sistema.
+
+#### Table: `support_tickets`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+#### Relationships
+
+- `ticket_kind()`: Relacionamento **belongsTo** com `App\TicketKind`.
+- `user()`: Relacionamento **belongsTo** com `App\User`.
+- `read()`: Relacionamento **belongsToMany** com `App\User` através da tabela `support_ticket_read_by_user`, incluindo o campo `created_at` no pivot.
+
+---
+
+### 76. SupportTicketRead Model
+
+Representa os registros de leitura de tickets de suporte.
+
+#### Table: `support_ticket_read_by_user`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+---
+
+### 77. TaskOrganization Model
+
+Representa a organização de tarefas no sistema com auditoria de alterações (OwenIt/Auditing).
+
+#### Table: `task_organizations`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+---
+
+### 78. TermsAndConditions Model
+
+Representa os termos e condições aceitos pelos usuários.
+
+#### Table: `terms_and_conditions`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships
+
+- `staff()`: Relacionamento **belongsTo** com `App\Staff`, chave estrangeira `staff_id`.
+- `rank()`: Relacionamento **belongsTo** com `App\Rank`, chave estrangeira `rank_id`.
+
+---
+
+### 79. TermUser Model
+
+Representa os termos aceitos pelos usuários.
+
+#### Table: `term_user`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+---
+
+### 80. TiposEstabelecimentosComerciais Model
+
+Representa os tipos de estabelecimentos comerciais no sistema.
+
+#### Table: `tipos_estabelecimentos_comerciais`
+
+Os campos `id` e `tipo` devem ser implementados na migração.
+
+---
+
+### 81. UserReadDoc Model
+
+Representa a leitura de documentos pelos usuários no sistema.
+
+#### Table: `user_read_docs`
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id`   | integer | Primary Key |
+
+Campos protegidos por `$guarded = ['id']`
+
+#### Relationships
+
+- `document()`: Relacionamento **belongsTo** com `App\Document`, chave estrangeira `document_id`.
+- `user()`: Relacionamento **belongsTo** com `App\User`.
 
 ---
 
@@ -862,6 +1592,23 @@ Campos protegidos por `$guarded = ['id']`
 - GadgetKind
 - Gender
 - ImprovementCourse
+- InvolvementKind
+- OccurrenceKind
+- OccurrencePeopleInvolvedStatus
+- PeopleColor
+- PeopleRelationship
+- PeopleRelationshipKind
+- QuestKind
+- Rank
+- ResourceColeteKind
+- ResourceWarCondition
+- ResourceWarKind
+- State
+- TicketKind
+- VehicleColor
+- VehicleCondition
+- VehicleKind
+- VehicleMark
 
 ## Views
 
