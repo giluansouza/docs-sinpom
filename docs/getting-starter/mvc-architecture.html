@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">Arquitetura MVC | Sinpom Docs</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://giluansouza.github.io/docs-sinpom/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://giluansouza.github.io/docs-sinpom/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://giluansouza.github.io/docs-sinpom/docs/getting-starter/mvc-architecture"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Arquitetura MVC | Sinpom Docs"><meta data-rh="true" name="description" content="Arquitetura do Projeto"><meta data-rh="true" property="og:description" content="Arquitetura do Projeto"><link data-rh="true" rel="icon" href="/docs-sinpom/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://giluansouza.github.io/docs-sinpom/docs/getting-starter/mvc-architecture"><link data-rh="true" rel="alternate" href="https://giluansouza.github.io/docs-sinpom/docs/getting-starter/mvc-architecture" hreflang="en"><link data-rh="true" rel="alternate" href="https://giluansouza.github.io/docs-sinpom/docs/getting-starter/mvc-architecture" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/docs-sinpom/blog/rss.xml" title="Sinpom Docs RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/docs-sinpom/blog/atom.xml" title="Sinpom Docs Atom Feed"><link rel="stylesheet" href="/docs-sinpom/assets/css/styles.87b86382.css">
-<script src="/docs-sinpom/assets/js/runtime~main.6261f97f.js" defer="defer"></script>
+<script src="/docs-sinpom/assets/js/runtime~main.f0ae0f25.js" defer="defer"></script>
 <script src="/docs-sinpom/assets/js/main.2080693b.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -13,6 +13,24 @@
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="arquitetura-do-projeto">Arquitetura do Projeto<a href="#arquitetura-do-projeto" class="hash-link" aria-label="Direct link to Arquitetura do Projeto" title="Direct link to Arquitetura do Projeto">​</a></h2>
 <p>O SINPOM utiliza uma arquitetura <strong>MVC (Model-View-Controller)</strong> que é o padrão adotado pelo framework Laravel.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="controllers">Controllers<a href="#controllers" class="hash-link" aria-label="Direct link to Controllers" title="Direct link to Controllers">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="controller">Controller<a href="#controller" class="hash-link" aria-label="Direct link to Controller" title="Direct link to Controller">​</a></h3>
+<p>Controlador base do sistema que é estendido por outros controllers. Fornece funcionalidades essenciais de autorização, despacho de jobs e validação de requisições para as classes que o utilizam.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais">Métodos Principais<a href="#métodos-principais" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>Autorizações:</strong> O controller herda o trait <code>AuthorizesRequests</code>, que permite a autorização de ações de usuários no sistema.</li>
+<li><strong>Despacho de Jobs:</strong> O controller herda o trait <code>DispatchesJobs</code>, que permite o despacho de jobs para a fila de tarefas do sistema.</li>
+<li><strong>Validação de Requisições:</strong> O controller herda o trait <code>ValidatesRequests</code>, que permite a validação de dados nas requisições HTTP recebidas.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências">Dependências<a href="#dependências" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>AuthorizesRequests:</strong> Trait que fornece métodos para autorizar ações de usuários, garantindo que apenas usuários com permissões adequadas possam executar ações específicas.</li>
+<li><strong>DispatchesJobs:</strong> Trait que permite o envio de jobs para a fila de tarefas, facilitando o processamento assíncrono de tarefas.</li>
+<li><strong>ValidatesRequests:</strong> Trait que fornece métodos para validar dados de requisições HTTP, garantindo que os dados recebidos estejam no formato correto.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller base oferecendo funcionalidades essenciais de autorização, despacho de jobs e validação de requisições.</p>
+</blockquote>
+<hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="painelcontroller">PainelController<a href="#painelcontroller" class="hash-link" aria-label="Direct link to PainelController" title="Direct link to PainelController">​</a></h3>
 <p>Gerencia o painel do usuário, ações relacionadas ao perfil e visualizações condicionais de acordo com as permissões do usuário.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="key-methods">Key Methods<a href="#key-methods" class="hash-link" aria-label="Direct link to Key Methods" title="Direct link to Key Methods">​</a></h4>
@@ -30,6 +48,578 @@
 <li><code>Auth</code>: Gerencia o usuário autenticado.</li>
 <li><code>Crypt</code>: Criptografa dados sensíveis.</li>
 <li><code>Staff</code>: Recupera informações de perfil do usuário para verificações de dados adicionais.</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="aclcontroller">AclController<a href="#aclcontroller" class="hash-link" aria-label="Direct link to AclController" title="Direct link to AclController">​</a></h3>
+<p>Gerencia a atribuição de funções e permissões de usuários no sistema. Permite ações como listar usuários, exibir detalhes de usuários e gerenciar funções e permissões.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-1">Métodos Principais<a href="#métodos-principais-1" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>index(Request $request):</strong> Retorna e exibe uma lista paginada de usuários, filtrada por função e permissões. Implementa lógica para diferentes níveis de permissão, como &quot;Autorizar usuários todos níveis&quot; e &quot;Gerenciar usuários CPR&quot;.</li>
+<li><strong>show(Request $request, $id):</strong> Exibe os detalhes de um usuário específico, incluindo suas funções e a estrutura organizacional (OPM). Verifica permissões antes de permitir o acesso.</li>
+<li><strong>token(Request $request):</strong> Exibe a página de geração de token para um membro específico da equipe, permitindo a criação de um código de verificação.</li>
+<li><strong>storetoken(Request $request):</strong> Cria ou atualiza o código de verificação para um agente, e envia o código para o e-mail do agente. Inclui uma verificação para garantir que o agente não esteja duplicado no sistema.</li>
+<li><strong>update(Request $request, $id):</strong> Atualiza a função de um usuário. Inclui verificações para impedir a duplicação de funções em uma mesma unidade (ex: Chefe ou Analista - SOInt). Trata casos especiais como &quot;descredenciamento&quot; de agentes.</li>
+<li><strong>destroy($id):</strong> Realiza a exclusão suave de um usuário, removendo a função atribuída ao usuário e gerenciando o histórico de status (como descredenciamento).</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-1">Dependências<a href="#dependências-1" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>User:</strong> Modelo que representa os usuários no sistema. Manipula as funções e permissões atribuídas a cada usuário.</li>
+<li><strong>Role:</strong> Modelo que gerencia as funções atribuídas aos usuários, verificando permissões e implementando regras de acesso.</li>
+<li><strong>Staff:</strong> Representa os detalhes de cada membro da equipe, incluindo suas funções, hierarquia e status.</li>
+<li><strong>AgentStatusLog:</strong> Registra as mudanças de status dos agentes, como credenciamento e descredenciamento.</li>
+<li><strong>CodeVerification:</strong> Responsável pela criação e validação de códigos de verificação usados em diversas operações no sistema.</li>
+<li><strong>CustomQueries:</strong> Contém consultas personalizadas que são usadas para gerar as listas de usuários, filtradas por função e status.</li>
+<li><strong>AgentRequestForInclusion:</strong> Modelo que gerencia solicitações para inclusão de agentes em processos específicos, como credenciamento ou descredenciamento.</li>
+<li><strong>Mail:</strong> Utilizado para enviar e-mails, como o envio de tokens de verificação aos usuários.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="agentcontroller">AgentController<a href="#agentcontroller" class="hash-link" aria-label="Direct link to AgentController" title="Direct link to AgentController">​</a></h3>
+<p>Gerencia as operações relacionadas aos agentes, como listar agentes, exibir detalhes, credenciamento e controle de solicitações de inclusão. Permite ações de filtragem e permissões específicas para diferentes níveis de acesso.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-2">Métodos Principais<a href="#métodos-principais-2" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>index(Request $request):</strong> Retorna e exibe uma lista paginada de agentes, filtrada por função e permissões. Implementa lógica para diferentes níveis de permissão, como &quot;Ver todos agentes&quot; e &quot;Ver agentes CPR&quot;.</li>
+<li><strong>listar(Request $request):</strong> Lista os agentes de acordo com as permissões do usuário, com suporte para filtrar por OPM ou ID de staff.</li>
+<li><strong>credenciamento(Request $request):</strong> Exibe os agentes com credenciamento solicitado, filtrados de acordo com as permissões do usuário e a estrutura da OPM.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-2">Dependências<a href="#dependências-2" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>Staff:</strong> Modelo que representa os agentes e seus dados relacionados, como informações de staff e funções.</li>
+<li><strong>User:</strong> Modelo que representa os usuários do sistema, incluindo permissões e funções.</li>
+<li><strong>Role:</strong> Modelo que gerencia as funções atribuídas aos usuários e agentes.</li>
+<li><strong>Opm:</strong> Modelo que representa as unidades da Polícia Militar e suas estruturas.</li>
+<li><strong>AgentRequestForInclusion:</strong> Modelo que gerencia as solicitações de inclusão de agentes em processos, como credenciamento.</li>
+<li><strong>AgentStatusLog:</strong> Registra as mudanças de status dos agentes, como credenciamento ou descredenciamento.</li>
+<li><strong>AgentFis, AgentPesquisaSocial, Decision, Document, Signature:</strong> Modelos adicionais envolvidos nas operações relacionadas ao gerenciamento de agentes.</li>
+<li><strong>Mail:</strong> Usado para enviar notificações de credenciamento e atualizações.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="documentcontroller">DocumentController<a href="#documentcontroller" class="hash-link" aria-label="Direct link to DocumentController" title="Direct link to DocumentController">​</a></h3>
+<p>Gerencia as operações relacionadas aos documentos, incluindo a caixa de entrada e saída, o encaminhamento e a tramitação de documentos, além da busca e do controle de prazos.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-3">Métodos Principais<a href="#métodos-principais-3" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>index(Request $request):</strong> Retorna e exibe uma lista de documentos na caixa de entrada, com base nas permissões do usuário. Implementa lógica para diferentes permissões, como &quot;Tramitar documentos&quot; e &quot;Ver documentos enviados para OPM&quot;.</li>
+<li><strong>search(Request $request):</strong> Realiza uma busca detalhada de documentos com base em critérios como texto, data e difusão. Permite filtrar documentos de acordo com a seção que criou ou recebeu o documento.</li>
+<li><strong>caixadesaida(Request $request):</strong> Exibe os documentos na caixa de saída, incluindo aqueles que foram criados, enviados ou encaminhados pelo usuário.</li>
+<li><strong>prazos_externos(Request $request):</strong> Exibe documentos com prazos externos, filtrados de acordo com a data.</li>
+<li><strong>prazos(Request $request):</strong> Exibe documentos com prazos internos, filtrados de acordo com a data.</li>
+<li><strong>stopValidAt(Request $request):</strong> Finaliza a resposta de um documento específico, caso o usuário tenha permissão para isso.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-3">Dependências<a href="#dependências-3" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>DocumentControl:</strong> Modelo que gerencia os controles de documentos, incluindo a entrada e saída de documentos e seu encaminhamento.</li>
+<li><strong>Document:</strong> Modelo que representa os documentos e suas informações principais.</li>
+<li><strong>OpmStructure:</strong> Modelo que representa as estruturas das unidades da Polícia Militar.</li>
+<li><strong>Attachment:</strong> Modelo utilizado para anexar arquivos aos documentos.</li>
+<li><strong>DocumentTracking:</strong> Registra o histórico de movimentação de documentos.</li>
+<li><strong>Mail:</strong> Utilizado para enviar notificações e atualizações sobre o status dos documentos.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="entityfirearmcontroller">EntityFirearmController<a href="#entityfirearmcontroller" class="hash-link" aria-label="Direct link to EntityFirearmController" title="Direct link to EntityFirearmController">​</a></h3>
+<p>Gerencia as operações relacionadas às armas de fogo registradas em entidades, incluindo a inclusão, consulta, edição e atualização de informações sobre armas, bem como a associação com pessoas e ocorrências.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-4">Métodos Principais<a href="#métodos-principais-4" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>store(Request $request):</strong> Cria um novo registro de arma de fogo e associa pessoas e ocorrências a ela. Salva os dados da arma e gerencia o relacionamento com os envolvidos.</li>
+<li><strong>consultaarma(Request $request):</strong> Consulta informações sobre uma arma de fogo registrada, incluindo os detalhes do tipo, fabricante, calibre, propriedade e identificação legível, além de listar as pessoas associadas à arma em uma ocorrência ou documento.</li>
+<li><strong>edit(Request $request, $id):</strong> Exibe a página de edição de uma arma de fogo, carregando os dados da arma, fabricantes, calibres e pessoas associadas à arma em ocorrências ou documentos.</li>
+<li><strong>update(Request $request, $id):</strong> Atualiza os dados de uma arma de fogo registrada e suas associações, incluindo a remoção de vínculos de pessoas associadas, quando necessário.</li>
+<li><strong>removevinculo(Request $request):</strong> Remove a associação de uma pessoa com uma arma de fogo registrada, excluindo o vínculo na tabela de envolvimentos.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-4">Dependências<a href="#dependências-4" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>EntityFirearm:</strong> Modelo que representa as armas de fogo registradas nas entidades, incluindo detalhes como tipo, fabricante e número de série.</li>
+<li><strong>EntityFirearmInvolvement:</strong> Modelo que gerencia o relacionamento entre as armas de fogo e as ocorrências ou documentos aos quais estão associadas.</li>
+<li><strong>EntityPeopleHasEntityFirearm:</strong> Modelo que gerencia o relacionamento entre pessoas e as armas de fogo registradas.</li>
+<li><strong>Occurrence:</strong> Modelo que representa as ocorrências relacionadas às armas de fogo, como apreensões ou investigações.</li>
+<li><strong>Document:</strong> Modelo que representa os documentos relacionados às armas de fogo, como relatórios e registros oficiais.</li>
+<li><strong>FirearmType, FirearmManufacturer, FirearmCaliber, FirearmOwner, FirearmSerialNumberStatus:</strong> Modelos que fornecem os dados sobre tipos de armas, fabricantes, calibres, proprietários e status de números de série das armas de fogo.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="entitypeoplecontroller">EntityPeopleController<a href="#entitypeoplecontroller" class="hash-link" aria-label="Direct link to EntityPeopleController" title="Direct link to EntityPeopleController">​</a></h3>
+<p>Gerencia as operações relacionadas às pessoas registradas nas entidades, incluindo a importação de dados, criação, atualização, e gerenciamento de informações pessoais, como apelidos, endereços, envolvimentos e documentos.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-5">Métodos Principais<a href="#métodos-principais-5" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>readCsv():</strong> Realiza a leitura e importação de dados a partir de um arquivo CSV, criando registros de pessoas, seus apelidos, endereços, e associações com facções e crimes.</li>
+<li><strong>store(Request $request):</strong> Cria uma nova entidade pessoa a partir dos dados fornecidos na requisição, incluindo a criação de apelidos, endereços, e associações com facções, crimes e documentos.</li>
+<li><strong>mandadoShow(Request $request, $id):</strong> Exibe o mandado de prisão associado a uma pessoa, permitindo o download do arquivo correspondente.</li>
+<li><strong>mandadoDelete(Request $request, $id):</strong> Exclui o mandado de prisão associado a uma pessoa, removendo o arquivo do sistema e apagando o registro do banco de dados.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-5">Dependências<a href="#dependências-5" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>EntityPeople:</strong> Modelo que representa as pessoas registradas nas entidades, incluindo informações como nome, CPF, RG, gênero, e data de nascimento.</li>
+<li><strong>EntityPeopleApelido:</strong> Modelo que gerencia os apelidos das pessoas registradas.</li>
+<li><strong>EntityPeopleAddress:</strong> Modelo que gerencia os endereços das pessoas registradas.</li>
+<li><strong>EntityPeopleCrime:</strong> Modelo que gerencia as associações entre as pessoas e os crimes em que estão envolvidas.</li>
+<li><strong>Faccao:</strong> Modelo que representa as facções às quais as pessoas podem estar associadas.</li>
+<li><strong>EntityPeoplePriorityLevel:</strong> Modelo que representa os níveis de prioridade das pessoas registradas.</li>
+<li><strong>EntityPeopleMarkKind, EntityPeopleMarkLocation:</strong> Modelos que gerenciam as características e localizações das marcas associadas às pessoas.</li>
+<li><strong>Document:</strong> Modelo que representa os documentos associados às pessoas registradas.</li>
+<li><strong>EntityPeopleArrestWarrant:</strong> Modelo que gerencia os mandados de prisão associados às pessoas.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="entityvehiclecontroller">EntityVehicleController<a href="#entityvehiclecontroller" class="hash-link" aria-label="Direct link to EntityVehicleController" title="Direct link to EntityVehicleController">​</a></h3>
+<p>Gerencia as operações relacionadas aos veículos registrados em entidades, incluindo a inclusão, consulta, edição e atualização de informações sobre veículos, bem como a associação com pessoas e ocorrências.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-6">Métodos Principais<a href="#métodos-principais-6" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>store(Request $request):</strong> Cria um novo registro de veículo e associa pessoas e ocorrências a ele. Salva os dados do veículo e gerencia o relacionamento com os envolvidos.</li>
+<li><strong>consultaveiculo(Request $request):</strong> Consulta informações sobre um veículo registrado, incluindo os detalhes do tipo, modelo, cor, placa e RENAVAN, além de listar as pessoas associadas ao veículo em uma ocorrência ou documento.</li>
+<li><strong>edit(Request $request, $id):</strong> Exibe a página de edição de um veículo, carregando os dados do veículo, tipos, cores e pessoas associadas ao veículo em ocorrências ou documentos.</li>
+<li><strong>update(Request $request, $id):</strong> Atualiza os dados de um veículo registrado e suas associações, incluindo a remoção de vínculos de pessoas associadas, quando necessário.</li>
+<li><strong>removevinculo(Request $request):</strong> Remove a associação de uma pessoa com um veículo registrado, excluindo o vínculo na tabela de envolvimentos.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-6">Dependências<a href="#dependências-6" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>EntityVehicle:</strong> Modelo que representa os veículos registrados nas entidades, incluindo detalhes como tipo, modelo, cor, placa e RENAVAN.</li>
+<li><strong>EntityVehicleInvolvement:</strong> Modelo que gerencia o relacionamento entre os veículos e as ocorrências ou documentos aos quais estão associados.</li>
+<li><strong>EntityPeopleHasEntityVehicle:</strong> Modelo que gerencia o relacionamento entre pessoas e os veículos registrados.</li>
+<li><strong>VehicleKind:</strong> Modelo que representa os tipos de veículos.</li>
+<li><strong>VehicleColor:</strong> Modelo que representa as cores dos veículos.</li>
+<li><strong>Occurrence:</strong> Modelo que representa as ocorrências relacionadas aos veículos, como apreensões ou investigações.</li>
+<li><strong>Document:</strong> Modelo que representa os documentos relacionados aos veículos, como relatórios e registros oficiais.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="exportcontroller">ExportController<a href="#exportcontroller" class="hash-link" aria-label="Direct link to ExportController" title="Direct link to ExportController">​</a></h3>
+<p>Gerencia as operações de exportação de dados para arquivos CSV, permitindo a exportação de informações relacionadas às pessoas registradas nas entidades.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-7">Métodos Principais<a href="#métodos-principais-7" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>peopleCsv():</strong> Exporta os dados das pessoas registradas para um arquivo CSV. O método recupera os registros de pessoas e gera um arquivo com informações como nome, CPF, data de nascimento, área de atuação, facção associada, e status atual.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-7">Dependências<a href="#dependências-7" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>EntityPeople:</strong> Modelo que representa as pessoas registradas nas entidades, incluindo informações como nome, CPF, data de nascimento e associações com facções e status.</li>
+<li><strong>SimpleExcelWriter:</strong> Classe utilizada para criar e escrever no arquivo CSV.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="faccaocontroller">FaccaoController<a href="#faccaocontroller" class="hash-link" aria-label="Direct link to FaccaoController" title="Direct link to FaccaoController">​</a></h3>
+<p>Gerencia as operações relacionadas às facções criminosas registradas no sistema, incluindo a criação, edição, listagem e exclusão de facções, bem como o registro de informações criminais e geográficas associadas.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-8">Métodos Principais<a href="#métodos-principais-8" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>index(Request $request):</strong> Exibe uma lista paginada de facções, restrita a usuários com permissões específicas. Apenas usuários autorizados pela &quot;Segurança pública e ouvidoria&quot; podem acessar esta funcionalidade.</li>
+<li><strong>create(Request $request):</strong> Exibe o formulário para criar uma nova facção, disponível apenas para usuários com permissões adequadas.</li>
+<li><strong>edit(Request $request, $id):</strong> Exibe o formulário de edição para uma facção existente, permitindo alterar informações como nome. Disponível apenas para usuários autorizados.</li>
+<li><strong>update(Request $request, $id):</strong> Atualiza os dados de uma facção existente e verifica se o nome informado já está registrado. Caso o nome já exista, um erro é retornado.</li>
+<li><strong>store(Request $request):</strong> Armazena uma nova facção no banco de dados, após verificar se uma facção com o mesmo nome já existe.</li>
+<li><strong>logocrim(Request $request):</strong> Exibe as informações relacionadas aos logos criminais registrados, com filtros para facção, tipo de comunicação criminal, e outras variáveis.</li>
+<li><strong>logocrimCreate(Request $request):</strong> Exibe o formulário para criar um novo logo criminal, permitindo incluir dados como facção, tipo de crime, e informações adicionais.</li>
+<li><strong>logocrimStore(Request $request):</strong> Armazena um novo logo criminal, incluindo anexos e imagens relacionadas.</li>
+<li><strong>logocrimImage($path):</strong> Realiza o download de imagens associadas aos logos criminais.</li>
+<li><strong>logocrimAnexo($path):</strong> Realiza o download de anexos associados aos logos criminais.</li>
+<li><strong>logocrimEdit(Request $request, $id):</strong> Exibe o formulário de edição para um logo criminal existente.</li>
+<li><strong>logocrimImagePath(Request $request, $id):</strong> Retorna o caminho da imagem associada a um logo criminal.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-8">Dependências<a href="#dependências-8" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>Faccao:</strong> Modelo que representa as facções criminosas registradas no sistema, com informações como nome e associações a outras entidades.</li>
+<li><strong>LogoCrimInfo:</strong> Modelo que gerencia as informações relacionadas aos logos criminais, incluindo imagens, anexos e geolocalização.</li>
+<li><strong>CrimeCommunicationKind, CrimeConnotation, CrimeInformationSource:</strong> Modelos que representam diferentes aspectos da comunicação e conotação dos crimes, bem como suas fontes de informação.</li>
+<li><strong>State, City:</strong> Modelos que representam estados e cidades, utilizados para geolocalização de eventos criminosos.</li>
+<li><strong>Prison:</strong> Modelo que representa as prisões associadas aos crimes registrados.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="geolocationcontroller">GeolocationController<a href="#geolocationcontroller" class="hash-link" aria-label="Direct link to GeolocationController" title="Direct link to GeolocationController">​</a></h3>
+<p>Gerencia as operações relacionadas à geolocalização de IPs, retornando a cidade e as coordenadas geográficas associadas ao endereço de IP do usuário.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-9">Métodos Principais<a href="#métodos-principais-9" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>search(Request $request):</strong> Obtém o endereço de IP do usuário e, com base nesse IP, consulta a localização geográfica utilizando a API <code>IPInfoDB</code>. Retorna as coordenadas geográficas (latitude e longitude) associadas ao IP. Caso não seja possível determinar a localização, retorna valores padrão de latitude e longitude.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-9">Dependências<a href="#dependências-9" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>IPInfoDB:</strong> Serviço utilizado para consultar informações de geolocalização a partir do endereço de IP.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="homecontroller">HomeController<a href="#homecontroller" class="hash-link" aria-label="Direct link to HomeController" title="Direct link to HomeController">​</a></h3>
+<p>Controlador responsável pela exibição da página inicial do sistema, garantindo que o usuário esteja autenticado antes de acessar a dashboard.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-10">Métodos Principais<a href="#métodos-principais-10" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>__construct():</strong> Construtor que aplica o middleware de autenticação, garantindo que o usuário esteja autenticado para acessar os métodos deste controller.</li>
+<li><strong>index():</strong> Exibe a página inicial da aplicação, renderizando a view <code>home</code>.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-10">Dependências<a href="#dependências-10" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>Auth:</strong> Middleware que garante que apenas usuários autenticados possam acessar os métodos do controller.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="improvementcoursecontroller">ImprovementCourseController<a href="#improvementcoursecontroller" class="hash-link" aria-label="Direct link to ImprovementCourseController" title="Direct link to ImprovementCourseController">​</a></h3>
+<p>Gerencia as operações relacionadas aos cursos de aperfeiçoamento, incluindo a criação, edição, listagem e atualização de cursos registrados no sistema.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-11">Métodos Principais<a href="#métodos-principais-11" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>index(Request $request):</strong> Exibe a lista de cursos de aperfeiçoamento, com suporte para filtro por nome ou sigla. O acesso é restrito a usuários da &quot;Coordenação de Contrainteligência&quot;.</li>
+<li><strong>edit(Request $request, $id):</strong> Exibe o formulário de edição de um curso de aperfeiçoamento existente, permitindo a alteração de dados como sigla, nome e órgão. O acesso é restrito a usuários autorizados.</li>
+<li><strong>update(Request $request, $id):</strong> Atualiza as informações de um curso de aperfeiçoamento existente no sistema.</li>
+<li><strong>create(Request $request):</strong> Exibe o formulário para criação de um novo curso de aperfeiçoamento. O acesso é restrito a usuários da &quot;Coordenação de Contrainteligência&quot;.</li>
+<li><strong>store(Request $request):</strong> Cria um novo curso de aperfeiçoamento no sistema, com base nos dados fornecidos no formulário. O acesso é restrito a usuários autorizados.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-11">Dependências<a href="#dependências-11" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>ImprovementCourse:</strong> Modelo que representa os cursos de aperfeiçoamento, incluindo informações como sigla, nome e órgão responsável.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="occurrencecontroller">OccurrenceController<a href="#occurrencecontroller" class="hash-link" aria-label="Direct link to OccurrenceController" title="Direct link to OccurrenceController">​</a></h3>
+<p>Gerencia as operações relacionadas às ocorrências registradas no sistema, incluindo a criação, edição, listagem, atualização e exclusão de ocorrências, bem como o gerenciamento de geolocalização e envolvimento de pessoas, veículos e armas.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-12">Métodos Principais<a href="#métodos-principais-12" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>create(Request $request):</strong> Exibe o formulário para criação de uma nova ocorrência, disponível apenas para usuários com permissão para registrar ocorrências.</li>
+<li><strong>store(Request $request):</strong> Cria uma nova ocorrência e a armazena no banco de dados, criando também os tipos de envolvimento associados à ocorrência.</li>
+<li><strong>edit(Request $request, $id):</strong> Exibe o formulário de edição para uma ocorrência existente, permitindo a modificação de seus dados e o gerenciamento de envolvimentos.</li>
+<li><strong>update(Request $request, $id):</strong> Atualiza os dados de uma ocorrência existente, incluindo a geolocalização e o envolvimento de pessoas, veículos e armas.</li>
+<li><strong>listar(Request $request):</strong> Exibe uma lista de ocorrências filtradas por diferentes critérios, dependendo das permissões do usuário (como &quot;Consultar ocorrências locais&quot; ou &quot;Consultar ocorrências gerais&quot;).</li>
+<li><strong>show(Request $request, $id):</strong> Exibe os detalhes de uma ocorrência específica, incluindo suas coordenadas de geolocalização.</li>
+<li><strong>checkage(Request $request):</strong> Verifica se a ocorrência foi registrada dentro de um intervalo aceitável de tempo (30 dias).</li>
+<li><strong>destroy($id):</strong> Exclui uma ocorrência e seus envolvimentos, caso o usuário tenha permissões adequadas.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-12">Dependências<a href="#dependências-12" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>Occurrence:</strong> Modelo que representa as ocorrências registradas, incluindo informações como data, hora, local, envolvidos e descrição.</li>
+<li><strong>OccurrenceKindInvolved:</strong> Modelo que representa os tipos de envolvimento em uma ocorrência.</li>
+<li><strong>OccurrenceGeolocation:</strong> Modelo que representa a geolocalização de uma ocorrência.</li>
+<li><strong>EntityPeopleInvolvement, EntityVehicleInvolvement, EntityFirearmInvolvement:</strong> Modelos que gerenciam os envolvimentos de pessoas, veículos e armas nas ocorrências.</li>
+<li><strong>WeaponKind, FirearmType, FirearmManufacturer, FirearmCaliber:</strong> Modelos que representam as armas envolvidas nas ocorrências.</li>
+<li><strong>PeopleColor, VehicleKind, VehicleColor:</strong> Modelos que representam as características das pessoas e veículos envolvidos nas ocorrências.</li>
+<li><strong>Motivacao, Faccao, Zona, MeiosAmeaca, Motivacao:</strong> Modelos que fornecem informações sobre a motivação e as características das ocorrências.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="opmcontroller">OpmController<a href="#opmcontroller" class="hash-link" aria-label="Direct link to OpmController" title="Direct link to OpmController">​</a></h3>
+<p>Gerencia as operações relacionadas às OPMs (Unidades da Polícia Militar), incluindo a edição de informações da OPM, a exibição de dados de governança, e o gerenciamento dos usuários associados a cada OPM.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-13">Métodos Principais<a href="#métodos-principais-13" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>edit(Request $request, $id):</strong> Exibe o formulário de edição para uma OPM existente, permitindo alterar informações relacionadas à OPM, como endereço, telefone e e-mail. O acesso é restrito a usuários com permissões adequadas.</li>
+<li><strong>update(Request $request, $id):</strong> Atualiza os dados de uma OPM existente, incluindo as informações de governança, como coordenadores e contatos.</li>
+<li><strong>governing(Request $request):</strong> Exibe as informações de governança para uma OPM específica, incluindo a listagem de usuários associados a essa OPM, com base nas permissões do usuário.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-13">Dependências<a href="#dependências-13" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>Opm:</strong> Modelo que representa as Unidades da Polícia Militar e suas informações principais.</li>
+<li><strong>OpmGoverning:</strong> Modelo que gerencia as informações de governança de cada OPM, incluindo detalhes como endereço, telefone e coordenadores.</li>
+<li><strong>User:</strong> Modelo que representa os usuários associados à OPM, incluindo suas permissões e funções.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="painelcontroller-1">PainelController<a href="#painelcontroller-1" class="hash-link" aria-label="Direct link to PainelController" title="Direct link to PainelController">​</a></h3>
+<p>Gerencia as operações relacionadas ao painel principal do sistema, incluindo a visualização de informações gerais sobre ocorrências, alvos prioritários, e avisos. Controla o acesso ao painel com base nas permissões do usuário e realiza verificações sobre dados cadastrais e status.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-14">Métodos Principais<a href="#métodos-principais-14" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>index(Request $request):</strong> Exibe o painel principal do sistema, com informações sobre ocorrências agrupadas por tipo, avisos recentes e alvos prioritários. O acesso é controlado por permissões específicas, incluindo a visualização de um painel personalizável e de dados específicos de unidades de operação (OPMs).</li>
+<li><strong>tutorial(Request $request):</strong> Exibe o tutorial de uso do painel, com instruções para o usuário.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-14">Dependências<a href="#dependências-14" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>CustomQueries:</strong> Classe responsável por executar consultas personalizadas, como contagem de agentes e ocorrências.</li>
+<li><strong>News:</strong> Modelo que representa as notícias e avisos do sistema, incluindo categorias específicas de avisos.</li>
+<li><strong>PriorityTarget:</strong> Modelo que gerencia os alvos prioritários, incluindo informações sobre a pessoa e sua situação.</li>
+<li><strong>Staff:</strong> Modelo que representa os funcionários associados às OPMs, incluindo seus dados e informações adicionais.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="querycontroller">QueryController<a href="#querycontroller" class="hash-link" aria-label="Direct link to QueryController" title="Direct link to QueryController">​</a></h3>
+<p>Gerencia as consultas complexas no sistema, incluindo a contagem de ocorrências por tipo, por OPM, e por período. Também lida com a busca de pessoas e o gerenciamento de suas informações, como nome, apelido, documentos e envolvimentos.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-15">Métodos Principais<a href="#métodos-principais-15" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>countoccurrencesbykindallopmjson($dataInicial, $dataFinal):</strong> Retorna a contagem de ocorrências agrupadas por tipo dentro de um intervalo de datas.</li>
+<li><strong>countoccurrencesbyopm($dataInicial, $dataFinal):</strong> Retorna a contagem de ocorrências agrupadas por OPM e CPR dentro de um intervalo de datas.</li>
+<li><strong>counthomicidiosbyopm($dataInicial, $dataFinal):</strong> Retorna a contagem de homicídios ocorridos em uma OPM dentro de um intervalo de datas.</li>
+<li><strong>entidadepessoa(Request $request):</strong> Exibe a página de pesquisa de pessoas, com filtros como nome, apelido, matrícula de PM, e outros critérios relacionados.</li>
+<li><strong>entidadepessoasearch(Request $request):</strong> Realiza a pesquisa de pessoas no sistema, filtrando por diversos campos como nome, CPF, RG, área de atuação, entre outros.</li>
+<li><strong>consultaentidadepessoa(Request $request):</strong> Retorna os dados detalhados de uma pessoa, incluindo registros de ocorrências e informações associadas, como documentos e armas envolvidas.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-15">Dependências<a href="#dependências-15" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>Occurrence:</strong> Modelo que representa as ocorrências registradas no sistema.</li>
+<li><strong>EntityPeople:</strong> Modelo que representa as pessoas registradas no sistema.</li>
+<li><strong>EntityPeopleInvolvement:</strong> Modelo que gerencia o envolvimento de pessoas em ocorrências.</li>
+<li><strong>Faccao:</strong> Modelo que representa as facções criminosas associadas às pessoas.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="resourcegadgetcontroller">ResourceGadgetController<a href="#resourcegadgetcontroller" class="hash-link" aria-label="Direct link to ResourceGadgetController" title="Direct link to ResourceGadgetController">​</a></h3>
+<p>Gerencia as operações relacionadas aos recursos de equipamentos, incluindo a exibição de gadgets (equipamentos) registrados, a criação, edição e atualização de informações de equipamentos, e o gerenciamento de imagens associadas a esses gadgets.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-16">Métodos Principais<a href="#métodos-principais-16" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>index(Request $request):</strong> Exibe a lista de equipamentos registrados, filtrados por tipo de gadget e condição, com base nas permissões do usuário (OPM ou CPR).</li>
+<li><strong>create(Request $request):</strong> Exibe o formulário para criar um novo equipamento, disponível apenas para usuários com a permissão de cadastrar equipamentos.</li>
+<li><strong>store(Request $request):</strong> Armazena um novo equipamento no banco de dados, incluindo a criação de imagens associadas ao gadget.</li>
+<li><strong>show(Request $request, $id):</strong> Exibe os detalhes de um equipamento específico.</li>
+<li><strong>image($filename):</strong> Retorna a imagem associada ao equipamento para download.</li>
+<li><strong>edit(Request $request, $id):</strong> Exibe o formulário de edição para um equipamento existente, permitindo a atualização dos dados e imagens associadas.</li>
+<li><strong>update(Request $request, $id):</strong> Atualiza os dados de um equipamento existente, incluindo a remoção de imagens antigas e a adição de novas imagens.</li>
+<li><strong>destroy(Request $request, $id):</strong> Exclui um equipamento e suas imagens associadas do banco de dados.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-16">Dependências<a href="#dependências-16" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>ResourceGadget:</strong> Modelo que representa os gadgets (equipamentos) registrados no sistema, com informações como marca, modelo, e condições.</li>
+<li><strong>GadgetKind:</strong> Modelo que representa os tipos de gadgets registrados.</li>
+<li><strong>GadgetCondition:</strong> Modelo que representa as condições dos gadgets, como &quot;Novo&quot;, &quot;Usado&quot;, etc.</li>
+<li><strong>ResourceGadgetImage:</strong> Modelo que gerencia as imagens associadas aos gadgets.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="resourcevehiclecontroller">ResourceVehicleController<a href="#resourcevehiclecontroller" class="hash-link" aria-label="Direct link to ResourceVehicleController" title="Direct link to ResourceVehicleController">​</a></h3>
+<p>Gerencia as operações relacionadas aos veículos registrados, incluindo a criação, edição, atualização, exibição e exclusão de veículos, bem como o gerenciamento de imagens associadas a esses veículos.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-17">Métodos Principais<a href="#métodos-principais-17" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>index(Request $request):</strong> Exibe a lista de veículos registrados, com filtros por OPM, placa, condição do veículo e outros critérios. O acesso é controlado por permissões específicas, como &quot;Ver veículos da OPM&quot;, &quot;Ver veículos do CPR&quot; ou &quot;Ver veículos todos&quot;.</li>
+<li><strong>create(Request $request):</strong> Exibe o formulário para criação de um novo veículo, disponível apenas para usuários com a permissão de cadastrar veículos.</li>
+<li><strong>store(Request $request):</strong> Cria um novo veículo no banco de dados e armazena informações sobre o tipo, modelo, cor e condição do veículo, além de salvar imagens associadas.</li>
+<li><strong>show(Request $request, $id):</strong> Exibe os detalhes de um veículo específico.</li>
+<li><strong>image($filename):</strong> Retorna a imagem associada ao veículo para download.</li>
+<li><strong>edit(Request $request, $id):</strong> Exibe o formulário de edição para um veículo existente, permitindo a atualização dos dados e das imagens associadas.</li>
+<li><strong>update(Request $request, $id):</strong> Atualiza os dados de um veículo existente e suas imagens associadas, removendo as imagens antigas, se necessário.</li>
+<li><strong>destroy(Request $request, $id):</strong> Exclui um veículo e suas imagens associadas do banco de dados.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-17">Dependências<a href="#dependências-17" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>ResourceVehicle:</strong> Modelo que representa os veículos registrados, incluindo informações como tipo, modelo, cor, placa e condição.</li>
+<li><strong>VehicleKind:</strong> Modelo que representa os tipos de veículos.</li>
+<li><strong>VehicleColor:</strong> Modelo que representa as cores dos veículos.</li>
+<li><strong>VehicleCondition:</strong> Modelo que representa as condições dos veículos.</li>
+<li><strong>ResourceVehicleImage:</strong> Modelo que gerencia as imagens associadas aos veículos.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="resourcewarcontroller">ResourceWarController<a href="#resourcewarcontroller" class="hash-link" aria-label="Direct link to ResourceWarController" title="Direct link to ResourceWarController">​</a></h3>
+<p>Gerencia as operações relacionadas aos armamentos registrados no sistema, incluindo a criação, edição, listagem e exclusão de armas, bem como o gerenciamento das condições e tipos de armamento.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-18">Métodos Principais<a href="#métodos-principais-18" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>index(Request $request):</strong> Exibe a lista de armamentos registrados, com filtros por OPM, tipo de armamento, fabricante, e condição. O acesso é controlado por permissões específicas, como &quot;Ver armamento da OPM&quot;, &quot;Ver armamento do CPR&quot; ou &quot;Ver armamento todos&quot;.</li>
+<li><strong>create(Request $request):</strong> Exibe o formulário para criação de um novo armamento, disponível apenas para usuários com a permissão de cadastrar armamentos.</li>
+<li><strong>store(Request $request):</strong> Cria um novo armamento no banco de dados e armazena informações sobre o tipo, modelo, fabricante e condição do armamento, além de salvar imagens associadas.</li>
+<li><strong>show(Request $request, $id):</strong> Exibe os detalhes de um armamento específico.</li>
+<li><strong>image($filename):</strong> Retorna a imagem associada ao armamento para download.</li>
+<li><strong>edit(Request $request, $id):</strong> Exibe o formulário de edição para um armamento existente, permitindo a atualização dos dados e das imagens associadas.</li>
+<li><strong>update(Request $request, $id):</strong> Atualiza os dados de um armamento existente e suas imagens associadas, removendo as imagens antigas, se necessário.</li>
+<li><strong>destroy(Request $request, $id):</strong> Exclui um armamento e suas imagens associadas do banco de dados.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-18">Dependências<a href="#dependências-18" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>ResourceWar:</strong> Modelo que representa os armamentos registrados no sistema, incluindo informações como tipo, modelo, fabricante e condição.</li>
+<li><strong>ResourceWarKind:</strong> Modelo que representa os tipos de armamentos.</li>
+<li><strong>ResourceWarCondition:</strong> Modelo que representa as condições dos armamentos.</li>
+<li><strong>FirearmManufacturer:</strong> Modelo que representa os fabricantes de armas.</li>
+<li><strong>FirearmType:</strong> Modelo que representa os tipos de armas.</li>
+<li><strong>FirearmCaliber:</strong> Modelo que representa os calibres das armas.</li>
+<li><strong>ResourceWarImage:</strong> Modelo que gerencia as imagens associadas aos armamentos.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="searchcontroller">SearchController<a href="#searchcontroller" class="hash-link" aria-label="Direct link to SearchController" title="Direct link to SearchController">​</a></h3>
+<p>Gerencia as operações de busca e consulta de dados no sistema, incluindo a pesquisa de policiais, veículos, pessoas e informações relacionadas às OPMs, além de permitir o filtro por diversos critérios.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-19">Métodos Principais<a href="#métodos-principais-19" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>staff_local(Request $request):</strong> Realiza a busca de policiais da OPM local, filtrando por nome ou matrícula, e retornando os resultados formatados.</li>
+<li><strong>staff_com_reserva(Request $request):</strong> Realiza a busca de policiais da OPM, considerando também os policiais com reserva.</li>
+<li><strong>staff_info(Request $request):</strong> Exibe informações detalhadas de um funcionário específico, incluindo dados como matrícula, nome, CPF, e outros dados pessoais.</li>
+<li><strong>staff_geral(Request $request):</strong> Realiza a busca de policiais de forma geral, com filtros por nome e matrícula, retornando os resultados de acordo com as permissões do usuário.</li>
+<li><strong>findcity(Request $request):</strong> Realiza a busca de cidades com base no nome, retornando resultados formatados.</li>
+<li><strong>findopm(Request $request):</strong> Realiza a busca de OPMs (Unidades da Polícia Militar) com base no nome, retornando resultados filtrados por tipo de OPM e permissões de acesso.</li>
+<li><strong>findopmsamecpr(Request $request):</strong> Realiza a busca de OPMs dentro do mesmo CPR, com base no nome.</li>
+<li><strong>findopmstructure(Request $request):</strong> Realiza a busca de estruturas de OPMs, com base no ID da OPM.</li>
+<li><strong>findstructurereceiveronlycomandoesub(Request $request):</strong> Busca por estruturas de OPMs que sejam comandos ou subcomandos, de acordo com os critérios definidos.</li>
+<li><strong>findstructurereceiveronlyagencias(Request $request):</strong> Busca por estruturas de OPMs que sejam agências ou subcomandos, de acordo com os critérios definidos.</li>
+<li><strong>findstructurereceiver(Request $request):</strong> Realiza a busca por estruturas de OPMs, com base no nome e filtros adicionais.</li>
+<li><strong>findstructurelocalreceiver(Request $request):</strong> Busca por estruturas locais de OPMs, com base nas permissões do usuário.</li>
+<li><strong>findagencias(Request $request):</strong> Realiza a busca de agências, com base no nome.</li>
+<li><strong>finduseracl(Request $request):</strong> Realiza a busca de usuários com permissões específicas de acordo com os critérios definidos.</li>
+<li><strong>findopmacl(Request $request):</strong> Realiza a busca de OPMs com base em permissões específicas do usuário.</li>
+<li><strong>finduser(Request $request):</strong> Realiza a busca de usuários, com base no nome ou matrícula.</li>
+<li><strong>findusersinsamestructure(Request $request):</strong> Busca por usuários que estão na mesma estrutura de OPM que o usuário atual, filtrando por nome, matrícula e estrutura.</li>
+<li><strong>findvehicle(Request $request):</strong> Realiza a busca de veículos, com base no modelo e outros critérios definidos.</li>
+<li><strong>findPeople(Request $request):</strong> Realiza a busca de pessoas, com base no nome ou CPF.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-19">Dependências<a href="#dependências-19" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>Staff:</strong> Modelo que representa os policiais registrados, incluindo informações como nome, matrícula e OPM.</li>
+<li><strong>City:</strong> Modelo que representa as cidades, permitindo a busca e a filtragem por nome.</li>
+<li><strong>EntityPeople:</strong> Modelo que representa as pessoas registradas no sistema.</li>
+<li><strong>VehicleModel:</strong> Modelo que representa os modelos de veículos.</li>
+<li><strong>Opm:</strong> Modelo que representa as Unidades da Polícia Militar (OPMs).</li>
+<li><strong>OpmStructure:</strong> Modelo que gerencia as estruturas dentro de cada OPM.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="signaturecontroller">SignatureController<a href="#signaturecontroller" class="hash-link" aria-label="Direct link to SignatureController" title="Direct link to SignatureController">​</a></h3>
+<p>Gerencia as operações relacionadas à assinatura de documentos, incluindo a visualização de documentos pendentes, assinaturas de documentos, e a movimentação de processos entre as agências.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-20">Métodos Principais<a href="#métodos-principais-20" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>assinadas(Request $request):</strong> Exibe os documentos que já foram assinados, filtrados pela estrutura da OPM do usuário.</li>
+<li><strong>pendentes(Request $request):</strong> Exibe os documentos pendentes de assinatura, permitindo a visualização e a assinatura por usuários autorizados.</li>
+<li><strong>cointassina(Request $request):</strong> Permite que um usuário com a permissão &quot;Assinar&quot; assine um documento e registre a assinatura no sistema, além de realizar outras ações relacionadas ao processo de credenciamento de agentes.</li>
+<li><strong>cprassina(Request $request):</strong> Permite que o comandante de CPR assine um documento, registrando a assinatura e movendo o processo conforme necessário.</li>
+<li><strong>visualiza(Request $request):</strong> Exibe o documento para visualização antes da assinatura, de acordo com o tipo de documento (FIS, CPR, COINT).</li>
+<li><strong>devolvefisssocoint(Request $request):</strong> Permite que o comandante devolva um documento para alteração antes de assinar.</li>
+<li><strong>devolvefiscordoint(Request $request):</strong> Permite que o comandante devolva um documento para alteração no processo de assinatura.</li>
+<li><strong>assina(Request $request):</strong> Permite que o comandante de uma OPM assine o FIS da agência, registrando a assinatura e enviando notificações via Sinmail.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-20">Dependências<a href="#dependências-20" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>Signature:</strong> Modelo que representa os documentos de assinatura, incluindo o status e o tipo de documento.</li>
+<li><strong>AgentFis:</strong> Modelo que gerencia as informações de agentes e suas assinaturas no sistema.</li>
+<li><strong>Sinmail:</strong> Modelo utilizado para enviar e-mails relacionados aos processos de assinatura.</li>
+<li><strong>SinmailProceeding:</strong> Modelo que gerencia o acompanhamento dos e-mails enviados para os processos de assinatura.</li>
+<li><strong>TaskOrganization:</strong> Modelo que representa as organizações de tarefas no sistema.</li>
+<li><strong>Decision:</strong> Modelo que registra decisões tomadas sobre os documentos.</li>
+<li><strong>Staff:</strong> Modelo que representa os funcionários envolvidos nos processos de assinatura.</li>
+<li><strong>OpmStructure:</strong> Modelo que representa as estruturas das OPMs e agências.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="staffcontroller">StaffController<a href="#staffcontroller" class="hash-link" aria-label="Direct link to StaffController" title="Direct link to StaffController">​</a></h3>
+<p>Gerencia as operações relacionadas aos policiais, incluindo a visualização, edição e atualização das informações, como a unidade a que pertencem, o cargo, e outras informações adicionais.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-21">Métodos Principais<a href="#métodos-principais-21" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>index(Request $request):</strong> Exibe a lista de policiais, permitindo a visualização das informações gerais. O acesso é restrito a usuários com a permissão &quot;Ajustar pecúlio&quot; ou pertencentes à &quot;Segurança Orgânica&quot;.</li>
+<li><strong>update(Request $request, $id):</strong> Atualiza as informações de um funcionário, incluindo a alteração de sua unidade de operação (OPM) e cargo. Se houver alteração de unidade, o status do agente é atualizado.</li>
+<li><strong>edit(Request $request, $id):</strong> Exibe o formulário de edição para um funcionário específico, permitindo alterar dados como unidade, cargo e outras informações relevantes.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-21">Dependências<a href="#dependências-21" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>Staff:</strong> Modelo que representa os policiais, incluindo informações como nome, matrícula, cargo e unidade de operação.</li>
+<li><strong>Rank:</strong> Modelo que representa os cargos dos policiais, com base no nível hierárquico.</li>
+<li><strong>OpmStructure:</strong> Modelo que representa as estruturas de cada OPM, incluindo informações sobre o local de trabalho e unidades associadas.</li>
+<li><strong>AgentStatusLog:</strong> Modelo que registra mudanças no status dos agentes, incluindo alterações de unidade ou credenciamento.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="statisticcontroller">StatisticController<a href="#statisticcontroller" class="hash-link" aria-label="Direct link to StatisticController" title="Direct link to StatisticController">​</a></h3>
+<p>Gerencia as operações relacionadas às estatísticas do sistema, incluindo a contagem de ocorrências por OPM e a visualização dessas informações de forma agregada.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-22">Métodos Principais<a href="#métodos-principais-22" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>countoccurrences(Request $request):</strong> Exibe as ocorrências agrupadas por OPM, contando o número de ocorrências em cada uma delas e ordenando os resultados de forma decrescente. O acesso é restrito a usuários com a permissão &quot;Menu Estatísticas&quot;.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-22">Dependências<a href="#dependências-22" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>Occurrence:</strong> Modelo que representa as ocorrências registradas no sistema, incluindo informações como OPM associada e detalhes sobre a ocorrência.</li>
+<li><strong>Opm:</strong> Modelo que representa as Unidades da Polícia Militar (OPMs).</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="supportticketcontroller">SupportTicketController<a href="#supportticketcontroller" class="hash-link" aria-label="Direct link to SupportTicketController" title="Direct link to SupportTicketController">​</a></h3>
+<p>Gerencia as operações relacionadas ao suporte técnico, incluindo a criação, visualização, atualização e listagem de tickets de suporte, bem como a gestão das soluções fornecidas para os problemas relatados.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-23">Métodos Principais<a href="#métodos-principais-23" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>index(Request $request):</strong> Exibe a lista de tickets de suporte criados pelo usuário autenticado, com base no tipo de ticket. Exibe também os tipos de tickets disponíveis para o usuário.</li>
+<li><strong>storeTicket(Request $request):</strong> Cria um novo ticket de suporte, com base nas informações fornecidas no formulário, como tipo de ticket e descrição.</li>
+<li><strong>ticketList(Request $request):</strong> Exibe a lista de tickets de suporte para os usuários com permissão da estrutura &quot;CIADE&quot;, mostrando todos os tickets de forma ordenada.</li>
+<li><strong>show(Request $request, $id):</strong> Exibe os detalhes de um ticket de suporte específico, marcando o ticket como lido quando o usuário acessa.</li>
+<li><strong>update(Request $request, $id):</strong> Atualiza a solução de um ticket de suporte, registrando o usuário que resolveu o problema e a data da solução. O acesso é restrito aos usuários da estrutura &quot;CIADE&quot;.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-23">Dependências<a href="#dependências-23" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>TicketKind:</strong> Modelo que representa os tipos de tickets de suporte, como &quot;Problema técnico&quot;, &quot;Erro de sistema&quot;, etc.</li>
+<li><strong>SupportTicket:</strong> Modelo que representa os tickets de suporte, com informações como descrição, status e data de criação.</li>
+<li><strong>SupportTicketRead:</strong> Modelo que registra quando um usuário visualiza um ticket de suporte.</li>
+<li><strong>User:</strong> Modelo que representa o usuário autenticado no sistema.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="taskorganizationcontroller">TaskOrganizationController<a href="#taskorganizationcontroller" class="hash-link" aria-label="Direct link to TaskOrganizationController" title="Direct link to TaskOrganizationController">​</a></h3>
+<p>Gerencia as operações relacionadas às organizações de tarefas, incluindo a visualização, listagem e atualização do status de missões e documentos associados às tarefas.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-24">Métodos Principais<a href="#métodos-principais-24" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>pendentes(Request $request):</strong> Exibe a lista de missões pendentes associadas à OPM do usuário, com base nas permissões de &quot;Ver missões&quot;. O usuário deve ter a permissão adequada para acessar esta funcionalidade.</li>
+<li><strong>concluidas(Request $request):</strong> Exibe a lista de missões concluídas, filtradas por OPM e status, acessível apenas a usuários com a permissão de &quot;Ver missões&quot;.</li>
+<li><strong>visualiza(Request $request):</strong> Exibe os detalhes de uma missão específica, com base no tipo de documento associado. Pode redirecionar para uma página de visualização de FIS, ou encaminhar para um link de e-mail (Sinmail) dependendo do tipo de documento.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-24">Dependências<a href="#dependências-24" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>TaskOrganization:</strong> Modelo que representa as organizações de tarefas, incluindo informações como status da missão, tipo de documento e referências associadas.</li>
+<li><strong>Staff:</strong> Modelo que representa os funcionários, incluindo dados sobre a unidade à qual pertencem.</li>
+<li><strong>AgentFis:</strong> Modelo que gerencia os agentes associados às missões, especialmente relacionado às missões de FIS.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="termsandconditionscontroller">TermsAndConditionsController<a href="#termsandconditionscontroller" class="hash-link" aria-label="Direct link to TermsAndConditionsController" title="Direct link to TermsAndConditionsController">​</a></h3>
+<p>Gerencia as operações relacionadas aos termos e condições de uso do sistema, incluindo a visualização, aceitação, criação e atualização dos termos, bem como a autenticação de usuários através de OTP (One Time Password).</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="métodos-principais-25">Métodos Principais<a href="#métodos-principais-25" class="hash-link" aria-label="Direct link to Métodos Principais" title="Direct link to Métodos Principais">​</a></h4>
+<ul>
+<li><strong>termovigente():</strong> Exibe os termos e condições vigentes, trazendo o último termo registrado no sistema.</li>
+<li><strong>last():</strong> Exibe os termos e condições mais recentes, com base no registro mais recente.</li>
+<li><strong>aceite(Request $request):</strong> Registra a aceitação dos termos e condições pelo usuário, salvando a data de aceitação no sistema.</li>
+<li><strong>create():</strong> Exibe o formulário para criar novos termos e condições de uso, disponível apenas para usuários com a permissão &quot;Gerenciar termos de uso&quot;.</li>
+<li><strong>store(Request $request):</strong> Armazena os novos termos e condições de uso no sistema e registra a aceitação do usuário.</li>
+<li><strong>conteudo(Request $request, $id):</strong> Exibe o conteúdo dos termos e condições de um ID específico, com informações sobre o responsável pela criação.</li>
+<li><strong>authenticate(Request $request):</strong> Realiza a autenticação do usuário utilizando o Google2FA, verificando o OTP gerado.</li>
+<li><strong>otpGenerate(Request $request):</strong> Gera uma nova chave OTP para o usuário, enviando-a por e-mail.</li>
+<li><strong>otpReset(Request $request, $id):</strong> Restaura a chave OTP para o usuário especificado, gerando uma nova chave e enviando-a por e-mail.</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="dependências-25">Dependências<a href="#dependências-25" class="hash-link" aria-label="Direct link to Dependências" title="Direct link to Dependências">​</a></h4>
+<ul>
+<li><strong>TermsAndConditions:</strong> Modelo que representa os termos e condições de uso registrados no sistema, incluindo o conteúdo e a data de criação.</li>
+<li><strong>TermUser:</strong> Modelo que registra a aceitação dos termos e condições por parte dos usuários.</li>
+<li><strong>User:</strong> Modelo que representa os usuários do sistema, incluindo a autenticação via OTP.</li>
+<li><strong>Google2FA:</strong> Serviço para autenticação de dois fatores utilizando o Google Authenticator.</li>
+</ul>
+<blockquote>
+<p><strong>Padrão de Design Utilizado:</strong> MVC, com o controller responsável pela lógica de negócios e acesso a dados.</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="controllers-não-implementados">Controllers não implementados<a href="#controllers-não-implementados" class="hash-link" aria-label="Direct link to Controllers não implementados" title="Direct link to Controllers não implementados">​</a></h3>
+<ul>
+<li>ConditionController</li>
+<li>CprController</li>
+<li>IntelligenceController</li>
+<li>OpmGoverningController</li>
+<li>OpmStructureController</li>
+<li>PriorityTargetController</li>
+<li>SettingsController</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="models">Models<a href="#models" class="hash-link" aria-label="Direct link to Models" title="Direct link to Models">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-agent-model">1. Agent Model<a href="#1-agent-model" class="hash-link" aria-label="Direct link to 1. Agent Model" title="Direct link to 1. Agent Model">​</a></h3>
@@ -406,7 +996,7 @@
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="41-entitypeopleprioritylevel-model">41. EntityPeoplePriorityLevel Model<a href="#41-entitypeopleprioritylevel-model" class="hash-link" aria-label="Direct link to 41. EntityPeoplePriorityLevel Model" title="Direct link to 41. EntityPeoplePriorityLevel Model">​</a></h3>
 <p>Representa os níveis de prioridade das pessoas no sistema.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="table-entity_people_priority_levels">Table: <code>entity_people_priority_levels</code><a href="#table-entity_people_priority_levels" class="hash-link" aria-label="Direct link to table-entity_people_priority_levels" title="Direct link to table-entity_people_priority_levels"> ​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="table-entity_people_priority_levels">Table: <code>entity_people_priority_levels</code><a href="#table-entity_people_priority_levels" class="hash-link" aria-label="Direct link to table-entity_people_priority_levels" title="Direct link to table-entity_people_priority_levels">​</a></h4>
 <table><thead><tr><th>Column</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>integer</td><td>Primary Key</td></tr></tbody></table>
 <p>Campos protegidos por <code>$guarded = [&#x27;id&#x27;]</code></p>
 <hr>
@@ -635,7 +1225,7 @@
 <hr>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="63-resourcegadgetimage-model">63. ResourceGadgetImage Model<a href="#63-resourcegadgetimage-model" class="hash-link" aria-label="Direct link to 63. ResourceGadgetImage Model" title="Direct link to 63. ResourceGadgetImage Model">​</a></h3>
 <p>Armazena imagens associadas a gadgets.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="table-resource_gadget_images-1">Table: <code>resource_gadget_images</code><a href="#table-resource_gadget_images-1" class="hash-link" aria-label="Direct link to table-resource_gadget_images-1" title="Direct link to table-resource_gadget_images-1">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="table-resource_gadget_images-1">Table: <code>resource_gadget_images</code><a href="#table-resource_gadget_images-1" class="hash-link" aria-label="Direct link to table-resource_gadget_images-1" title="Direct link to table-resource_gadget_images-1">  ​</a></h4>
 <table><thead><tr><th>Column</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>integer</td><td>Primary Key</td></tr><tr><td><code>resource_gadget_id</code></td><td>integer</td><td>FK para <code>resource_gadgets</code></td></tr></tbody></table>
 <p>Campos protegidos por <code>$guarded = [&#x27;id&#x27;]</code></p>
 <p>O campos <code>image_path</code> deve ser definido na migração.</p>
@@ -924,6 +1514,6 @@
 <ul>
 <li>Implementa <code>custom()</code> para retornar método POST personalizado.</li>
 </ul>
-<hr></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs-sinpom/docs/getting-starter/project-structure"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Arquitetura do Projeto</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs-sinpom/docs/getting-starter/database-structure"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Estrutura do Banco de Dados</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#arquitetura-do-projeto" class="table-of-contents__link toc-highlight">Arquitetura do Projeto</a></li><li><a href="#controllers" class="table-of-contents__link toc-highlight">Controllers</a><ul><li><a href="#painelcontroller" class="table-of-contents__link toc-highlight">PainelController</a></li></ul></li><li><a href="#models" class="table-of-contents__link toc-highlight">Models</a><ul><li><a href="#1-agent-model" class="table-of-contents__link toc-highlight">1. Agent Model</a></li><li><a href="#2-agentfis-model" class="table-of-contents__link toc-highlight">2. AgentFis Model</a></li><li><a href="#3-agentpesquisasocial-model" class="table-of-contents__link toc-highlight">3. AgentPesquisaSocial Model</a></li><li><a href="#4-agentrequestforinclusion-model" class="table-of-contents__link toc-highlight">4. AgentRequestForInclusion Model</a></li><li><a href="#5-agentstatuslog-model" class="table-of-contents__link toc-highlight">5. AgentStatusLog Model</a></li><li><a href="#6-attachment-model" class="table-of-contents__link toc-highlight">6. Attachment Model</a></li><li><a href="#7-city-model" class="table-of-contents__link toc-highlight">7. City Model</a></li><li><a href="#8-civilstate-model" class="table-of-contents__link toc-highlight">8. CivilState Model</a></li><li><a href="#9-codeverification-model" class="table-of-contents__link toc-highlight">9. CodeVerification Model</a></li><li><a href="#10-crimecommunicationkind-model" class="table-of-contents__link toc-highlight">10. CrimeCommunicationKind Model</a></li><li><a href="#11-crimeconnotation-model" class="table-of-contents__link toc-highlight">11. CrimeConnotation Model</a></li><li><a href="#12-crimeinformationsource-model" class="table-of-contents__link toc-highlight">12. CrimeInformationSource Model</a></li><li><a href="#13-decision-model" class="table-of-contents__link toc-highlight">13. Decision Model</a></li><li><a href="#14-document-model" class="table-of-contents__link toc-highlight">14. Document Model</a></li><li><a href="#15-documentcontrol-model" class="table-of-contents__link toc-highlight">15. DocumentControl Model</a></li><li><a href="#16-documenthasdifusaoanterior-model" class="table-of-contents__link toc-highlight">16. DocumentHasDifusaoAnterior Model</a></li><li><a href="#17-documentimage-model" class="table-of-contents__link toc-highlight">17. DocumentImage Model</a></li><li><a href="#18-documentkind-model" class="table-of-contents__link toc-highlight">18. DocumentKind Model</a></li><li><a href="#19-documentplanodeoperacoes-model" class="table-of-contents__link toc-highlight">19. DocumentPlanoDeOperacoes Model</a></li><li><a href="#20-entityfirearm-model" class="table-of-contents__link toc-highlight">20. EntityFirearm Model</a></li><li><a href="#21-entityfirearminvolvement-model" class="table-of-contents__link toc-highlight">21. EntityFirearmInvolvement Model</a></li><li><a href="#22-entitypeople-model" class="table-of-contents__link toc-highlight">22. EntityPeople Model</a></li><li><a href="#23-entitypeopleaddress-model" class="table-of-contents__link toc-highlight">23. EntityPeopleAddress Model</a></li><li><a href="#24-entitypeopleapelido-model" class="table-of-contents__link toc-highlight">24. EntityPeopleApelido Model</a></li><li><a href="#25-entitypeoplearrestwarrant-model" class="table-of-contents__link toc-highlight">25. EntityPeopleArrestWarrant Model</a></li><li><a href="#26-entitypeoplecolor-model" class="table-of-contents__link toc-highlight">26. EntityPeopleColor Model</a></li><li><a href="#27-entitypeoplecrime-model" class="table-of-contents__link toc-highlight">27. EntityPeopleCrime Model</a></li><li><a href="#28-entitypeoplecrimecommitted-model" class="table-of-contents__link toc-highlight">28. EntityPeopleCrimeCommitted Model</a></li><li><a href="#29-entitypeoplecrimerole-model" class="table-of-contents__link toc-highlight">29. EntityPeopleCrimeRole Model</a></li><li><a href="#30-entitypeopleestado-model" class="table-of-contents__link toc-highlight">30. EntityPeopleEstado Model</a></li><li><a href="#31-entitypeoplegeolocation-model" class="table-of-contents__link toc-highlight">31. EntityPeopleGeolocation Model</a></li><li><a href="#32-entitypeoplehasentityfirearm-model" class="table-of-contents__link toc-highlight">32. EntityPeopleHasEntityFirearm Model</a></li><li><a href="#33-entitypeoplehasentityvehicle-model" class="table-of-contents__link toc-highlight">33. EntityPeopleHasEntityVehicle Model</a></li><li><a href="#34-entitypeopleimage-model" class="table-of-contents__link toc-highlight">34. EntityPeopleImage Model</a></li><li><a href="#35-entitypeopleinvolvedstatus-model" class="table-of-contents__link toc-highlight">35. EntityPeopleInvolvedStatus Model</a></li><li><a href="#36-entitypeopleinvolvement-model" class="table-of-contents__link toc-highlight">36. EntityPeopleInvolvement Model</a></li><li><a href="#37-entitypeopleinvolvementkind-model" class="table-of-contents__link toc-highlight">37. EntityPeopleInvolvementKind Model</a></li><li><a href="#38-entitypeoplemark-model" class="table-of-contents__link toc-highlight">38. EntityPeopleMark Model</a></li><li><a href="#39-entitypeoplemarkkind-model" class="table-of-contents__link toc-highlight">39. EntityPeopleMarkKind Model</a></li><li><a href="#40-entitypeoplemarklocation-model" class="table-of-contents__link toc-highlight">40. EntityPeopleMarkLocation Model</a></li><li><a href="#41-entitypeopleprioritylevel-model" class="table-of-contents__link toc-highlight">41. EntityPeoplePriorityLevel Model</a></li><li><a href="#42-entitypeoplesituacaofuncional-model" class="table-of-contents__link toc-highlight">42. EntityPeopleSituacaoFuncional Model</a></li><li><a href="#43-faccao-model" class="table-of-contents__link toc-highlight">43. Faccao Model</a></li><li><a href="#44-instituicoesfinanceiras-model" class="table-of-contents__link toc-highlight">44. InstituicoesFinanceiras Model</a></li><li><a href="#45-locality-model" class="table-of-contents__link toc-highlight">45. Locality Model</a></li><li><a href="#46-localitycriminalinfo-model" class="table-of-contents__link toc-highlight">46. LocalityCriminalInfo Model</a></li><li><a href="#47-localitymaplayer-model" class="table-of-contents__link toc-highlight">47. LocalityMapLayer Model</a></li><li><a href="#48-logocriminfo-model" class="table-of-contents__link toc-highlight">48. LogoCrimInfo Model</a></li><li><a href="#49-meiosameaca-model" class="table-of-contents__link toc-highlight">49. MeiosAmeaca Model</a></li><li><a href="#50-meioscrimeinstituicoesfinanceiras-model" class="table-of-contents__link toc-highlight">50. MeiosCrimeInstituicoesFinanceiras Model</a></li><li><a href="#51-modalidadescrimesinstituicoesfinanceiras-model" class="table-of-contents__link toc-highlight">51. ModalidadesCrimesInstituicoesFinanceiras Model</a></li><li><a href="#52-motivacao-model" class="table-of-contents__link toc-highlight">52. Motivacao Model</a></li><li><a href="#53-news-model" class="table-of-contents__link toc-highlight">53. News Model</a></li><li><a href="#54-occurrence-model" class="table-of-contents__link toc-highlight">54. Occurrence Model</a></li><li><a href="#55-occurrencefirearminvolved-model" class="table-of-contents__link toc-highlight">55. OccurrenceFirearmInvolved Model</a></li><li><a href="#56-occurrencegeolocation-model" class="table-of-contents__link toc-highlight">56. OccurrenceGeolocation Model</a></li><li><a href="#57-occurrencekindinvolved-model" class="table-of-contents__link toc-highlight">57. OccurrenceKindInvolved Model</a></li><li><a href="#58-occurrencepeopleinvolved-model" class="table-of-contents__link toc-highlight">58. OccurrencePeopleInvolved Model</a></li><li><a href="#59-resourcegadget-model" class="table-of-contents__link toc-highlight">59. ResourceGadget Model</a></li><li><a href="#60-resourcegadgetimage-model" class="table-of-contents__link toc-highlight">60. ResourceGadgetImage Model</a></li><li><a href="#61-resourcevehicle-model" class="table-of-contents__link toc-highlight">61. ResourceVehicle Model</a></li><li><a href="#62-resourcegadget-model" class="table-of-contents__link toc-highlight">62. ResourceGadget Model</a></li><li><a href="#63-resourcegadgetimage-model" class="table-of-contents__link toc-highlight">63. ResourceGadgetImage Model</a></li><li><a href="#64-resourcevehicle-model" class="table-of-contents__link toc-highlight">64. ResourceVehicle Model</a></li><li><a href="#65-resourcevehicleimage-model" class="table-of-contents__link toc-highlight">65. ResourceVehicleImage Model</a></li><li><a href="#66-resourcewar-model" class="table-of-contents__link toc-highlight">66. ResourceWar Model</a></li><li><a href="#67-resourcewarimage-model" class="table-of-contents__link toc-highlight">67. ResourceWarImage Model</a></li><li><a href="#68-settings-model" class="table-of-contents__link toc-highlight">68. Settings Model</a></li><li><a href="#69-signature-model" class="table-of-contents__link toc-highlight">69. Signature Model</a></li><li><a href="#70-staff-model" class="table-of-contents__link toc-highlight">70. Staff Model</a></li><li><a href="#71-staffaccreditation-model" class="table-of-contents__link toc-highlight">71. StaffAccreditation Model</a></li><li><a href="#72-staffadditionalinformation-model" class="table-of-contents__link toc-highlight">72. StaffAdditionalInformation Model</a></li><li><a href="#73-staffhasimprovementcourse-model" class="table-of-contents__link toc-highlight">73. StaffHasImprovementCourse Model</a></li><li><a href="#74-staffquest-model" class="table-of-contents__link toc-highlight">74. StaffQuest Model</a></li><li><a href="#75-supportticket-model" class="table-of-contents__link toc-highlight">75. SupportTicket Model</a></li><li><a href="#76-supportticketread-model" class="table-of-contents__link toc-highlight">76. SupportTicketRead Model</a></li><li><a href="#77-taskorganization-model" class="table-of-contents__link toc-highlight">77. TaskOrganization Model</a></li><li><a href="#78-termsandconditions-model" class="table-of-contents__link toc-highlight">78. TermsAndConditions Model</a></li><li><a href="#79-termuser-model" class="table-of-contents__link toc-highlight">79. TermUser Model</a></li><li><a href="#80-tiposestabelecimentoscomerciais-model" class="table-of-contents__link toc-highlight">80. TiposEstabelecimentosComerciais Model</a></li><li><a href="#81-userreaddoc-model" class="table-of-contents__link toc-highlight">81. UserReadDoc Model</a></li><li><a href="#82-vehiclemodel-model" class="table-of-contents__link toc-highlight">82. VehicleModel Model</a></li><li><a href="#83-weaponkind-model" class="table-of-contents__link toc-highlight">83. WeaponKind Model</a></li><li><a href="#84-zona-model" class="table-of-contents__link toc-highlight">84. Zona Model</a></li><li><a href="#85-occurrencevehicleinvolved-model" class="table-of-contents__link toc-highlight">85. OccurrenceVehicleInvolved Model</a></li><li><a href="#86-opm-model" class="table-of-contents__link toc-highlight">86. Opm Model</a></li><li><a href="#87-opmgoverning-model" class="table-of-contents__link toc-highlight">87. OpmGoverning Model</a></li><li><a href="#88-opmstructure-model" class="table-of-contents__link toc-highlight">88. OpmStructure Model</a></li><li><a href="#89-user-model" class="table-of-contents__link toc-highlight">89. User Model</a></li><li><a href="#modelos-sem-implementação" class="table-of-contents__link toc-highlight">Modelos sem implementação</a></li></ul></li><li><a href="#views" class="table-of-contents__link toc-highlight">Views</a></li><li><a href="#classes" class="table-of-contents__link toc-highlight">Classes</a><ul><li><a href="#customrequestcaptcha-class" class="table-of-contents__link toc-highlight">CustomRequestCaptcha Class</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentação</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/getting-starter/intro">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/configuration">Configuration</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/development">Development</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/deployment">Deployment</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/references/changelog">References</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/contributing">Contributing</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/giluansouza" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/your-profile" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div></div></footer></div>
+<hr></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs-sinpom/docs/getting-starter/project-structure"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Arquitetura do Projeto</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs-sinpom/docs/getting-starter/database-structure"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Estrutura do Banco de Dados</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#arquitetura-do-projeto" class="table-of-contents__link toc-highlight">Arquitetura do Projeto</a></li><li><a href="#controllers" class="table-of-contents__link toc-highlight">Controllers</a><ul><li><a href="#controller" class="table-of-contents__link toc-highlight">Controller</a></li><li><a href="#painelcontroller" class="table-of-contents__link toc-highlight">PainelController</a></li><li><a href="#aclcontroller" class="table-of-contents__link toc-highlight">AclController</a></li><li><a href="#agentcontroller" class="table-of-contents__link toc-highlight">AgentController</a></li><li><a href="#documentcontroller" class="table-of-contents__link toc-highlight">DocumentController</a></li><li><a href="#entityfirearmcontroller" class="table-of-contents__link toc-highlight">EntityFirearmController</a></li><li><a href="#entitypeoplecontroller" class="table-of-contents__link toc-highlight">EntityPeopleController</a></li><li><a href="#entityvehiclecontroller" class="table-of-contents__link toc-highlight">EntityVehicleController</a></li><li><a href="#exportcontroller" class="table-of-contents__link toc-highlight">ExportController</a></li><li><a href="#faccaocontroller" class="table-of-contents__link toc-highlight">FaccaoController</a></li><li><a href="#geolocationcontroller" class="table-of-contents__link toc-highlight">GeolocationController</a></li><li><a href="#homecontroller" class="table-of-contents__link toc-highlight">HomeController</a></li><li><a href="#improvementcoursecontroller" class="table-of-contents__link toc-highlight">ImprovementCourseController</a></li><li><a href="#occurrencecontroller" class="table-of-contents__link toc-highlight">OccurrenceController</a></li><li><a href="#opmcontroller" class="table-of-contents__link toc-highlight">OpmController</a></li><li><a href="#painelcontroller-1" class="table-of-contents__link toc-highlight">PainelController</a></li><li><a href="#querycontroller" class="table-of-contents__link toc-highlight">QueryController</a></li><li><a href="#resourcegadgetcontroller" class="table-of-contents__link toc-highlight">ResourceGadgetController</a></li><li><a href="#resourcevehiclecontroller" class="table-of-contents__link toc-highlight">ResourceVehicleController</a></li><li><a href="#resourcewarcontroller" class="table-of-contents__link toc-highlight">ResourceWarController</a></li><li><a href="#searchcontroller" class="table-of-contents__link toc-highlight">SearchController</a></li><li><a href="#signaturecontroller" class="table-of-contents__link toc-highlight">SignatureController</a></li><li><a href="#staffcontroller" class="table-of-contents__link toc-highlight">StaffController</a></li><li><a href="#statisticcontroller" class="table-of-contents__link toc-highlight">StatisticController</a></li><li><a href="#supportticketcontroller" class="table-of-contents__link toc-highlight">SupportTicketController</a></li><li><a href="#taskorganizationcontroller" class="table-of-contents__link toc-highlight">TaskOrganizationController</a></li><li><a href="#termsandconditionscontroller" class="table-of-contents__link toc-highlight">TermsAndConditionsController</a></li><li><a href="#controllers-não-implementados" class="table-of-contents__link toc-highlight">Controllers não implementados</a></li></ul></li><li><a href="#models" class="table-of-contents__link toc-highlight">Models</a><ul><li><a href="#1-agent-model" class="table-of-contents__link toc-highlight">1. Agent Model</a></li><li><a href="#2-agentfis-model" class="table-of-contents__link toc-highlight">2. AgentFis Model</a></li><li><a href="#3-agentpesquisasocial-model" class="table-of-contents__link toc-highlight">3. AgentPesquisaSocial Model</a></li><li><a href="#4-agentrequestforinclusion-model" class="table-of-contents__link toc-highlight">4. AgentRequestForInclusion Model</a></li><li><a href="#5-agentstatuslog-model" class="table-of-contents__link toc-highlight">5. AgentStatusLog Model</a></li><li><a href="#6-attachment-model" class="table-of-contents__link toc-highlight">6. Attachment Model</a></li><li><a href="#7-city-model" class="table-of-contents__link toc-highlight">7. City Model</a></li><li><a href="#8-civilstate-model" class="table-of-contents__link toc-highlight">8. CivilState Model</a></li><li><a href="#9-codeverification-model" class="table-of-contents__link toc-highlight">9. CodeVerification Model</a></li><li><a href="#10-crimecommunicationkind-model" class="table-of-contents__link toc-highlight">10. CrimeCommunicationKind Model</a></li><li><a href="#11-crimeconnotation-model" class="table-of-contents__link toc-highlight">11. CrimeConnotation Model</a></li><li><a href="#12-crimeinformationsource-model" class="table-of-contents__link toc-highlight">12. CrimeInformationSource Model</a></li><li><a href="#13-decision-model" class="table-of-contents__link toc-highlight">13. Decision Model</a></li><li><a href="#14-document-model" class="table-of-contents__link toc-highlight">14. Document Model</a></li><li><a href="#15-documentcontrol-model" class="table-of-contents__link toc-highlight">15. DocumentControl Model</a></li><li><a href="#16-documenthasdifusaoanterior-model" class="table-of-contents__link toc-highlight">16. DocumentHasDifusaoAnterior Model</a></li><li><a href="#17-documentimage-model" class="table-of-contents__link toc-highlight">17. DocumentImage Model</a></li><li><a href="#18-documentkind-model" class="table-of-contents__link toc-highlight">18. DocumentKind Model</a></li><li><a href="#19-documentplanodeoperacoes-model" class="table-of-contents__link toc-highlight">19. DocumentPlanoDeOperacoes Model</a></li><li><a href="#20-entityfirearm-model" class="table-of-contents__link toc-highlight">20. EntityFirearm Model</a></li><li><a href="#21-entityfirearminvolvement-model" class="table-of-contents__link toc-highlight">21. EntityFirearmInvolvement Model</a></li><li><a href="#22-entitypeople-model" class="table-of-contents__link toc-highlight">22. EntityPeople Model</a></li><li><a href="#23-entitypeopleaddress-model" class="table-of-contents__link toc-highlight">23. EntityPeopleAddress Model</a></li><li><a href="#24-entitypeopleapelido-model" class="table-of-contents__link toc-highlight">24. EntityPeopleApelido Model</a></li><li><a href="#25-entitypeoplearrestwarrant-model" class="table-of-contents__link toc-highlight">25. EntityPeopleArrestWarrant Model</a></li><li><a href="#26-entitypeoplecolor-model" class="table-of-contents__link toc-highlight">26. EntityPeopleColor Model</a></li><li><a href="#27-entitypeoplecrime-model" class="table-of-contents__link toc-highlight">27. EntityPeopleCrime Model</a></li><li><a href="#28-entitypeoplecrimecommitted-model" class="table-of-contents__link toc-highlight">28. EntityPeopleCrimeCommitted Model</a></li><li><a href="#29-entitypeoplecrimerole-model" class="table-of-contents__link toc-highlight">29. EntityPeopleCrimeRole Model</a></li><li><a href="#30-entitypeopleestado-model" class="table-of-contents__link toc-highlight">30. EntityPeopleEstado Model</a></li><li><a href="#31-entitypeoplegeolocation-model" class="table-of-contents__link toc-highlight">31. EntityPeopleGeolocation Model</a></li><li><a href="#32-entitypeoplehasentityfirearm-model" class="table-of-contents__link toc-highlight">32. EntityPeopleHasEntityFirearm Model</a></li><li><a href="#33-entitypeoplehasentityvehicle-model" class="table-of-contents__link toc-highlight">33. EntityPeopleHasEntityVehicle Model</a></li><li><a href="#34-entitypeopleimage-model" class="table-of-contents__link toc-highlight">34. EntityPeopleImage Model</a></li><li><a href="#35-entitypeopleinvolvedstatus-model" class="table-of-contents__link toc-highlight">35. EntityPeopleInvolvedStatus Model</a></li><li><a href="#36-entitypeopleinvolvement-model" class="table-of-contents__link toc-highlight">36. EntityPeopleInvolvement Model</a></li><li><a href="#37-entitypeopleinvolvementkind-model" class="table-of-contents__link toc-highlight">37. EntityPeopleInvolvementKind Model</a></li><li><a href="#38-entitypeoplemark-model" class="table-of-contents__link toc-highlight">38. EntityPeopleMark Model</a></li><li><a href="#39-entitypeoplemarkkind-model" class="table-of-contents__link toc-highlight">39. EntityPeopleMarkKind Model</a></li><li><a href="#40-entitypeoplemarklocation-model" class="table-of-contents__link toc-highlight">40. EntityPeopleMarkLocation Model</a></li><li><a href="#41-entitypeopleprioritylevel-model" class="table-of-contents__link toc-highlight">41. EntityPeoplePriorityLevel Model</a></li><li><a href="#42-entitypeoplesituacaofuncional-model" class="table-of-contents__link toc-highlight">42. EntityPeopleSituacaoFuncional Model</a></li><li><a href="#43-faccao-model" class="table-of-contents__link toc-highlight">43. Faccao Model</a></li><li><a href="#44-instituicoesfinanceiras-model" class="table-of-contents__link toc-highlight">44. InstituicoesFinanceiras Model</a></li><li><a href="#45-locality-model" class="table-of-contents__link toc-highlight">45. Locality Model</a></li><li><a href="#46-localitycriminalinfo-model" class="table-of-contents__link toc-highlight">46. LocalityCriminalInfo Model</a></li><li><a href="#47-localitymaplayer-model" class="table-of-contents__link toc-highlight">47. LocalityMapLayer Model</a></li><li><a href="#48-logocriminfo-model" class="table-of-contents__link toc-highlight">48. LogoCrimInfo Model</a></li><li><a href="#49-meiosameaca-model" class="table-of-contents__link toc-highlight">49. MeiosAmeaca Model</a></li><li><a href="#50-meioscrimeinstituicoesfinanceiras-model" class="table-of-contents__link toc-highlight">50. MeiosCrimeInstituicoesFinanceiras Model</a></li><li><a href="#51-modalidadescrimesinstituicoesfinanceiras-model" class="table-of-contents__link toc-highlight">51. ModalidadesCrimesInstituicoesFinanceiras Model</a></li><li><a href="#52-motivacao-model" class="table-of-contents__link toc-highlight">52. Motivacao Model</a></li><li><a href="#53-news-model" class="table-of-contents__link toc-highlight">53. News Model</a></li><li><a href="#54-occurrence-model" class="table-of-contents__link toc-highlight">54. Occurrence Model</a></li><li><a href="#55-occurrencefirearminvolved-model" class="table-of-contents__link toc-highlight">55. OccurrenceFirearmInvolved Model</a></li><li><a href="#56-occurrencegeolocation-model" class="table-of-contents__link toc-highlight">56. OccurrenceGeolocation Model</a></li><li><a href="#57-occurrencekindinvolved-model" class="table-of-contents__link toc-highlight">57. OccurrenceKindInvolved Model</a></li><li><a href="#58-occurrencepeopleinvolved-model" class="table-of-contents__link toc-highlight">58. OccurrencePeopleInvolved Model</a></li><li><a href="#59-resourcegadget-model" class="table-of-contents__link toc-highlight">59. ResourceGadget Model</a></li><li><a href="#60-resourcegadgetimage-model" class="table-of-contents__link toc-highlight">60. ResourceGadgetImage Model</a></li><li><a href="#61-resourcevehicle-model" class="table-of-contents__link toc-highlight">61. ResourceVehicle Model</a></li><li><a href="#62-resourcegadget-model" class="table-of-contents__link toc-highlight">62. ResourceGadget Model</a></li><li><a href="#63-resourcegadgetimage-model" class="table-of-contents__link toc-highlight">63. ResourceGadgetImage Model</a></li><li><a href="#64-resourcevehicle-model" class="table-of-contents__link toc-highlight">64. ResourceVehicle Model</a></li><li><a href="#65-resourcevehicleimage-model" class="table-of-contents__link toc-highlight">65. ResourceVehicleImage Model</a></li><li><a href="#66-resourcewar-model" class="table-of-contents__link toc-highlight">66. ResourceWar Model</a></li><li><a href="#67-resourcewarimage-model" class="table-of-contents__link toc-highlight">67. ResourceWarImage Model</a></li><li><a href="#68-settings-model" class="table-of-contents__link toc-highlight">68. Settings Model</a></li><li><a href="#69-signature-model" class="table-of-contents__link toc-highlight">69. Signature Model</a></li><li><a href="#70-staff-model" class="table-of-contents__link toc-highlight">70. Staff Model</a></li><li><a href="#71-staffaccreditation-model" class="table-of-contents__link toc-highlight">71. StaffAccreditation Model</a></li><li><a href="#72-staffadditionalinformation-model" class="table-of-contents__link toc-highlight">72. StaffAdditionalInformation Model</a></li><li><a href="#73-staffhasimprovementcourse-model" class="table-of-contents__link toc-highlight">73. StaffHasImprovementCourse Model</a></li><li><a href="#74-staffquest-model" class="table-of-contents__link toc-highlight">74. StaffQuest Model</a></li><li><a href="#75-supportticket-model" class="table-of-contents__link toc-highlight">75. SupportTicket Model</a></li><li><a href="#76-supportticketread-model" class="table-of-contents__link toc-highlight">76. SupportTicketRead Model</a></li><li><a href="#77-taskorganization-model" class="table-of-contents__link toc-highlight">77. TaskOrganization Model</a></li><li><a href="#78-termsandconditions-model" class="table-of-contents__link toc-highlight">78. TermsAndConditions Model</a></li><li><a href="#79-termuser-model" class="table-of-contents__link toc-highlight">79. TermUser Model</a></li><li><a href="#80-tiposestabelecimentoscomerciais-model" class="table-of-contents__link toc-highlight">80. TiposEstabelecimentosComerciais Model</a></li><li><a href="#81-userreaddoc-model" class="table-of-contents__link toc-highlight">81. UserReadDoc Model</a></li><li><a href="#82-vehiclemodel-model" class="table-of-contents__link toc-highlight">82. VehicleModel Model</a></li><li><a href="#83-weaponkind-model" class="table-of-contents__link toc-highlight">83. WeaponKind Model</a></li><li><a href="#84-zona-model" class="table-of-contents__link toc-highlight">84. Zona Model</a></li><li><a href="#85-occurrencevehicleinvolved-model" class="table-of-contents__link toc-highlight">85. OccurrenceVehicleInvolved Model</a></li><li><a href="#86-opm-model" class="table-of-contents__link toc-highlight">86. Opm Model</a></li><li><a href="#87-opmgoverning-model" class="table-of-contents__link toc-highlight">87. OpmGoverning Model</a></li><li><a href="#88-opmstructure-model" class="table-of-contents__link toc-highlight">88. OpmStructure Model</a></li><li><a href="#89-user-model" class="table-of-contents__link toc-highlight">89. User Model</a></li><li><a href="#modelos-sem-implementação" class="table-of-contents__link toc-highlight">Modelos sem implementação</a></li></ul></li><li><a href="#views" class="table-of-contents__link toc-highlight">Views</a></li><li><a href="#classes" class="table-of-contents__link toc-highlight">Classes</a><ul><li><a href="#customrequestcaptcha-class" class="table-of-contents__link toc-highlight">CustomRequestCaptcha Class</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentação</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/getting-starter/intro">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/configuration">Configuration</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/development">Development</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/deployment">Deployment</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/references/changelog">References</a></li><li class="footer__item"><a class="footer__link-item" href="/docs-sinpom/docs/contributing">Contributing</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/giluansouza" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://twitter.com/your-profile" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div></div></footer></div>
 </body>
 </html>
