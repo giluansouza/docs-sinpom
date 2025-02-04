@@ -10,6 +10,26 @@ O SINPOM utiliza uma arquitetura **MVC (Model-View-Controller)** que é o padrã
 
 ## Controllers
 
+### Controller
+
+Controlador base do sistema que é estendido por outros controllers. Fornece funcionalidades essenciais de autorização, despacho de jobs e validação de requisições para as classes que o utilizam.
+
+#### Métodos Principais
+
+- **Autorizações:** O controller herda o trait `AuthorizesRequests`, que permite a autorização de ações de usuários no sistema.
+- **Despacho de Jobs:** O controller herda o trait `DispatchesJobs`, que permite o despacho de jobs para a fila de tarefas do sistema.
+- **Validação de Requisições:** O controller herda o trait `ValidatesRequests`, que permite a validação de dados nas requisições HTTP recebidas.
+
+#### Dependências
+
+- **AuthorizesRequests:** Trait que fornece métodos para autorizar ações de usuários, garantindo que apenas usuários com permissões adequadas possam executar ações específicas.
+- **DispatchesJobs:** Trait que permite o envio de jobs para a fila de tarefas, facilitando o processamento assíncrono de tarefas.
+- **ValidatesRequests:** Trait que fornece métodos para validar dados de requisições HTTP, garantindo que os dados recebidos estejam no formato correto.
+
+> **Padrão de Design Utilizado:** MVC, com o controller base oferecendo funcionalidades essenciais de autorização, despacho de jobs e validação de requisições.
+
+---
+
 ### PainelController
 
 Gerencia o painel do usuário, ações relacionadas ao perfil e visualizações condicionais de acordo com as permissões do usuário.
@@ -29,6 +49,630 @@ Gerencia o painel do usuário, ações relacionadas ao perfil e visualizações 
 - `Auth`: Gerencia o usuário autenticado.
 - `Crypt`: Criptografa dados sensíveis.
 - `Staff`: Recupera informações de perfil do usuário para verificações de dados adicionais.
+
+---
+
+### AclController
+
+Gerencia a atribuição de funções e permissões de usuários no sistema. Permite ações como listar usuários, exibir detalhes de usuários e gerenciar funções e permissões.
+
+#### Métodos Principais
+
+- **index(Request $request):** Retorna e exibe uma lista paginada de usuários, filtrada por função e permissões. Implementa lógica para diferentes níveis de permissão, como "Autorizar usuários todos níveis" e "Gerenciar usuários CPR".
+- **show(Request $request, $id):** Exibe os detalhes de um usuário específico, incluindo suas funções e a estrutura organizacional (OPM). Verifica permissões antes de permitir o acesso.
+- **token(Request $request):** Exibe a página de geração de token para um membro específico da equipe, permitindo a criação de um código de verificação.
+- **storetoken(Request $request):** Cria ou atualiza o código de verificação para um agente, e envia o código para o e-mail do agente. Inclui uma verificação para garantir que o agente não esteja duplicado no sistema.
+- **update(Request $request, $id):** Atualiza a função de um usuário. Inclui verificações para impedir a duplicação de funções em uma mesma unidade (ex: Chefe ou Analista - SOInt). Trata casos especiais como "descredenciamento" de agentes.
+- **destroy($id):** Realiza a exclusão suave de um usuário, removendo a função atribuída ao usuário e gerenciando o histórico de status (como descredenciamento).
+
+#### Dependências
+
+- **User:** Modelo que representa os usuários no sistema. Manipula as funções e permissões atribuídas a cada usuário.
+- **Role:** Modelo que gerencia as funções atribuídas aos usuários, verificando permissões e implementando regras de acesso.
+- **Staff:** Representa os detalhes de cada membro da equipe, incluindo suas funções, hierarquia e status.
+- **AgentStatusLog:** Registra as mudanças de status dos agentes, como credenciamento e descredenciamento.
+- **CodeVerification:** Responsável pela criação e validação de códigos de verificação usados em diversas operações no sistema.
+- **CustomQueries:** Contém consultas personalizadas que são usadas para gerar as listas de usuários, filtradas por função e status.
+- **AgentRequestForInclusion:** Modelo que gerencia solicitações para inclusão de agentes em processos específicos, como credenciamento ou descredenciamento.
+- **Mail:** Utilizado para enviar e-mails, como o envio de tokens de verificação aos usuários.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### AgentController
+
+Gerencia as operações relacionadas aos agentes, como listar agentes, exibir detalhes, credenciamento e controle de solicitações de inclusão. Permite ações de filtragem e permissões específicas para diferentes níveis de acesso.
+
+#### Métodos Principais
+
+- **index(Request $request):** Retorna e exibe uma lista paginada de agentes, filtrada por função e permissões. Implementa lógica para diferentes níveis de permissão, como "Ver todos agentes" e "Ver agentes CPR".
+- **listar(Request $request):** Lista os agentes de acordo com as permissões do usuário, com suporte para filtrar por OPM ou ID de staff.
+- **credenciamento(Request $request):** Exibe os agentes com credenciamento solicitado, filtrados de acordo com as permissões do usuário e a estrutura da OPM.
+
+#### Dependências
+
+- **Staff:** Modelo que representa os agentes e seus dados relacionados, como informações de staff e funções.
+- **User:** Modelo que representa os usuários do sistema, incluindo permissões e funções.
+- **Role:** Modelo que gerencia as funções atribuídas aos usuários e agentes.
+- **Opm:** Modelo que representa as unidades da Polícia Militar e suas estruturas.
+- **AgentRequestForInclusion:** Modelo que gerencia as solicitações de inclusão de agentes em processos, como credenciamento.
+- **AgentStatusLog:** Registra as mudanças de status dos agentes, como credenciamento ou descredenciamento.
+- **AgentFis, AgentPesquisaSocial, Decision, Document, Signature:** Modelos adicionais envolvidos nas operações relacionadas ao gerenciamento de agentes.
+- **Mail:** Usado para enviar notificações de credenciamento e atualizações.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### DocumentController
+
+Gerencia as operações relacionadas aos documentos, incluindo a caixa de entrada e saída, o encaminhamento e a tramitação de documentos, além da busca e do controle de prazos.
+
+#### Métodos Principais
+
+- **index(Request $request):** Retorna e exibe uma lista de documentos na caixa de entrada, com base nas permissões do usuário. Implementa lógica para diferentes permissões, como "Tramitar documentos" e "Ver documentos enviados para OPM".
+- **search(Request $request):** Realiza uma busca detalhada de documentos com base em critérios como texto, data e difusão. Permite filtrar documentos de acordo com a seção que criou ou recebeu o documento.
+- **caixadesaida(Request $request):** Exibe os documentos na caixa de saída, incluindo aqueles que foram criados, enviados ou encaminhados pelo usuário.
+- **prazos_externos(Request $request):** Exibe documentos com prazos externos, filtrados de acordo com a data.
+- **prazos(Request $request):** Exibe documentos com prazos internos, filtrados de acordo com a data.
+- **stopValidAt(Request $request):** Finaliza a resposta de um documento específico, caso o usuário tenha permissão para isso.
+
+#### Dependências
+
+- **DocumentControl:** Modelo que gerencia os controles de documentos, incluindo a entrada e saída de documentos e seu encaminhamento.
+- **Document:** Modelo que representa os documentos e suas informações principais.
+- **OpmStructure:** Modelo que representa as estruturas das unidades da Polícia Militar.
+- **Attachment:** Modelo utilizado para anexar arquivos aos documentos.
+- **DocumentTracking:** Registra o histórico de movimentação de documentos.
+- **Mail:** Utilizado para enviar notificações e atualizações sobre o status dos documentos.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### EntityFirearmController
+
+Gerencia as operações relacionadas às armas de fogo registradas em entidades, incluindo a inclusão, consulta, edição e atualização de informações sobre armas, bem como a associação com pessoas e ocorrências.
+
+#### Métodos Principais
+
+- **store(Request $request):** Cria um novo registro de arma de fogo e associa pessoas e ocorrências a ela. Salva os dados da arma e gerencia o relacionamento com os envolvidos.
+- **consultaarma(Request $request):** Consulta informações sobre uma arma de fogo registrada, incluindo os detalhes do tipo, fabricante, calibre, propriedade e identificação legível, além de listar as pessoas associadas à arma em uma ocorrência ou documento.
+- **edit(Request $request, $id):** Exibe a página de edição de uma arma de fogo, carregando os dados da arma, fabricantes, calibres e pessoas associadas à arma em ocorrências ou documentos.
+- **update(Request $request, $id):** Atualiza os dados de uma arma de fogo registrada e suas associações, incluindo a remoção de vínculos de pessoas associadas, quando necessário.
+- **removevinculo(Request $request):** Remove a associação de uma pessoa com uma arma de fogo registrada, excluindo o vínculo na tabela de envolvimentos.
+
+#### Dependências
+
+- **EntityFirearm:** Modelo que representa as armas de fogo registradas nas entidades, incluindo detalhes como tipo, fabricante e número de série.
+- **EntityFirearmInvolvement:** Modelo que gerencia o relacionamento entre as armas de fogo e as ocorrências ou documentos aos quais estão associadas.
+- **EntityPeopleHasEntityFirearm:** Modelo que gerencia o relacionamento entre pessoas e as armas de fogo registradas.
+- **Occurrence:** Modelo que representa as ocorrências relacionadas às armas de fogo, como apreensões ou investigações.
+- **Document:** Modelo que representa os documentos relacionados às armas de fogo, como relatórios e registros oficiais.
+- **FirearmType, FirearmManufacturer, FirearmCaliber, FirearmOwner, FirearmSerialNumberStatus:** Modelos que fornecem os dados sobre tipos de armas, fabricantes, calibres, proprietários e status de números de série das armas de fogo.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### EntityPeopleController
+
+Gerencia as operações relacionadas às pessoas registradas nas entidades, incluindo a importação de dados, criação, atualização, e gerenciamento de informações pessoais, como apelidos, endereços, envolvimentos e documentos.
+
+#### Métodos Principais
+
+- **readCsv():** Realiza a leitura e importação de dados a partir de um arquivo CSV, criando registros de pessoas, seus apelidos, endereços, e associações com facções e crimes.
+- **store(Request $request):** Cria uma nova entidade pessoa a partir dos dados fornecidos na requisição, incluindo a criação de apelidos, endereços, e associações com facções, crimes e documentos.
+- **mandadoShow(Request $request, $id):** Exibe o mandado de prisão associado a uma pessoa, permitindo o download do arquivo correspondente.
+- **mandadoDelete(Request $request, $id):** Exclui o mandado de prisão associado a uma pessoa, removendo o arquivo do sistema e apagando o registro do banco de dados.
+
+#### Dependências
+
+- **EntityPeople:** Modelo que representa as pessoas registradas nas entidades, incluindo informações como nome, CPF, RG, gênero, e data de nascimento.
+- **EntityPeopleApelido:** Modelo que gerencia os apelidos das pessoas registradas.
+- **EntityPeopleAddress:** Modelo que gerencia os endereços das pessoas registradas.
+- **EntityPeopleCrime:** Modelo que gerencia as associações entre as pessoas e os crimes em que estão envolvidas.
+- **Faccao:** Modelo que representa as facções às quais as pessoas podem estar associadas.
+- **EntityPeoplePriorityLevel:** Modelo que representa os níveis de prioridade das pessoas registradas.
+- **EntityPeopleMarkKind, EntityPeopleMarkLocation:** Modelos que gerenciam as características e localizações das marcas associadas às pessoas.
+- **Document:** Modelo que representa os documentos associados às pessoas registradas.
+- **EntityPeopleArrestWarrant:** Modelo que gerencia os mandados de prisão associados às pessoas.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+---
+
+### EntityVehicleController
+
+Gerencia as operações relacionadas aos veículos registrados em entidades, incluindo a inclusão, consulta, edição e atualização de informações sobre veículos, bem como a associação com pessoas e ocorrências.
+
+#### Métodos Principais
+
+- **store(Request $request):** Cria um novo registro de veículo e associa pessoas e ocorrências a ele. Salva os dados do veículo e gerencia o relacionamento com os envolvidos.
+- **consultaveiculo(Request $request):** Consulta informações sobre um veículo registrado, incluindo os detalhes do tipo, modelo, cor, placa e RENAVAN, além de listar as pessoas associadas ao veículo em uma ocorrência ou documento.
+- **edit(Request $request, $id):** Exibe a página de edição de um veículo, carregando os dados do veículo, tipos, cores e pessoas associadas ao veículo em ocorrências ou documentos.
+- **update(Request $request, $id):** Atualiza os dados de um veículo registrado e suas associações, incluindo a remoção de vínculos de pessoas associadas, quando necessário.
+- **removevinculo(Request $request):** Remove a associação de uma pessoa com um veículo registrado, excluindo o vínculo na tabela de envolvimentos.
+
+#### Dependências
+
+- **EntityVehicle:** Modelo que representa os veículos registrados nas entidades, incluindo detalhes como tipo, modelo, cor, placa e RENAVAN.
+- **EntityVehicleInvolvement:** Modelo que gerencia o relacionamento entre os veículos e as ocorrências ou documentos aos quais estão associados.
+- **EntityPeopleHasEntityVehicle:** Modelo que gerencia o relacionamento entre pessoas e os veículos registrados.
+- **VehicleKind:** Modelo que representa os tipos de veículos.
+- **VehicleColor:** Modelo que representa as cores dos veículos.
+- **Occurrence:** Modelo que representa as ocorrências relacionadas aos veículos, como apreensões ou investigações.
+- **Document:** Modelo que representa os documentos relacionados aos veículos, como relatórios e registros oficiais.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### ExportController
+
+Gerencia as operações de exportação de dados para arquivos CSV, permitindo a exportação de informações relacionadas às pessoas registradas nas entidades.
+
+#### Métodos Principais
+
+- **peopleCsv():** Exporta os dados das pessoas registradas para um arquivo CSV. O método recupera os registros de pessoas e gera um arquivo com informações como nome, CPF, data de nascimento, área de atuação, facção associada, e status atual.
+
+#### Dependências
+
+- **EntityPeople:** Modelo que representa as pessoas registradas nas entidades, incluindo informações como nome, CPF, data de nascimento e associações com facções e status.
+- **SimpleExcelWriter:** Classe utilizada para criar e escrever no arquivo CSV.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### FaccaoController
+
+Gerencia as operações relacionadas às facções criminosas registradas no sistema, incluindo a criação, edição, listagem e exclusão de facções, bem como o registro de informações criminais e geográficas associadas.
+
+#### Métodos Principais
+
+- **index(Request $request):** Exibe uma lista paginada de facções, restrita a usuários com permissões específicas. Apenas usuários autorizados pela "Segurança pública e ouvidoria" podem acessar esta funcionalidade.
+- **create(Request $request):** Exibe o formulário para criar uma nova facção, disponível apenas para usuários com permissões adequadas.
+- **edit(Request $request, $id):** Exibe o formulário de edição para uma facção existente, permitindo alterar informações como nome. Disponível apenas para usuários autorizados.
+- **update(Request $request, $id):** Atualiza os dados de uma facção existente e verifica se o nome informado já está registrado. Caso o nome já exista, um erro é retornado.
+- **store(Request $request):** Armazena uma nova facção no banco de dados, após verificar se uma facção com o mesmo nome já existe.
+- **logocrim(Request $request):** Exibe as informações relacionadas aos logos criminais registrados, com filtros para facção, tipo de comunicação criminal, e outras variáveis.
+- **logocrimCreate(Request $request):** Exibe o formulário para criar um novo logo criminal, permitindo incluir dados como facção, tipo de crime, e informações adicionais.
+- **logocrimStore(Request $request):** Armazena um novo logo criminal, incluindo anexos e imagens relacionadas.
+- **logocrimImage($path):** Realiza o download de imagens associadas aos logos criminais.
+- **logocrimAnexo($path):** Realiza o download de anexos associados aos logos criminais.
+- **logocrimEdit(Request $request, $id):** Exibe o formulário de edição para um logo criminal existente.
+- **logocrimImagePath(Request $request, $id):** Retorna o caminho da imagem associada a um logo criminal.
+
+#### Dependências
+
+- **Faccao:** Modelo que representa as facções criminosas registradas no sistema, com informações como nome e associações a outras entidades.
+- **LogoCrimInfo:** Modelo que gerencia as informações relacionadas aos logos criminais, incluindo imagens, anexos e geolocalização.
+- **CrimeCommunicationKind, CrimeConnotation, CrimeInformationSource:** Modelos que representam diferentes aspectos da comunicação e conotação dos crimes, bem como suas fontes de informação.
+- **State, City:** Modelos que representam estados e cidades, utilizados para geolocalização de eventos criminosos.
+- **Prison:** Modelo que representa as prisões associadas aos crimes registrados.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### GeolocationController
+
+Gerencia as operações relacionadas à geolocalização de IPs, retornando a cidade e as coordenadas geográficas associadas ao endereço de IP do usuário.
+
+#### Métodos Principais
+
+- **search(Request $request):** Obtém o endereço de IP do usuário e, com base nesse IP, consulta a localização geográfica utilizando a API `IPInfoDB`. Retorna as coordenadas geográficas (latitude e longitude) associadas ao IP. Caso não seja possível determinar a localização, retorna valores padrão de latitude e longitude.
+
+#### Dependências
+
+- **IPInfoDB:** Serviço utilizado para consultar informações de geolocalização a partir do endereço de IP.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### HomeController
+
+Controlador responsável pela exibição da página inicial do sistema, garantindo que o usuário esteja autenticado antes de acessar a dashboard.
+
+#### Métodos Principais
+
+- **__construct():** Construtor que aplica o middleware de autenticação, garantindo que o usuário esteja autenticado para acessar os métodos deste controller.
+- **index():** Exibe a página inicial da aplicação, renderizando a view `home`.
+
+#### Dependências
+
+- **Auth:** Middleware que garante que apenas usuários autenticados possam acessar os métodos do controller.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### ImprovementCourseController
+
+Gerencia as operações relacionadas aos cursos de aperfeiçoamento, incluindo a criação, edição, listagem e atualização de cursos registrados no sistema.
+
+#### Métodos Principais
+
+- **index(Request $request):** Exibe a lista de cursos de aperfeiçoamento, com suporte para filtro por nome ou sigla. O acesso é restrito a usuários da "Coordenação de Contrainteligência".
+- **edit(Request $request, $id):** Exibe o formulário de edição de um curso de aperfeiçoamento existente, permitindo a alteração de dados como sigla, nome e órgão. O acesso é restrito a usuários autorizados.
+- **update(Request $request, $id):** Atualiza as informações de um curso de aperfeiçoamento existente no sistema.
+- **create(Request $request):** Exibe o formulário para criação de um novo curso de aperfeiçoamento. O acesso é restrito a usuários da "Coordenação de Contrainteligência".
+- **store(Request $request):** Cria um novo curso de aperfeiçoamento no sistema, com base nos dados fornecidos no formulário. O acesso é restrito a usuários autorizados.
+
+#### Dependências
+
+- **ImprovementCourse:** Modelo que representa os cursos de aperfeiçoamento, incluindo informações como sigla, nome e órgão responsável.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### OccurrenceController
+
+Gerencia as operações relacionadas às ocorrências registradas no sistema, incluindo a criação, edição, listagem, atualização e exclusão de ocorrências, bem como o gerenciamento de geolocalização e envolvimento de pessoas, veículos e armas.
+
+#### Métodos Principais
+
+- **create(Request $request):** Exibe o formulário para criação de uma nova ocorrência, disponível apenas para usuários com permissão para registrar ocorrências.
+- **store(Request $request):** Cria uma nova ocorrência e a armazena no banco de dados, criando também os tipos de envolvimento associados à ocorrência.
+- **edit(Request $request, $id):** Exibe o formulário de edição para uma ocorrência existente, permitindo a modificação de seus dados e o gerenciamento de envolvimentos.
+- **update(Request $request, $id):** Atualiza os dados de uma ocorrência existente, incluindo a geolocalização e o envolvimento de pessoas, veículos e armas.
+- **listar(Request $request):** Exibe uma lista de ocorrências filtradas por diferentes critérios, dependendo das permissões do usuário (como "Consultar ocorrências locais" ou "Consultar ocorrências gerais").
+- **show(Request $request, $id):** Exibe os detalhes de uma ocorrência específica, incluindo suas coordenadas de geolocalização.
+- **checkage(Request $request):** Verifica se a ocorrência foi registrada dentro de um intervalo aceitável de tempo (30 dias).
+- **destroy($id):** Exclui uma ocorrência e seus envolvimentos, caso o usuário tenha permissões adequadas.
+
+#### Dependências
+
+- **Occurrence:** Modelo que representa as ocorrências registradas, incluindo informações como data, hora, local, envolvidos e descrição.
+- **OccurrenceKindInvolved:** Modelo que representa os tipos de envolvimento em uma ocorrência.
+- **OccurrenceGeolocation:** Modelo que representa a geolocalização de uma ocorrência.
+- **EntityPeopleInvolvement, EntityVehicleInvolvement, EntityFirearmInvolvement:** Modelos que gerenciam os envolvimentos de pessoas, veículos e armas nas ocorrências.
+- **WeaponKind, FirearmType, FirearmManufacturer, FirearmCaliber:** Modelos que representam as armas envolvidas nas ocorrências.
+- **PeopleColor, VehicleKind, VehicleColor:** Modelos que representam as características das pessoas e veículos envolvidos nas ocorrências.
+- **Motivacao, Faccao, Zona, MeiosAmeaca, Motivacao:** Modelos que fornecem informações sobre a motivação e as características das ocorrências.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### OpmController
+
+Gerencia as operações relacionadas às OPMs (Unidades da Polícia Militar), incluindo a edição de informações da OPM, a exibição de dados de governança, e o gerenciamento dos usuários associados a cada OPM.
+
+#### Métodos Principais
+
+- **edit(Request $request, $id):** Exibe o formulário de edição para uma OPM existente, permitindo alterar informações relacionadas à OPM, como endereço, telefone e e-mail. O acesso é restrito a usuários com permissões adequadas.
+- **update(Request $request, $id):** Atualiza os dados de uma OPM existente, incluindo as informações de governança, como coordenadores e contatos.
+- **governing(Request $request):** Exibe as informações de governança para uma OPM específica, incluindo a listagem de usuários associados a essa OPM, com base nas permissões do usuário.
+
+#### Dependências
+
+- **Opm:** Modelo que representa as Unidades da Polícia Militar e suas informações principais.
+- **OpmGoverning:** Modelo que gerencia as informações de governança de cada OPM, incluindo detalhes como endereço, telefone e coordenadores.
+- **User:** Modelo que representa os usuários associados à OPM, incluindo suas permissões e funções.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### PainelController
+
+Gerencia as operações relacionadas ao painel principal do sistema, incluindo a visualização de informações gerais sobre ocorrências, alvos prioritários, e avisos. Controla o acesso ao painel com base nas permissões do usuário e realiza verificações sobre dados cadastrais e status.
+
+#### Métodos Principais
+
+- **index(Request $request):** Exibe o painel principal do sistema, com informações sobre ocorrências agrupadas por tipo, avisos recentes e alvos prioritários. O acesso é controlado por permissões específicas, incluindo a visualização de um painel personalizável e de dados específicos de unidades de operação (OPMs).
+- **tutorial(Request $request):** Exibe o tutorial de uso do painel, com instruções para o usuário.
+
+#### Dependências
+
+- **CustomQueries:** Classe responsável por executar consultas personalizadas, como contagem de agentes e ocorrências.
+- **News:** Modelo que representa as notícias e avisos do sistema, incluindo categorias específicas de avisos.
+- **PriorityTarget:** Modelo que gerencia os alvos prioritários, incluindo informações sobre a pessoa e sua situação.
+- **Staff:** Modelo que representa os funcionários associados às OPMs, incluindo seus dados e informações adicionais.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### QueryController
+
+Gerencia as consultas complexas no sistema, incluindo a contagem de ocorrências por tipo, por OPM, e por período. Também lida com a busca de pessoas e o gerenciamento de suas informações, como nome, apelido, documentos e envolvimentos.
+
+#### Métodos Principais
+
+- **countoccurrencesbykindallopmjson($dataInicial, $dataFinal):** Retorna a contagem de ocorrências agrupadas por tipo dentro de um intervalo de datas.
+- **countoccurrencesbyopm($dataInicial, $dataFinal):** Retorna a contagem de ocorrências agrupadas por OPM e CPR dentro de um intervalo de datas.
+- **counthomicidiosbyopm($dataInicial, $dataFinal):** Retorna a contagem de homicídios ocorridos em uma OPM dentro de um intervalo de datas.
+- **entidadepessoa(Request $request):** Exibe a página de pesquisa de pessoas, com filtros como nome, apelido, matrícula de PM, e outros critérios relacionados.
+- **entidadepessoasearch(Request $request):** Realiza a pesquisa de pessoas no sistema, filtrando por diversos campos como nome, CPF, RG, área de atuação, entre outros.
+- **consultaentidadepessoa(Request $request):** Retorna os dados detalhados de uma pessoa, incluindo registros de ocorrências e informações associadas, como documentos e armas envolvidas.
+
+#### Dependências
+
+- **Occurrence:** Modelo que representa as ocorrências registradas no sistema.
+- **EntityPeople:** Modelo que representa as pessoas registradas no sistema.
+- **EntityPeopleInvolvement:** Modelo que gerencia o envolvimento de pessoas em ocorrências.
+- **Faccao:** Modelo que representa as facções criminosas associadas às pessoas.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### ResourceGadgetController
+
+Gerencia as operações relacionadas aos recursos de equipamentos, incluindo a exibição de gadgets (equipamentos) registrados, a criação, edição e atualização de informações de equipamentos, e o gerenciamento de imagens associadas a esses gadgets.
+
+#### Métodos Principais
+
+- **index(Request $request):** Exibe a lista de equipamentos registrados, filtrados por tipo de gadget e condição, com base nas permissões do usuário (OPM ou CPR).
+- **create(Request $request):** Exibe o formulário para criar um novo equipamento, disponível apenas para usuários com a permissão de cadastrar equipamentos.
+- **store(Request $request):** Armazena um novo equipamento no banco de dados, incluindo a criação de imagens associadas ao gadget.
+- **show(Request $request, $id):** Exibe os detalhes de um equipamento específico.
+- **image($filename):** Retorna a imagem associada ao equipamento para download.
+- **edit(Request $request, $id):** Exibe o formulário de edição para um equipamento existente, permitindo a atualização dos dados e imagens associadas.
+- **update(Request $request, $id):** Atualiza os dados de um equipamento existente, incluindo a remoção de imagens antigas e a adição de novas imagens.
+- **destroy(Request $request, $id):** Exclui um equipamento e suas imagens associadas do banco de dados.
+
+#### Dependências
+
+- **ResourceGadget:** Modelo que representa os gadgets (equipamentos) registrados no sistema, com informações como marca, modelo, e condições.
+- **GadgetKind:** Modelo que representa os tipos de gadgets registrados.
+- **GadgetCondition:** Modelo que representa as condições dos gadgets, como "Novo", "Usado", etc.
+- **ResourceGadgetImage:** Modelo que gerencia as imagens associadas aos gadgets.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### ResourceVehicleController
+
+Gerencia as operações relacionadas aos veículos registrados, incluindo a criação, edição, atualização, exibição e exclusão de veículos, bem como o gerenciamento de imagens associadas a esses veículos.
+
+#### Métodos Principais
+
+- **index(Request $request):** Exibe a lista de veículos registrados, com filtros por OPM, placa, condição do veículo e outros critérios. O acesso é controlado por permissões específicas, como "Ver veículos da OPM", "Ver veículos do CPR" ou "Ver veículos todos".
+- **create(Request $request):** Exibe o formulário para criação de um novo veículo, disponível apenas para usuários com a permissão de cadastrar veículos.
+- **store(Request $request):** Cria um novo veículo no banco de dados e armazena informações sobre o tipo, modelo, cor e condição do veículo, além de salvar imagens associadas.
+- **show(Request $request, $id):** Exibe os detalhes de um veículo específico.
+- **image($filename):** Retorna a imagem associada ao veículo para download.
+- **edit(Request $request, $id):** Exibe o formulário de edição para um veículo existente, permitindo a atualização dos dados e das imagens associadas.
+- **update(Request $request, $id):** Atualiza os dados de um veículo existente e suas imagens associadas, removendo as imagens antigas, se necessário.
+- **destroy(Request $request, $id):** Exclui um veículo e suas imagens associadas do banco de dados.
+
+#### Dependências
+
+- **ResourceVehicle:** Modelo que representa os veículos registrados, incluindo informações como tipo, modelo, cor, placa e condição.
+- **VehicleKind:** Modelo que representa os tipos de veículos.
+- **VehicleColor:** Modelo que representa as cores dos veículos.
+- **VehicleCondition:** Modelo que representa as condições dos veículos.
+- **ResourceVehicleImage:** Modelo que gerencia as imagens associadas aos veículos.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### ResourceWarController
+
+Gerencia as operações relacionadas aos armamentos registrados no sistema, incluindo a criação, edição, listagem e exclusão de armas, bem como o gerenciamento das condições e tipos de armamento.
+
+#### Métodos Principais
+
+- **index(Request $request):** Exibe a lista de armamentos registrados, com filtros por OPM, tipo de armamento, fabricante, e condição. O acesso é controlado por permissões específicas, como "Ver armamento da OPM", "Ver armamento do CPR" ou "Ver armamento todos".
+- **create(Request $request):** Exibe o formulário para criação de um novo armamento, disponível apenas para usuários com a permissão de cadastrar armamentos.
+- **store(Request $request):** Cria um novo armamento no banco de dados e armazena informações sobre o tipo, modelo, fabricante e condição do armamento, além de salvar imagens associadas.
+- **show(Request $request, $id):** Exibe os detalhes de um armamento específico.
+- **image($filename):** Retorna a imagem associada ao armamento para download.
+- **edit(Request $request, $id):** Exibe o formulário de edição para um armamento existente, permitindo a atualização dos dados e das imagens associadas.
+- **update(Request $request, $id):** Atualiza os dados de um armamento existente e suas imagens associadas, removendo as imagens antigas, se necessário.
+- **destroy(Request $request, $id):** Exclui um armamento e suas imagens associadas do banco de dados.
+
+#### Dependências
+
+- **ResourceWar:** Modelo que representa os armamentos registrados no sistema, incluindo informações como tipo, modelo, fabricante e condição.
+- **ResourceWarKind:** Modelo que representa os tipos de armamentos.
+- **ResourceWarCondition:** Modelo que representa as condições dos armamentos.
+- **FirearmManufacturer:** Modelo que representa os fabricantes de armas.
+- **FirearmType:** Modelo que representa os tipos de armas.
+- **FirearmCaliber:** Modelo que representa os calibres das armas.
+- **ResourceWarImage:** Modelo que gerencia as imagens associadas aos armamentos.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### SearchController
+
+Gerencia as operações de busca e consulta de dados no sistema, incluindo a pesquisa de policiais, veículos, pessoas e informações relacionadas às OPMs, além de permitir o filtro por diversos critérios.
+
+#### Métodos Principais
+
+- **staff_local(Request $request):** Realiza a busca de policiais da OPM local, filtrando por nome ou matrícula, e retornando os resultados formatados.
+- **staff_com_reserva(Request $request):** Realiza a busca de policiais da OPM, considerando também os policiais com reserva.
+- **staff_info(Request $request):** Exibe informações detalhadas de um funcionário específico, incluindo dados como matrícula, nome, CPF, e outros dados pessoais.
+- **staff_geral(Request $request):** Realiza a busca de policiais de forma geral, com filtros por nome e matrícula, retornando os resultados de acordo com as permissões do usuário.
+- **findcity(Request $request):** Realiza a busca de cidades com base no nome, retornando resultados formatados.
+- **findopm(Request $request):** Realiza a busca de OPMs (Unidades da Polícia Militar) com base no nome, retornando resultados filtrados por tipo de OPM e permissões de acesso.
+- **findopmsamecpr(Request $request):** Realiza a busca de OPMs dentro do mesmo CPR, com base no nome.
+- **findopmstructure(Request $request):** Realiza a busca de estruturas de OPMs, com base no ID da OPM.
+- **findstructurereceiveronlycomandoesub(Request $request):** Busca por estruturas de OPMs que sejam comandos ou subcomandos, de acordo com os critérios definidos.
+- **findstructurereceiveronlyagencias(Request $request):** Busca por estruturas de OPMs que sejam agências ou subcomandos, de acordo com os critérios definidos.
+- **findstructurereceiver(Request $request):** Realiza a busca por estruturas de OPMs, com base no nome e filtros adicionais.
+- **findstructurelocalreceiver(Request $request):** Busca por estruturas locais de OPMs, com base nas permissões do usuário.
+- **findagencias(Request $request):** Realiza a busca de agências, com base no nome.
+- **finduseracl(Request $request):** Realiza a busca de usuários com permissões específicas de acordo com os critérios definidos.
+- **findopmacl(Request $request):** Realiza a busca de OPMs com base em permissões específicas do usuário.
+- **finduser(Request $request):** Realiza a busca de usuários, com base no nome ou matrícula.
+- **findusersinsamestructure(Request $request):** Busca por usuários que estão na mesma estrutura de OPM que o usuário atual, filtrando por nome, matrícula e estrutura.
+- **findvehicle(Request $request):** Realiza a busca de veículos, com base no modelo e outros critérios definidos.
+- **findPeople(Request $request):** Realiza a busca de pessoas, com base no nome ou CPF.
+
+#### Dependências
+
+- **Staff:** Modelo que representa os policiais registrados, incluindo informações como nome, matrícula e OPM.
+- **City:** Modelo que representa as cidades, permitindo a busca e a filtragem por nome.
+- **EntityPeople:** Modelo que representa as pessoas registradas no sistema.
+- **VehicleModel:** Modelo que representa os modelos de veículos.
+- **Opm:** Modelo que representa as Unidades da Polícia Militar (OPMs).
+- **OpmStructure:** Modelo que gerencia as estruturas dentro de cada OPM.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### SignatureController
+
+Gerencia as operações relacionadas à assinatura de documentos, incluindo a visualização de documentos pendentes, assinaturas de documentos, e a movimentação de processos entre as agências.
+
+#### Métodos Principais
+
+- **assinadas(Request $request):** Exibe os documentos que já foram assinados, filtrados pela estrutura da OPM do usuário.
+- **pendentes(Request $request):** Exibe os documentos pendentes de assinatura, permitindo a visualização e a assinatura por usuários autorizados.
+- **cointassina(Request $request):** Permite que um usuário com a permissão "Assinar" assine um documento e registre a assinatura no sistema, além de realizar outras ações relacionadas ao processo de credenciamento de agentes.
+- **cprassina(Request $request):** Permite que o comandante de CPR assine um documento, registrando a assinatura e movendo o processo conforme necessário.
+- **visualiza(Request $request):** Exibe o documento para visualização antes da assinatura, de acordo com o tipo de documento (FIS, CPR, COINT).
+- **devolvefisssocoint(Request $request):** Permite que o comandante devolva um documento para alteração antes de assinar.
+- **devolvefiscordoint(Request $request):** Permite que o comandante devolva um documento para alteração no processo de assinatura.
+- **assina(Request $request):** Permite que o comandante de uma OPM assine o FIS da agência, registrando a assinatura e enviando notificações via Sinmail.
+
+#### Dependências
+
+- **Signature:** Modelo que representa os documentos de assinatura, incluindo o status e o tipo de documento.
+- **AgentFis:** Modelo que gerencia as informações de agentes e suas assinaturas no sistema.
+- **Sinmail:** Modelo utilizado para enviar e-mails relacionados aos processos de assinatura.
+- **SinmailProceeding:** Modelo que gerencia o acompanhamento dos e-mails enviados para os processos de assinatura.
+- **TaskOrganization:** Modelo que representa as organizações de tarefas no sistema.
+- **Decision:** Modelo que registra decisões tomadas sobre os documentos.
+- **Staff:** Modelo que representa os funcionários envolvidos nos processos de assinatura.
+- **OpmStructure:** Modelo que representa as estruturas das OPMs e agências.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### StaffController
+
+Gerencia as operações relacionadas aos policiais, incluindo a visualização, edição e atualização das informações, como a unidade a que pertencem, o cargo, e outras informações adicionais.
+
+#### Métodos Principais
+
+- **index(Request $request):** Exibe a lista de policiais, permitindo a visualização das informações gerais. O acesso é restrito a usuários com a permissão "Ajustar pecúlio" ou pertencentes à "Segurança Orgânica".
+- **update(Request $request, $id):** Atualiza as informações de um funcionário, incluindo a alteração de sua unidade de operação (OPM) e cargo. Se houver alteração de unidade, o status do agente é atualizado.
+- **edit(Request $request, $id):** Exibe o formulário de edição para um funcionário específico, permitindo alterar dados como unidade, cargo e outras informações relevantes.
+
+#### Dependências
+
+- **Staff:** Modelo que representa os policiais, incluindo informações como nome, matrícula, cargo e unidade de operação.
+- **Rank:** Modelo que representa os cargos dos policiais, com base no nível hierárquico.
+- **OpmStructure:** Modelo que representa as estruturas de cada OPM, incluindo informações sobre o local de trabalho e unidades associadas.
+- **AgentStatusLog:** Modelo que registra mudanças no status dos agentes, incluindo alterações de unidade ou credenciamento.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### StatisticController
+
+Gerencia as operações relacionadas às estatísticas do sistema, incluindo a contagem de ocorrências por OPM e a visualização dessas informações de forma agregada.
+
+#### Métodos Principais
+
+- **countoccurrences(Request $request):** Exibe as ocorrências agrupadas por OPM, contando o número de ocorrências em cada uma delas e ordenando os resultados de forma decrescente. O acesso é restrito a usuários com a permissão "Menu Estatísticas".
+
+#### Dependências
+
+- **Occurrence:** Modelo que representa as ocorrências registradas no sistema, incluindo informações como OPM associada e detalhes sobre a ocorrência.
+- **Opm:** Modelo que representa as Unidades da Polícia Militar (OPMs).
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### SupportTicketController
+
+Gerencia as operações relacionadas ao suporte técnico, incluindo a criação, visualização, atualização e listagem de tickets de suporte, bem como a gestão das soluções fornecidas para os problemas relatados.
+
+#### Métodos Principais
+
+- **index(Request $request):** Exibe a lista de tickets de suporte criados pelo usuário autenticado, com base no tipo de ticket. Exibe também os tipos de tickets disponíveis para o usuário.
+- **storeTicket(Request $request):** Cria um novo ticket de suporte, com base nas informações fornecidas no formulário, como tipo de ticket e descrição.
+- **ticketList(Request $request):** Exibe a lista de tickets de suporte para os usuários com permissão da estrutura "CIADE", mostrando todos os tickets de forma ordenada.
+- **show(Request $request, $id):** Exibe os detalhes de um ticket de suporte específico, marcando o ticket como lido quando o usuário acessa.
+- **update(Request $request, $id):** Atualiza a solução de um ticket de suporte, registrando o usuário que resolveu o problema e a data da solução. O acesso é restrito aos usuários da estrutura "CIADE".
+
+#### Dependências
+
+- **TicketKind:** Modelo que representa os tipos de tickets de suporte, como "Problema técnico", "Erro de sistema", etc.
+- **SupportTicket:** Modelo que representa os tickets de suporte, com informações como descrição, status e data de criação.
+- **SupportTicketRead:** Modelo que registra quando um usuário visualiza um ticket de suporte.
+- **User:** Modelo que representa o usuário autenticado no sistema.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### TaskOrganizationController
+
+Gerencia as operações relacionadas às organizações de tarefas, incluindo a visualização, listagem e atualização do status de missões e documentos associados às tarefas.
+
+#### Métodos Principais
+
+- **pendentes(Request $request):** Exibe a lista de missões pendentes associadas à OPM do usuário, com base nas permissões de "Ver missões". O usuário deve ter a permissão adequada para acessar esta funcionalidade.
+- **concluidas(Request $request):** Exibe a lista de missões concluídas, filtradas por OPM e status, acessível apenas a usuários com a permissão de "Ver missões".
+- **visualiza(Request $request):** Exibe os detalhes de uma missão específica, com base no tipo de documento associado. Pode redirecionar para uma página de visualização de FIS, ou encaminhar para um link de e-mail (Sinmail) dependendo do tipo de documento.
+
+#### Dependências
+
+- **TaskOrganization:** Modelo que representa as organizações de tarefas, incluindo informações como status da missão, tipo de documento e referências associadas.
+- **Staff:** Modelo que representa os funcionários, incluindo dados sobre a unidade à qual pertencem.
+- **AgentFis:** Modelo que gerencia os agentes associados às missões, especialmente relacionado às missões de FIS.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### TermsAndConditionsController
+
+Gerencia as operações relacionadas aos termos e condições de uso do sistema, incluindo a visualização, aceitação, criação e atualização dos termos, bem como a autenticação de usuários através de OTP (One Time Password).
+
+#### Métodos Principais
+
+- **termovigente():** Exibe os termos e condições vigentes, trazendo o último termo registrado no sistema.
+- **last():** Exibe os termos e condições mais recentes, com base no registro mais recente.
+- **aceite(Request $request):** Registra a aceitação dos termos e condições pelo usuário, salvando a data de aceitação no sistema.
+- **create():** Exibe o formulário para criar novos termos e condições de uso, disponível apenas para usuários com a permissão "Gerenciar termos de uso".
+- **store(Request $request):** Armazena os novos termos e condições de uso no sistema e registra a aceitação do usuário.
+- **conteudo(Request $request, $id):** Exibe o conteúdo dos termos e condições de um ID específico, com informações sobre o responsável pela criação.
+- **authenticate(Request $request):** Realiza a autenticação do usuário utilizando o Google2FA, verificando o OTP gerado.
+- **otpGenerate(Request $request):** Gera uma nova chave OTP para o usuário, enviando-a por e-mail.
+- **otpReset(Request $request, $id):** Restaura a chave OTP para o usuário especificado, gerando uma nova chave e enviando-a por e-mail.
+
+#### Dependências
+
+- **TermsAndConditions:** Modelo que representa os termos e condições de uso registrados no sistema, incluindo o conteúdo e a data de criação.
+- **TermUser:** Modelo que registra a aceitação dos termos e condições por parte dos usuários.
+- **User:** Modelo que representa os usuários do sistema, incluindo a autenticação via OTP.
+- **Google2FA:** Serviço para autenticação de dois fatores utilizando o Google Authenticator.
+
+> **Padrão de Design Utilizado:** MVC, com o controller responsável pela lógica de negócios e acesso a dados.
+
+---
+
+### Controllers não implementados
+
+- ConditionController
+- CprController
+- IntelligenceController
+- OpmGoverningController
+- OpmStructureController
+- PriorityTargetController
+- SettingsController
 
 ## Models
 
