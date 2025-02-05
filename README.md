@@ -39,3 +39,8 @@ $ GIT_USER=<Your GitHub username> npm run deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+### Generate PDF
+
+# Custom output file name
+npx docusaurus-prince-pdf -u https://openbayes.com/docs --output docs.pdf
