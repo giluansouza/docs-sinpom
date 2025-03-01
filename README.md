@@ -5,13 +5,13 @@ Documentação técnica do portal SINPOM
 ### Installation
 
 ```
-$ npm install
+npm install
 ```
 
 ### Local Development
 
 ```
-$ npm run start
+npm run start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
@@ -19,7 +19,7 @@ This command starts a local development server and opens up a browser window. Mo
 ### Build
 
 ```
-$ npm run build
+npm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
@@ -29,13 +29,18 @@ This command generates static content into the `build` directory and can be serv
 Using SSH:
 
 ```
-$ USE_SSH=true npm run deploy
+USE_SSH=true npm run deploy
 ```
 
 Not using SSH:
 
 ```
-$ GIT_USER=<Your GitHub username> npm run deploy
+GIT_USER=<Your GitHub username> npm run deploy
 ```
 
 If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+
+Mudar consulta SQL (ORM)
+Adicionar comandos dentro do container
+Se o hosts não for editado usar o passo a passo
+Documenta PRA erro SAPC CCI

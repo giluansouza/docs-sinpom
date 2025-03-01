@@ -14,15 +14,19 @@ Criando as tabelas no banco de dados.
 O comando **php artisan migrate** deve ser executado dentro do container do portal sinpom
 :::
 
-Execute o comando abaixo para executar a migrações do banco de dados.
+Execute os comandos abaixo para executar a migrações do banco de dados.
 
 ```bash
-docker exec -it sinpom-web bash -c "php artisan migrate"
+# Entrar no container do portal sinpoms
+docker exec -it sinpom-web bash
+
+# Executar as migrações
+php artisan migrate
 ```
 
 Você pode verificar se o sistema está funcionando corretamente, acesse o portal sinpom em:
 
-- https://sinpom.docker.localhost
+- [https://sinpom.docker.localhost](https://sinpom.docker.localhost)
 
 ## Populando o banco de dados
 
@@ -30,8 +34,12 @@ Você pode verificar se o sistema está funcionando corretamente, acesse o porta
 O comando **php artisan db:seed** deve ser executado dentro do container do portal sinpom
 :::
 
-Execute o comando abaixo para popular o banco de dados.
+Execute os comandos abaixo para popular o banco de dados.
 
 ```bash
-docker exec -it sinpom-web bash -c "php artisan db:seed"
+# Entrar no container do portal sinpoms
+docker exec -it sinpom-web bash
+
+# Executar o seed
+php artisan db:seed
 ```
