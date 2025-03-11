@@ -16,7 +16,7 @@ sidebar_position: 2
 
 **Fluxo Principal:**
 
-1. O usuário acessa a página de login: https://sistema.exemplo/login
+1. O usuário acessa a página de login: <https://sistema.exemplo/login>
 2. O usuário preenche os campos de e-mail e senha.
 3. O usuário clicar em "Entrar".
 4. Após validar as credenciais o sistema solicita o OTP para autenticação
@@ -27,7 +27,7 @@ sidebar_position: 2
 - **F1**: Caso as credenciais sejam inválidas, o sistema exibe uma mensagem de erro.
 - **F2**: Uso do sistema sem OTP
 
-1. O usuário acessa a página de login: https://sinpom.docker.localhost/login
+1. O usuário acessa a página de login: <https://sinpom.docker.localhost/login>
 2. O usuário preenche os campos de e-mail e senha.
 3. O usuário clicar em "Entrar".
 4. O sistema verifica as credenciais e redireciona o usuário para a página de inicial
@@ -1368,14 +1368,14 @@ despacho pela CoordOInt.
    - 2.3. O sistema abre um modal com um botão de confirmação.
    - 2.4. O sistema redireciona para a tela de Gestão da agência.
 
-3. Usuário SAPC:
+3. Usuário CCI:
 
    - 3.1. Os passos 1 (1.1 até 1.4) do fluxo de credenciamento.
    - 3.2. O usuário anexa o **Extrato CCI** e preenche o campo "Parecer da Coordenação de Contrainteligência" e clica em **"Finalizar avaliação"**.
    - 3.3. O sistema abre um modal com um botão de confirmação.
    - 3.4. O sistema redireciona para a tela de Gestão da agência.
 
-4. Usuário SAPC:
+4. Usuário SSO:
 
    - 4.1. Os passos 1 (1.1 até 1.4) do fluxo de credenciamento.
    - 4.2. O usuário anexa o **Extrato SSO** e preenche o campo "Parecer da seção de segurança orgânica" e clica em **"Finalizar avaliação"**.
@@ -1445,19 +1445,19 @@ despacho pela CoordOInt.
 
 **Fluxo Principal:**
 
-1.  O usuário acessa a seção **Recursos** no menu lateral esquerdo.
-2.  O usuário clica na opção **Gestão da agência**.
-3.  O usuário escolhe a solicitação e clica na opção disponível.
-4.  O usuário confere as informações, baixa os anexos PDFs.
-5.  O usuário clica em **"Autorizar credenciamento"**.
-6.  O sistema exibe modal para confirmação do usuário.
-7.  O sistema redireciona para a tela inicial.
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Gestão da agência**.
+3. O usuário escolhe a solicitação e clica na opção disponível.
+4. O usuário confere as informações, baixa os anexos PDFs.
+5. O usuário clica em **"Autorizar credenciamento"**.
+6. O sistema exibe modal para confirmação do usuário.
+7. O sistema redireciona para a tela inicial.
 
 **Fluxo Alternativo**
 
 - **F1:**
-  1.  Passos de 1 a 4 do fluxo principal.
-  2.  O usuário clica em **"Indeferir"**
+  1. Passos de 1 a 4 do fluxo principal.
+  2. O usuário clica em **"Indeferir"**
 
 **Pós-condições:**
 
@@ -1493,21 +1493,21 @@ despacho pela CoordOInt.
 
 **Fluxo Principal:**
 
-1.  O usuário acessa a seção **Recursos** no menu lateral esquerdo.
-2.  O usuário clica na opção **Gestão da agência**.
-3.  O usuário escolhe a solicitação e clica na opção disponível.
-4.  O usuário confere as informações.
-5.  O usuário clica em **"Credenciar"**.
-6.  O sistema redireciona para a tela de geração de token.
-7.  O usuário clica em "Enviar".
-8.  O sistema envia um e-mail com o token de cadastro de usuário para o agente.
+1. O usuário acessa a seção **Recursos** no menu lateral esquerdo.
+2. O usuário clica na opção **Gestão da agência**.
+3. O usuário escolhe a solicitação e clica na opção disponível.
+4. O usuário confere as informações.
+5. O usuário clica em **"Credenciar"**.
+6. O sistema redireciona para a tela de geração de token.
+7. O usuário clica em "Enviar".
+8. O sistema envia um e-mail com o token de cadastro de usuário para o agente.
 
 **Fluxo Alternativo**
 
 - **F1:**
-  1.  Passos de 1 a 4 do fluxo principal.
-  2.  O usuário clica em **"Retornar ao comandante"**
-  3.  O processo retorna para a fase de **Indeferimento ou autorização de agente**
+  1. Passos de 1 a 4 do fluxo principal.
+  2. O usuário clica em **"Retornar ao comandante"**
+  3. O processo retorna para a fase de **Indeferimento ou autorização de agente**
 
 **Pós-condições:**
 
@@ -1622,8 +1622,8 @@ despacho pela CoordOInt.
 **Fluxo Alternativo:**
 
 - **F1:** Resetando OTP do usuário selecionado
-  1.  Os passos 1-5 do fluxo principal.
-  2.  O usuário clica no botão **"Resetar OTP"**
+  1. Os passos 1-5 do fluxo principal.
+  2. O usuário clica no botão **"Resetar OTP"**
 
 **Pós-condições:**
 
@@ -1824,17 +1824,17 @@ despacho pela CoordOInt.
 
 - **F1:** O usuário desiste de criar a ocorrência.
 
-  1.  Os passos anteriores seguem o fluxo principal (passos 1-5).
-  2.  O usuário precisa clicar em **"Excluir"** para que a ocorrência seja apagada do sistema.
-  3.  O sistema abre um modal para confirmação do usuário.
-  4.  O sistema redireciona para a tela de escolha do tipo de nova ocorrência.
+  1. Os passos anteriores seguem o fluxo principal (passos 1-5).
+  2. O usuário precisa clicar em **"Excluir"** para que a ocorrência seja apagada do sistema.
+  3. O sistema abre um modal para confirmação do usuário.
+  4. O sistema redireciona para a tela de escolha do tipo de nova ocorrência.
 
 - **F2:** O usuário não faz alterações nos campos e sai da tela.
 
-  1.  Os passos anteriores seguem o fluxo principal (passos 1-5).
-  2.  A ocorrência foi criada mas naõ tem as informações necessárias.
-  3.  O usuário clica em qualquer outra opção do menu lateral.
-  4.  O sistema redireciona o usuário para a tela escolhida.
+  1. Os passos anteriores seguem o fluxo principal (passos 1-5).
+  2. A ocorrência foi criada mas naõ tem as informações necessárias.
+  3. O usuário clica em qualquer outra opção do menu lateral.
+  4. O sistema redireciona o usuário para a tela escolhida.
 
 **Pós-condições:**
 
@@ -1913,7 +1913,7 @@ despacho pela CoordOInt.
 **Fluxo Principal:**
 
 1. O usuário acessa a seção **"Estatísticas"** no menu lateral esquerdo
-2. O usuário clica em **"Ocorrências" na lista de submenus de **"Estatísticas"\*\*.
+2. O usuário clica em **"Ocorrências" na lista de submenus de**"Estatísticas"\*\*.
 3. O sistema exibe a tela com a lista de ocorrências separada por OPM e Total".
 4. O usuário pode clicar em uma das opções da lista
 5. O sistema redireciona para a lista de ocorrências da unidade selecionada.
